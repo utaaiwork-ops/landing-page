@@ -17,309 +17,214 @@
 <meta name="twitter:title" content="松本海太 | AI導入・活用コンサルティング">
 <meta name="twitter:description" content="AIであなたの力を何倍にも拡張する。業務課題の発見からAI導入・運用まで、一気通貫でサポートします。">
 <link rel="canonical" href="https://indexhtml-ten-phi.vercel.app">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --dark:#0a0f1e;--dark2:#0e1629;--dark3:#141d35;
-  --accent:#3b82f6;--accent-d:#2563eb;--accent-l:rgba(59,130,246,.08);
-  --green:#10b981;--green-l:rgba(16,185,129,.08);
-  --purple:#8b5cf6;--purple-l:rgba(139,92,246,.08);
-  --t1:#111827;--t2:#4b5563;--t3:#9ca3af;
-  --bg:#ffffff;--bg2:#f8fafc;--bg3:#f1f5f9;
-  --border:#e2e8f0;
-  --red:#ef4444;--red-l:rgba(239,68,68,.06);
-  --jp:'Zen Kaku Gothic New',sans-serif;--en:'Outfit',sans-serif;
-  --shadow:0 4px 24px rgba(0,0,0,.06);
-  --shadow-lg:0 12px 40px rgba(0,0,0,.1);
-  --radius:16px;
+  --white:#ffffff;--off-white:#f7f8fa;--light-gray:#f0f2f5;
+  --border:#e5e7eb;--border-light:#f0f0f0;
+  --t1:#1a1a2e;--t2:#4a4a5a;--t3:#8a8a9a;--t4:#b0b0c0;
+  --accent:#0066cc;--accent-hover:#0052a3;--accent-light:rgba(0,102,204,.06);
+  --success:#00b894;
+  --dark:#0f0f1a;
+  --overlay:rgba(0,0,0,.55);
+  --font-primary:'Inter','Noto Sans JP',sans-serif;
+  --font-en:'Inter',sans-serif;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,.06);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.08);
+  --shadow-hover:0 12px 40px rgba(0,0,0,.1);
+  --radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:24px;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--jp);background:var(--bg);color:var(--t1);line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-primary);background:var(--white);color:var(--t1);line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:var(--accent);text-decoration:none;transition:.3s}
-.container{max-width:1120px;margin:0 auto;padding:0 2rem}
-
-/* ===== ANIMATIONS ===== */
-.anim{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-.anim.vis{opacity:1;transform:none}
-.anim-d1{transition-delay:.1s}.anim-d2{transition-delay:.2s}.anim-d3{transition-delay:.3s}.anim-d4{transition-delay:.4s}.anim-d5{transition-delay:.5s}
-.anim-scale{opacity:0;transform:scale(.92);transition:opacity .6s,transform .6s cubic-bezier(.16,1,.3,1)}
-.anim-scale.vis{opacity:1;transform:none}
-.anim-left{opacity:0;transform:translateX(-40px);transition:opacity .7s,transform .7s cubic-bezier(.16,1,.3,1)}
-.anim-left.vis{opacity:1;transform:none}
-.anim-right{opacity:0;transform:translateX(40px);transition:opacity .7s,transform .7s cubic-bezier(.16,1,.3,1)}
-.anim-right.vis{opacity:1;transform:none}
+.container{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,4rem)}
+.section{padding:clamp(4rem,8vw,8rem) 0}
+.section-alt{background:var(--off-white)}
 
 /* ===== NAV ===== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.8rem 0;transition:all .4s cubic-bezier(.16,1,.3,1)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 0;transition:all .4s ease}
 .nav--hero{background:transparent}
-.nav--scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 1px 8px rgba(0,0,0,.04);padding:.6rem 0}
+.nav--scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:.8rem 0}
 .nav .container{display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--en);font-weight:900;font-size:1.3rem;letter-spacing:-.5px;transition:.3s}
+.nav-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;letter-spacing:-.5px;transition:.3s}
 .nav--hero .nav-logo{color:#fff}.nav--scrolled .nav-logo{color:var(--t1)}
 .nav-logo span{color:var(--accent)}
-.nav-links{display:flex;gap:1.8rem;align-items:center}
-.nav-links a{font-size:.82rem;font-weight:600;transition:.3s}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{display:flex;flex-direction:column;align-items:center;gap:2px;transition:.3s}
+.nav-label-en{font-family:var(--font-en);font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.nav-label-jp{font-size:.62rem;font-weight:400}
 .nav--hero .nav-links a{color:rgba(255,255,255,.6)}.nav--hero .nav-links a:hover{color:#fff}
 .nav--scrolled .nav-links a{color:var(--t3)}.nav--scrolled .nav-links a:hover{color:var(--t1)}
-.nav-cta{background:var(--accent)!important;color:#fff!important;padding:.5rem 1.2rem;border-radius:10px;font-weight:700!important;box-shadow:0 2px 12px rgba(59,130,246,.3)}
+.nav--hero .nav-label-jp{color:rgba(255,255,255,.35)}.nav--scrolled .nav-label-jp{color:var(--t4)}
+.nav-cta{background:var(--accent)!important;color:#fff!important;padding:.55rem 1.3rem;border-radius:var(--radius-sm);flex-direction:row!important;gap:.4rem!important}
+.nav-cta .nav-label-en,.nav-cta .nav-label-jp{color:#fff!important}
 .nav-toggle{display:none;background:0;border:0;font-size:1.3rem;cursor:pointer}
 .nav--hero .nav-toggle{color:#fff}.nav--scrolled .nav-toggle{color:var(--t1)}
 @media(max-width:768px){
-  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
-  .nav-links.open{display:flex}.nav-links.open a{color:var(--t2)!important}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}
+  .nav-links.open{display:flex}.nav-links.open a{color:var(--t2)!important}.nav-links.open .nav-label-jp{color:var(--t4)!important}
   .nav-toggle{display:block}
 }
 
 /* ===== HERO ===== */
-.hero{min-height:100vh;background:var(--dark);position:relative;display:flex;align-items:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(59,130,246,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.05) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 20%,transparent 100%);animation:gridMove 20s linear infinite}
-@keyframes gridMove{0%{transform:translate(0,0)}100%{transform:translate(60px,60px)}}
-.hero-glow1{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(59,130,246,.15) 0%,transparent 70%);top:-15%;right:-10%;border-radius:50%;filter:blur(60px);animation:glowFloat 8s ease-in-out infinite}
-.hero-glow2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(139,92,246,.1) 0%,transparent 70%);bottom:-10%;left:5%;border-radius:50%;filter:blur(60px);animation:glowFloat 10s ease-in-out infinite reverse}
-.hero-glow3{position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(16,185,129,.08) 0%,transparent 70%);top:30%;left:40%;border-radius:50%;filter:blur(40px);animation:glowFloat 12s ease-in-out infinite 2s}
-@keyframes glowFloat{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-20px) scale(1.05)}50%{transform:translate(-20px,30px) scale(.95)}75%{transform:translate(20px,20px) scale(1.02)}}
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-video-wrap{position:absolute;inset:0}
+.hero-video{width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.6) 100%)}
+.hero-content{position:relative;z-index:2;max-width:800px;padding:0 2rem}
+.hero-label{font-family:var(--font-en);font-size:.8rem;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1.5rem}
+.hero-title{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:800;color:#fff;line-height:1.3;letter-spacing:-.04em;margin-bottom:1.5rem}
+.hero-desc{font-size:1.05rem;color:rgba(255,255,255,.7);line-height:1.9;margin-bottom:2.5rem}
+.hero-cta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:var(--radius-sm);font-weight:600;font-size:.88rem;border:0;cursor:pointer;transition:all .3s ease;font-family:var(--font-primary);letter-spacing:.5px}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(0,102,204,.25)}.btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,102,204,.35)}
+.btn-white-outline{background:0;border:1.5px solid rgba(255,255,255,.5);color:#fff}.btn-white-outline:hover{background:rgba(255,255,255,.1);border-color:#fff}
+.btn-outline{background:#fff;border:1.5px solid var(--border);color:var(--t1)}.btn-outline:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow-md)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.4);font-family:var(--font-en);font-size:.65rem;letter-spacing:2px;text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:rgba(255,255,255,.3);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:#fff;animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%{top:-100%}100%{top:100%}}
 
-/* Floating particles */
-.particles{position:absolute;inset:0;overflow:hidden}
-.particle{position:absolute;width:3px;height:3px;background:rgba(59,130,246,.3);border-radius:50%;animation:particleFloat linear infinite}
-.particle:nth-child(2){width:2px;height:2px;background:rgba(139,92,246,.25);left:20%;animation-duration:18s;animation-delay:2s}
-.particle:nth-child(3){width:4px;height:4px;background:rgba(16,185,129,.2);left:40%;animation-duration:22s;animation-delay:4s}
-.particle:nth-child(4){width:2px;height:2px;background:rgba(59,130,246,.2);left:60%;animation-duration:16s;animation-delay:1s}
-.particle:nth-child(5){width:3px;height:3px;background:rgba(139,92,246,.15);left:80%;animation-duration:20s;animation-delay:3s}
-.particle:nth-child(6){width:2px;height:2px;background:rgba(59,130,246,.25);left:90%;animation-duration:24s;animation-delay:5s}
-.particle:nth-child(7){width:3px;height:3px;background:rgba(16,185,129,.15);left:10%;animation-duration:19s;animation-delay:6s}
-.particle:nth-child(8){width:2px;height:2px;background:rgba(59,130,246,.2);left:50%;animation-duration:21s;animation-delay:7s}
-@keyframes particleFloat{0%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100px) rotate(720deg);opacity:0}}
-
-.hero-content{position:relative;z-index:2;max-width:720px;padding:8rem 0 6rem}
-.hero-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:50px;padding:.35rem 1.2rem;font-size:.75rem;color:var(--accent);font-weight:700;margin-bottom:2rem;backdrop-filter:blur(10px);opacity:0;animation:heroFadeUp .8s .3s forwards}
-.hero-badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
-@keyframes heroFadeUp{to{opacity:1;transform:translateY(0)}}
-
-.hero h1{font-size:clamp(2.4rem,5.5vw,3.6rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:1.2rem;letter-spacing:-.03em}
-.hero-word{display:inline-block;opacity:0;transform:translateY(40px);animation:wordReveal .6s forwards}
-@keyframes wordReveal{to{opacity:1;transform:translateY(0)}}
-.hero h1 .highlight{position:relative;display:inline-block}
-.hero h1 .highlight::after{content:'';position:absolute;bottom:4px;left:0;width:0;height:10px;background:rgba(59,130,246,.3);border-radius:4px;z-index:-1;animation:highlightGrow .8s 1.8s forwards}
-@keyframes highlightGrow{to{width:100%}}
-.hero-desc{font-size:1rem;color:rgba(255,255,255,.5);line-height:1.9;margin-bottom:2.5rem;max-width:520px;opacity:0;animation:heroFadeUp .8s 1.5s forwards}
-.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:3.5rem;opacity:0;animation:heroFadeUp .8s 1.8s forwards}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.8rem;border-radius:12px;font-weight:700;font-size:.88rem;border:0;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);font-family:var(--jp)}
-.btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 20px rgba(59,130,246,.35)}.btn-primary:hover{background:var(--accent-d);transform:translateY(-2px);box-shadow:0 8px 30px rgba(59,130,246,.45)}
-.btn-ghost{background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.12)}.btn-ghost:hover{background:rgba(255,255,255,.1);color:#fff}
-.btn-outline{background:#fff;border:1.5px solid var(--border);color:var(--t1)}.btn-outline:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow)}
-.btn-white{background:#fff;color:var(--accent);box-shadow:0 4px 16px rgba(0,0,0,.1)}.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
-.hero-metrics{display:flex;gap:3rem;opacity:0;animation:heroFadeUp .8s 2.1s forwards}
-.hero-metric-num{font-family:var(--en);font-size:2.2rem;font-weight:900;color:#fff;line-height:1.2}
-.hero-metric-num span{color:var(--accent)}
-.hero-metric-label{font-size:.7rem;color:rgba(255,255,255,.35);font-weight:500}
-@media(max-width:560px){.hero-metrics{gap:1.5rem}.hero-metric-num{font-size:1.6rem}}
-
-/* ===== SECTIONS ===== */
-.section{padding:6rem 0}.section-alt{background:var(--bg2)}
-.sec-label{font-family:var(--en);font-size:.65rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;display:block}
-.sec-title{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;margin-bottom:.5rem;line-height:1.5}
-.sec-title .hl{color:var(--accent)}
-.sec-desc{color:var(--t2);font-size:.92rem;margin-bottom:3rem;max-width:640px}
-.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);transition:all .35s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
-.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
-
-/* ===== PROBLEMS (Compact) ===== */
-.pain-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:4rem}
-@media(max-width:768px){.pain-cards{grid-template-columns:1fr}}
-.pain-card{padding:1.8rem;position:relative}
-.pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);opacity:0;transition:.3s}.pain-card:hover::before{opacity:1}
-.pain-icon{width:48px;height:48px;background:var(--red-l);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--red);margin-bottom:.8rem;font-size:1rem}
-.pain-card h3{font-size:.92rem;font-weight:800;margin-bottom:.4rem}
-.pain-item{font-size:.78rem;color:var(--t3);padding:.15rem 0 .15rem 1rem;position:relative}
-.pain-item::before{content:'';position:absolute;left:0;top:.5rem;width:4px;height:4px;background:var(--red);border-radius:50%;opacity:.4}
-
-.ba-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch}
-@media(max-width:768px){.ba-grid{grid-template-columns:1fr;gap:.8rem}}
-.ba-box{border-radius:var(--radius);padding:1.8rem}
-.ba-before{background:var(--red-l);border:1.5px solid rgba(239,68,68,.1)}
-.ba-after{background:var(--green-l);border:1.5px solid rgba(16,185,129,.1)}
-.ba-arrow{display:flex;align-items:center;justify-content:center;padding:0 1.2rem;font-size:1.5rem;color:var(--accent)}
-@media(max-width:768px){.ba-arrow{transform:rotate(90deg);padding:.3rem 0}}
-.ba-label{font-family:var(--en);font-size:.7rem;font-weight:800;letter-spacing:3px;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem}
-.ba-before .ba-label{color:var(--red)}.ba-after .ba-label{color:var(--green)}
-.ba-row{display:flex;gap:.4rem;margin-bottom:.35rem;align-items:flex-start}
-.ba-row i{margin-top:.3rem;font-size:.6rem;flex-shrink:0}
-.ba-before .ba-row i{color:var(--red)}.ba-after .ba-row i{color:var(--green)}
-.ba-row span{font-size:.78rem;color:var(--t2)}
+/* ===== SECTION HEADERS ===== */
+.sec-label{font-family:var(--font-en);font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:block;text-align:center}
+.sec-title{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--t1);margin-bottom:.8rem;line-height:1.4;text-align:center;letter-spacing:-.02em}
+.sec-desc{color:var(--t3);font-size:.95rem;text-align:center;max-width:600px;margin:0 auto 3rem}
 
 /* ===== ABOUT ===== */
-.about-grid{display:grid;grid-template-columns:220px 1fr;gap:3rem;align-items:start}
-@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
-.about-photo{width:220px;height:270px;background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1.5px solid var(--border);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--accent);flex-shrink:0;overflow:hidden}
+.about-grid{display:grid;grid-template-columns:300px 1fr;gap:4rem;align-items:start;margin-top:3rem}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2rem}}
+.about-photo{width:100%;aspect-ratio:3/4;border-radius:var(--radius-lg);overflow:hidden;background:var(--light-gray);display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--accent)}
 .about-photo img{width:100%;height:100%;object-fit:cover}
-@media(max-width:768px){.about-photo{width:160px;height:200px;margin:0 auto}}
-.about-name{font-size:1.4rem;font-weight:900}.about-en{font-family:var(--en);font-size:.72rem;color:var(--t3);letter-spacing:2px;margin-bottom:.5rem}
-.about-tags{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:1rem}
-.about-tag{background:var(--accent-l);padding:.18rem .55rem;border-radius:50px;font-size:.66rem;color:var(--accent);font-weight:600}
-.about-chapter{display:flex;align-items:center;gap:.5rem;margin-top:1.2rem;margin-bottom:.2rem}
-.about-chapter span{font-family:var(--en);font-size:.6rem;font-weight:800;color:var(--accent);background:var(--accent-l);padding:.1rem .4rem;border-radius:4px}
-.about-chapter h3{font-size:.88rem;font-weight:800}
-.about-text{font-size:.82rem;color:var(--t2);margin-bottom:.2rem}
+@media(max-width:768px){.about-photo{max-width:240px;margin:0 auto}}
+.about-name{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.2rem}
+.about-en{font-family:var(--font-en);font-size:.75rem;color:var(--t3);letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem}
+.about-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.about-tag{background:var(--accent-light);color:var(--accent);padding:.25rem .7rem;border-radius:50px;font-size:.72rem;font-weight:600}
+.about-chapter{display:flex;align-items:center;gap:.5rem;margin-top:1.5rem;margin-bottom:.3rem}
+.about-chapter span{font-family:var(--font-en);font-size:.6rem;font-weight:800;color:var(--accent);background:var(--accent-light);padding:.1rem .4rem;border-radius:4px}
+.about-chapter h3{font-size:.92rem;font-weight:700}
+.about-text{font-size:.88rem;color:var(--t2);line-height:1.9}
 
 /* ===== SERVICES ===== */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
 @media(max-width:900px){.services-grid{grid-template-columns:1fr}}
-.service-card{padding:0;display:flex;flex-direction:column}
-.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:.3s}.service-card:hover::before{opacity:1}
-.service-card:nth-child(1)::before{background:var(--accent)}.service-card:nth-child(2)::before{background:var(--green)}.service-card:nth-child(3)::before{background:var(--purple)}
-.service-img{height:140px;overflow:hidden;position:relative}
-.service-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.service-card:hover .service-img img{transform:scale(1.08)}
-.service-img::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.4))}
-.service-num{font-family:var(--en);font-size:3rem;font-weight:900;position:absolute;top:.3rem;right:.8rem;line-height:1;z-index:1;color:rgba(255,255,255,.15)}
-.service-body{padding:1.5rem}
-.service-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:.8rem;margin-top:-36px;position:relative;z-index:2;box-shadow:0 4px 12px rgba(0,0,0,.1)}
-.service-card:nth-child(1) .service-icon{background:var(--accent);color:#fff}
-.service-card:nth-child(2) .service-icon{background:var(--green);color:#fff}
-.service-card:nth-child(3) .service-icon{background:var(--purple);color:#fff}
-.service-body h3{font-size:.95rem;font-weight:800;margin-bottom:.1rem}
-.service-subtitle{font-size:.72rem;color:var(--t3);font-weight:500;margin-bottom:.5rem;display:block}
-.service-body>p{font-size:.8rem;color:var(--t2);margin-bottom:.6rem}
+.service-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-lg);overflow:hidden;transition:all .35s cubic-bezier(.16,1,.3,1)}
+.service-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px)}
+.service-img{height:180px;overflow:hidden;position:relative}
+.service-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.service-card:hover .service-img img{transform:scale(1.05)}
+.service-img::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.35))}
+.service-num{font-family:var(--font-en);font-size:5rem;font-weight:900;position:absolute;top:-.5rem;right:.8rem;line-height:1;z-index:1;color:rgba(255,255,255,.1)}
+.service-body{padding:1.8rem}
+.service-icon{width:48px;height:48px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:.8rem;margin-top:-36px;position:relative;z-index:2;box-shadow:0 4px 12px rgba(0,0,0,.1);background:var(--accent);color:#fff}
+.service-body h3{font-size:1.05rem;font-weight:700;margin-bottom:.3rem}
+.service-subtitle{font-size:.75rem;color:var(--t3);margin-bottom:.8rem;display:block}
+.service-body>p{font-size:.88rem;color:var(--t2);line-height:1.8;margin-bottom:1rem}
 .service-list{list-style:none}
-.service-list-item{font-size:.73rem;color:var(--t3);padding:.12rem 0 .12rem 1.1rem;position:relative}
-.service-list-item::before{content:'\2713';position:absolute;left:0;color:var(--green);font-weight:800;font-size:.65rem}
+.service-list-item{font-size:.8rem;color:var(--t2);padding:.2rem 0 .2rem 1.2rem;position:relative}
+.service-list-item::before{content:'';position:absolute;left:0;top:.55rem;width:6px;height:6px;background:var(--accent);border-radius:50%}
 
-/* ===== USE CASES (with images) ===== */
-.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-@media(max-width:900px){.cases-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.cases-grid{grid-template-columns:1fr}}
-.case-card{overflow:hidden}
-.case-img{height:120px;overflow:hidden;position:relative}
-.case-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.case-card:hover .case-img img{transform:scale(1.08)}
-.case-img::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,.5))}
-.case-cat{position:absolute;bottom:.6rem;left:.8rem;z-index:1;font-size:.65rem;font-weight:700;background:rgba(255,255,255,.9);padding:.15rem .5rem;border-radius:50px;color:var(--t1)}
-.case-body{padding:1.1rem 1.3rem}
-.case-body h3{font-size:.85rem;font-weight:800;margin-bottom:.3rem}
-.case-body p{font-size:.75rem;color:var(--t2);line-height:1.7;margin-bottom:.5rem}
-.case-tags{display:flex;gap:.2rem;flex-wrap:wrap}
-.case-tags span{font-size:.58rem;background:var(--accent-l);color:var(--accent);padding:.1rem .35rem;border-radius:4px;font-weight:600}
-
-/* ===== AI STACK (Compact) ===== */
-.stack-visual{display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;max-width:860px;margin:2rem auto 2.5rem}
-@media(max-width:768px){.stack-visual{grid-template-columns:1fr;gap:1rem}}
-.stack-team{display:flex;flex-direction:column;gap:.7rem}
-.stack-member{display:flex;align-items:center;gap:.7rem;padding:.85rem 1rem;background:#fff;border:1.5px solid var(--border);border-radius:12px;transition:all .3s}
-.stack-member:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:translateX(6px)}
-.stack-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;color:#fff}
-.si1{background:linear-gradient(135deg,#3b82f6,#2563eb)}.si2{background:linear-gradient(135deg,#10b981,#059669)}.si3{background:linear-gradient(135deg,#8b5cf6,#7c3aed)}.si4{background:linear-gradient(135deg,#f59e0b,#d97706)}
-.stack-member-info h4{font-size:.8rem;font-weight:800;margin-bottom:.05rem}.stack-member-info p{font-size:.68rem;color:var(--t3)}
-.stack-arrow{font-size:2.5rem;color:var(--accent);text-align:center;font-weight:900;animation:arrowPulse 2s ease-in-out infinite}
-@keyframes arrowPulse{0%,100%{transform:translateX(0);opacity:1}50%{transform:translateX(8px);opacity:.5}}
-@media(max-width:768px){.stack-arrow{transform:rotate(90deg)}@keyframes arrowPulse{0%,100%{transform:rotate(90deg) translateX(0)}50%{transform:rotate(90deg) translateX(8px)}}}
-.stack-result{background:linear-gradient(135deg,var(--accent),#1d4ed8);border-radius:18px;padding:2.2rem;color:#fff;text-align:center}
-.stack-result h3{font-size:1.1rem;font-weight:900;margin-bottom:.4rem}.stack-result p{font-size:.82rem;opacity:.85;line-height:1.7}
-.stack-bottom{text-align:center;max-width:560px;margin:0 auto;font-size:.85rem;color:var(--t2)}
-
-/* ===== SECURITY ===== */
-.security-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-@media(max-width:768px){.security-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.security-grid{grid-template-columns:1fr}}
-.security-card{text-align:center;background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:1.5rem 1rem;transition:.3s}
-.security-card:hover{border-color:var(--green);box-shadow:var(--shadow);transform:translateY(-3px)}
-.security-icon{width:46px;height:46px;background:var(--green-l);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--green);margin:0 auto .6rem}
-.security-card h4{font-size:.82rem;font-weight:700;margin-bottom:.15rem}.security-card p{font-size:.7rem;color:var(--t3)}
+/* ===== WORKS ===== */
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:900px){.works-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.works-grid{grid-template-columns:1fr}}
+.work-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-lg);overflow:hidden;transition:all .35s ease}
+.work-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px)}
+.work-thumb{height:200px;overflow:hidden;position:relative}
+.work-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.work-card:hover .work-thumb img{transform:scale(1.05)}
+.work-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.3))}
+.work-cat{position:absolute;bottom:.8rem;left:.8rem;z-index:1;display:inline-block;font-size:.68rem;font-weight:600;color:var(--t1);background:rgba(255,255,255,.9);padding:.2rem .6rem;border-radius:50px}
+.work-info{padding:1.5rem}
+.work-info h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+.work-info p{font-size:.82rem;color:var(--t2);line-height:1.7;margin-bottom:.6rem}
+.work-tags{display:flex;gap:.3rem;flex-wrap:wrap}
+.work-tags span{font-size:.6rem;background:var(--accent-light);color:var(--accent);padding:.12rem .4rem;border-radius:4px;font-weight:600}
 
 /* ===== FLOW ===== */
-.flow-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;max-width:960px;margin:0 auto}
+.flow-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;max-width:1000px;margin:3rem auto 0}
 @media(max-width:768px){.flow-row{grid-template-columns:1fr 1fr;gap:.8rem}}
 @media(max-width:480px){.flow-row{grid-template-columns:1fr}}
-.flow-step{text-align:center;padding:.8rem .4rem;position:relative}
-.flow-step::after{content:'\2192';position:absolute;right:-8px;top:22px;color:var(--accent);font-size:1rem;font-weight:700;z-index:1}
+.flow-step{text-align:center;padding:1rem .8rem;position:relative}
+.flow-step::after{content:'';position:absolute;right:0;top:28px;width:30px;height:1px;background:var(--border)}
 .flow-step:last-child::after{display:none}
 @media(max-width:768px){.flow-step::after{display:none}}
-.flow-num{width:42px;height:42px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--en);font-weight:800;font-size:.82rem;color:#fff;margin:0 auto .6rem}
-.flow-step h4{font-size:.82rem;font-weight:800;margin-bottom:.1rem}.flow-step p{font-size:.68rem;color:var(--t3)}
-.flow-duration{display:inline-block;background:var(--accent-l);color:var(--accent);padding:.08rem .4rem;border-radius:50px;font-size:.6rem;font-weight:700;margin-top:.3rem}
+.flow-num{width:48px;height:48px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-weight:700;font-size:.85rem;color:#fff;margin:0 auto .8rem}
+.flow-step h4{font-size:.88rem;font-weight:700;margin-bottom:.3rem}
+.flow-step p{font-size:.75rem;color:var(--t3);line-height:1.6}
+.flow-duration{display:inline-block;background:var(--accent-light);color:var(--accent);padding:.15rem .5rem;border-radius:50px;font-size:.65rem;font-weight:600;margin-top:.5rem}
 
-/* ===== PORTFOLIO SLIDER ===== */
-.portfolio-slider-wrap{position:relative;margin:0 -2rem}
-.portfolio-slider{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:1rem 2rem 2rem;-ms-overflow-style:none;scrollbar-width:none}
-.portfolio-slider::-webkit-scrollbar{display:none}
-.portfolio-card{min-width:320px;max-width:320px;scroll-snap-align:start;background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .35s;flex-shrink:0}
-.portfolio-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
-@media(max-width:560px){.portfolio-card{min-width:280px;max-width:280px}}
-.portfolio-thumb{height:160px;overflow:hidden;position:relative}
-.portfolio-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.portfolio-card:hover .portfolio-thumb img{transform:scale(1.06)}
-.portfolio-info{padding:1.2rem}
-.portfolio-info h3{font-size:.88rem;font-weight:700;margin-bottom:.2rem}
-.portfolio-info p{font-size:.76rem;color:var(--t2);margin-bottom:.4rem}
-.portfolio-tags{display:flex;gap:.2rem;flex-wrap:wrap}
-.portfolio-tag{font-size:.58rem;background:var(--accent-l);color:var(--accent);padding:.1rem .35rem;border-radius:4px;font-weight:700}
-.slider-nav{display:flex;justify-content:center;gap:.5rem;margin-top:.5rem}
-.slider-btn{width:40px;height:40px;border-radius:50%;background:#fff;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.3s;color:var(--t2);font-size:.85rem}
-.slider-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow)}
-
-/* ===== CTA BAR ===== */
-.cta-bar{background:var(--dark);padding:4rem 0;text-align:center;position:relative;overflow:hidden}
-.cta-bar .hero-grid{animation:gridMove 30s linear infinite}
-.cta-bar .container{position:relative;z-index:1}
-.cta-bar h3{color:#fff;font-size:1.3rem;font-weight:900;margin-bottom:.5rem}
-.cta-bar p{color:rgba(255,255,255,.5);font-size:.86rem;margin-bottom:1.2rem}
+/* ===== CTA ===== */
+.cta-section{padding:clamp(4rem,8vw,6rem) 0;background:var(--off-white)}
+.cta-inner{text-align:center;max-width:600px;margin:0 auto}
+.cta-inner h3{font-size:1.5rem;font-weight:700;margin-bottom:.8rem}
+.cta-inner p{font-size:.95rem;color:var(--t2);margin-bottom:2rem}
 
 /* ===== FAQ ===== */
-.faq-list{max-width:720px;margin:0 auto}
-.faq-item{border:1.5px solid var(--border);border-radius:12px;margin-bottom:.5rem;background:#fff;transition:.3s}.faq-item:hover{border-color:#c0c8d4}
-.faq-question{width:100%;padding:.9rem 1.1rem;background:0;border:0;color:var(--t1);font-family:var(--jp);font-size:.86rem;font-weight:700;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
-.faq-toggle{font-size:1rem;color:var(--accent);transition:.3s;flex-shrink:0}.faq-item.open .faq-toggle{transform:rotate(45deg)}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}.faq-item.open .faq-answer{max-height:300px}
-.faq-answer-inner{padding:0 1.1rem .9rem;font-size:.82rem;color:var(--t2);line-height:1.8}
+.faq-list{max-width:760px;margin:0 auto}
+.faq-item{border:1px solid var(--border-light);border-radius:var(--radius-md);margin-bottom:.6rem;background:var(--white);transition:.3s}
+.faq-item:hover{border-color:var(--border)}
+.faq-question{width:100%;padding:1.1rem 1.3rem;background:0;border:0;color:var(--t1);font-family:var(--font-primary);font-size:.92rem;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.faq-toggle{font-size:1.2rem;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-toggle{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}
+.faq-item.open .faq-answer{max-height:400px}
+.faq-answer-inner{padding:0 1.3rem 1.1rem;font-size:.88rem;color:var(--t2);line-height:1.9}
 
 /* ===== CONTACT ===== */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem}
 @media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
-.form-group{margin-bottom:.6rem}
-.form-group label{display:block;font-size:.76rem;font-weight:600;margin-bottom:.18rem;color:var(--t2)}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:.65rem .85rem;background:#fff;border:1.5px solid var(--border);border-radius:10px;color:var(--t1);font-family:var(--jp);font-size:.84rem;transition:.3s}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 4px rgba(59,130,246,.06)}
+.form-group{margin-bottom:.8rem}
+.form-group label{display:block;font-size:.78rem;font-weight:600;margin-bottom:.3rem;color:var(--t2)}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.75rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--t1);font-family:var(--font-primary);font-size:.88rem;transition:.3s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,102,204,.08)}
 .form-group textarea{min-height:80px;resize:vertical}
-.contact-side h3{font-size:1rem;font-weight:800;margin-bottom:.5rem}
-.contact-side>p{color:var(--t2);font-size:.84rem;margin-bottom:1.2rem}
-.contact-detail{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem}
-.contact-detail-icon{width:38px;height:38px;background:var(--accent-l);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;font-size:.85rem}
-.cd-label{font-size:.64rem;color:var(--t3)}.cd-value{font-size:.84rem;font-weight:600}
+.contact-side h3{font-size:1.1rem;font-weight:700;margin-bottom:.6rem}
+.contact-side>p{color:var(--t2);font-size:.88rem;margin-bottom:1.5rem}
+.contact-detail{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
+.contact-detail-icon{width:40px;height:40px;background:var(--accent-light);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;font-size:.85rem}
+.cd-label{font-size:.65rem;color:var(--t3)}.cd-value{font-size:.88rem;font-weight:600}
 
 /* Inline Bot */
-.inline-bot{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:1.1rem}
-.inline-bot h4{font-size:.82rem;font-weight:700;margin-bottom:.25rem;color:var(--accent)}.inline-bot p{font-size:.76rem;color:var(--t2);margin-bottom:.5rem}
-.inline-bot-prompts{display:flex;flex-wrap:wrap;gap:.25rem}
-.inline-bot-btn{background:var(--accent-l);color:var(--accent);padding:.22rem .55rem;border-radius:50px;font-size:.68rem;cursor:pointer;transition:.3s;font-family:var(--jp);font-weight:600;border:1px solid transparent}.inline-bot-btn:hover{border-color:var(--accent);background:#fff}
+.inline-bot{background:var(--off-white);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:1.2rem}
+.inline-bot h4{font-size:.85rem;font-weight:700;margin-bottom:.3rem;color:var(--accent)}.inline-bot p{font-size:.78rem;color:var(--t2);margin-bottom:.5rem}
+.inline-bot-prompts{display:flex;flex-wrap:wrap;gap:.3rem}
+.inline-bot-btn{background:var(--accent-light);color:var(--accent);padding:.25rem .6rem;border-radius:50px;font-size:.7rem;cursor:pointer;transition:.3s;font-family:var(--font-primary);font-weight:600;border:1px solid transparent}.inline-bot-btn:hover{border-color:var(--accent);background:#fff}
 
 /* ===== FOOTER ===== */
-.footer{background:var(--dark);color:#fff;padding:2rem 0 1.2rem}
-.footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-logo{font-family:var(--en);font-weight:900;font-size:1rem;color:#fff}.footer-logo span{color:var(--accent)}
+.footer{background:var(--dark);color:#fff;padding:4rem 0 1.5rem}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.footer-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;margin-bottom:.5rem}.footer-logo span{color:var(--accent)}
+.footer-tagline{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:1rem;line-height:1.7}
 .footer-socials{display:flex;gap:.4rem}
-.footer-social{width:36px;height:36px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:.3s;font-size:.8rem}
+.footer-social{width:38px;height:38px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:.3s;font-size:.8rem}
 .footer-social:hover{border-color:var(--accent);color:var(--accent)}
-.footer-copy{width:100%;text-align:center;padding-top:.8rem;margin-top:.8rem;border-top:1px solid rgba(255,255,255,.08);font-size:.66rem;color:rgba(255,255,255,.3)}
+.footer-col h4{font-family:var(--font-en);font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;color:rgba(255,255,255,.6)}
+.footer-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:.5rem;transition:color .3s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{padding-top:1.5rem;text-align:center;font-size:.7rem;color:rgba(255,255,255,.25)}
 
 /* ===== CHATBOT ===== */
-.cb-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;background:var(--accent);border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;box-shadow:0 4px 20px rgba(59,130,246,.35);z-index:999;transition:.3s}.cb-btn:hover{transform:scale(1.08)}
-.cb-panel{position:fixed;bottom:5rem;right:1.5rem;width:340px;max-height:450px;background:#fff;border:1.5px solid var(--border);border-radius:18px;z-index:998;display:none;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-lg)}.cb-panel.open{display:flex}
+.cb-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;background:var(--accent);border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;box-shadow:0 4px 20px rgba(0,102,204,.3);z-index:999;transition:.3s}.cb-btn:hover{transform:scale(1.08)}
+.cb-panel{position:fixed;bottom:5rem;right:1.5rem;width:340px;max-height:450px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);z-index:998;display:none;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-lg)}.cb-panel.open{display:flex}
 .cb-header{padding:.6rem 1rem;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:space-between}
 .cb-header h4{font-size:.78rem;font-weight:700;color:#fff}
 .cb-close{background:0;border:0;color:#fff;cursor:pointer;font-size:1rem;opacity:.7}.cb-close:hover{opacity:1}
-.cb-tabs{display:flex;border-bottom:1.5px solid var(--border)}
-.cb-tab{flex:1;padding:.45rem;background:0;border:0;color:var(--t3);font-family:var(--jp);font-size:.72rem;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:.2s}.cb-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-.cb-messages{flex:1;overflow-y:auto;padding:.55rem;display:flex;flex-direction:column;gap:.35rem;max-height:250px;background:var(--bg2)}
-.cb-msg{max-width:85%;padding:.45rem .65rem;border-radius:12px;font-size:.76rem;line-height:1.6}
-.cb-msg.bot{background:#fff;border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:3px;color:var(--t2)}
+.cb-tabs{display:flex;border-bottom:1px solid var(--border)}
+.cb-tab{flex:1;padding:.45rem;background:0;border:0;color:var(--t3);font-family:var(--font-primary);font-size:.72rem;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:.2s}.cb-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.cb-messages{flex:1;overflow-y:auto;padding:.55rem;display:flex;flex-direction:column;gap:.35rem;max-height:250px;background:var(--off-white)}
+.cb-msg{max-width:85%;padding:.45rem .65rem;border-radius:var(--radius-md);font-size:.76rem;line-height:1.6}
+.cb-msg.bot{background:#fff;border:1px solid var(--border-light);align-self:flex-start;border-bottom-left-radius:3px;color:var(--t2)}
 .cb-msg.usr{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
 .cb-input-area{display:flex;gap:.3rem;padding:.45rem;border-top:1px solid var(--border)}
-.cb-input-area input{flex:1;padding:.38rem .55rem;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;color:var(--t1);font-family:var(--jp);font-size:.76rem}.cb-input-area input:focus{outline:0;border-color:var(--accent)}
-.cb-input-area button{padding:.38rem .55rem;background:var(--accent);border:0;border-radius:8px;color:#fff;cursor:pointer;font-size:.76rem}.cb-input-area button:hover{background:var(--accent-d)}
+.cb-input-area input{flex:1;padding:.38rem .55rem;background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--t1);font-family:var(--font-primary);font-size:.76rem}.cb-input-area input:focus{outline:0;border-color:var(--accent)}
+.cb-input-area button{padding:.38rem .55rem;background:var(--accent);border:0;border-radius:var(--radius-sm);color:#fff;cursor:pointer;font-size:.76rem}.cb-input-area button:hover{background:var(--accent-hover)}
 @media(max-width:500px){.cb-panel{right:.5rem;left:.5rem;width:auto;bottom:4.5rem}}
-@media(max-width:768px){.section{padding:4rem 0}}
 </style>
 </head>
 <body>
@@ -327,111 +232,49 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
 <!-- NAV -->
 <nav class="nav nav--hero" id="nav">
   <div class="container">
-    <div class="nav-logo">UTA<span>.</span>AI</div>
-    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"><i class="fas fa-bars"></i></button>
+    <a href="index.html" class="nav-logo">UTA<span>.</span>AI</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button>
     <div class="nav-links">
-      <a href="#about">自己紹介</a>
-      <a href="#services">サービス</a>
-      <a href="#cases">活用事例</a>
-      <a href="#portfolio">実績</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact" class="nav-cta">無料相談</a>
+      <a href="about.html"><span class="nav-label-en">About</span><span class="nav-label-jp">自己紹介</span></a>
+      <a href="services.html"><span class="nav-label-en">Service</span><span class="nav-label-jp">サービス</span></a>
+      <a href="works.html"><span class="nav-label-en">Works</span><span class="nav-label-jp">実績</span></a>
+      <a href="faq.html"><span class="nav-label-en">FAQ</span><span class="nav-label-jp">よくある質問</span></a>
+      <a href="contact.html" class="nav-cta"><span class="nav-label-en">Contact</span><span class="nav-label-jp">お問い合わせ</span></a>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-bg">
-    <div class="hero-grid"></div>
-    <div class="hero-glow1"></div>
-    <div class="hero-glow2"></div>
-    <div class="hero-glow3"></div>
-    <div class="particles">
-      <div class="particle" style="left:5%"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
+  <div class="hero-video-wrap">
+    <video class="hero-video" autoplay muted loop playsinline poster="">
+      <source src="./hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-label">AI Consulting for SMBs</p>
+    <h1 class="hero-title">AIで、あなたの力を<br>何倍にも拡張する。</h1>
+    <p class="hero-desc">「AIを導入したいけれど、何から始めればいいかわからない」——<br>業務課題の発見からAI導入・運用まで、一気通貫でサポートします。</p>
+    <div class="hero-cta">
+      <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> 無料相談する</a>
+      <a href="about.html" class="btn btn-white-outline">View About Us</a>
     </div>
   </div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge"><span class="pulse"></span> AI導入・活用コンサルティング</div>
-      <h1 id="heroTitle"></h1>
-      <p class="hero-desc">「AIを導入したいけれど、何から始めればいいかわからない」——<br>業務課題の発見からAI導入・運用まで、一気通貫でサポートします。</p>
-      <div class="hero-btns">
-        <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> 無料相談する</a>
-        <a href="#cases" class="btn btn-ghost"><i class="fas fa-chart-line"></i> 活用例を見る</a>
-        <a href="#about" class="btn btn-ghost"><i class="fas fa-user"></i> 自己紹介を見る</a>
-        <a href="#bot-diagnose" class="btn btn-ghost"><i class="fas fa-comments"></i> AI導入お悩み診断</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROBLEMS -->
-<section class="section section-alt" id="problems">
-  <div class="container">
-    <span class="sec-label anim">Problems</span>
-    <h2 class="sec-title anim">こんな<span class="hl">お悩み</span>ありませんか？</h2>
-    <div class="pain-cards">
-      <div class="card pain-card anim">
-        <div class="pain-icon"><i class="fas fa-route"></i></div>
-        <h3>何から始めればいいかわからない</h3>
-        <div class="pain-item">AI化を進めたいが、最初の一歩が踏み出せない</div>
-        <div class="pain-item">どの業務がAIに適しているか判断できない</div>
-        <div class="pain-item">導入計画を立てる情報・ノウハウが不足</div>
-      </div>
-      <div class="card pain-card anim anim-d1">
-        <div class="pain-icon"><i class="fas fa-user-slash"></i></div>
-        <h3>現場でAI活用が進まない</h3>
-        <div class="pain-item">試験導入したが、結局使われていない</div>
-        <div class="pain-item">使い方が属人化し、全社展開できない</div>
-        <div class="pain-item">ツール契約したのに手作業に戻ってしまう</div>
-      </div>
-      <div class="card pain-card anim anim-d2">
-        <div class="pain-icon"><i class="fas fa-question"></i></div>
-        <h3>効果が見えず判断できない</h3>
-        <div class="pain-item">成果が数値で見えない</div>
-        <div class="pain-item">コストに見合う効果が説明できない</div>
-        <div class="pain-item">経営層に導入の正当性を示せない</div>
-      </div>
-    </div>
-    <h3 class="sec-title anim" style="font-size:1.2rem;margin-bottom:1.5rem">AI導入で<span class="hl">こう変わる</span></h3>
-    <div class="ba-grid anim">
-      <div class="ba-box ba-before">
-        <div class="ba-label"><i class="fas fa-times-circle"></i> BEFORE</div>
-        <div class="ba-row"><i class="fas fa-times"></i><span>月20時間以上の手作業データ入力</span></div>
-        <div class="ba-row"><i class="fas fa-times"></i><span>顧客対応は営業時間内のみ</span></div>
-        <div class="ba-row"><i class="fas fa-times"></i><span>資料作成に丸1日かかる</span></div>
-        <div class="ba-row"><i class="fas fa-times"></i><span>見込み客のフォローが追いつかない</span></div>
-        <div class="ba-row"><i class="fas fa-times"></i><span>ノウハウが属人化、退職リスク</span></div>
-      </div>
-      <div class="ba-arrow"><i class="fas fa-arrow-right"></i></div>
-      <div class="ba-box ba-after">
-        <div class="ba-label"><i class="fas fa-check-circle"></i> AFTER</div>
-        <div class="ba-row"><i class="fas fa-check"></i><span>AI自動処理で月2時間に短縮</span></div>
-        <div class="ba-row"><i class="fas fa-check"></i><span>AIチャットボットが24時間365日対応</span></div>
-        <div class="ba-row"><i class="fas fa-check"></i><span>AI下書き生成で数時間で完了</span></div>
-        <div class="ba-row"><i class="fas fa-check"></i><span>LINE公式で自動ナーチャリング</span></div>
-        <div class="ba-row"><i class="fas fa-check"></i><span>AIナレッジで誰でも即アクセス</span></div>
-      </div>
-    </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section class="section" id="about">
   <div class="container">
-    <span class="sec-label anim">About</span>
-    <h2 class="sec-title anim"><span class="hl">自己紹介</span></h2>
+    <span class="sec-label">About</span>
+    <h2 class="sec-title">自己紹介</h2>
     <div class="about-grid">
-      <div class="about-photo anim-left"><i class="fas fa-user"></i></div>
-      <div class="anim-right">
+      <div class="about-photo"><i class="fas fa-user"></i></div>
+      <div>
         <div class="about-name">松本 海太</div>
         <div class="about-en">MATSUMOTO UTA</div>
         <div class="about-tags">
@@ -446,29 +289,19 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
         <p class="about-text">2022年にChatGPTが登場し、使い込むほどに気づいたのは、ほとんどの人がAIを「使っている」だけで「使いこなせていない」ということ。AIを本気で駆使すると、一人では絶対にできなかった高品質な資料作成や、頭の中の想いの的確な言語化が可能になりました。</p>
         <div class="about-chapter"><span>03</span><h3>会計士の道を離れ、AIの道へ</h3></div>
         <p class="about-text">AIを駆使できる人間が圧倒的に強くなる——。3年間続けた会計士の道を離れる決断は簡単ではありませんでしたが、この可能性を届けたいという想いが勝りました。御社の力を何倍にも拡張する、そのお手伝いをさせてください。</p>
-        <div class="inline-bot" style="margin-top:1.2rem">
-          <h4><i class="fas fa-robot"></i> 私について</h4>
-          <p>チャットボットで何でも質問してください。</p>
-          <div class="inline-bot-prompts">
-            <span class="inline-bot-btn" onclick="openBotWithQ('松本さんの強みは？')">強みは？</span>
-            <span class="inline-bot-btn" onclick="openBotWithQ('なぜAIの道へ？')">なぜAIの道へ？</span>
-            <span class="inline-bot-btn" onclick="openBotWithQ('どんなAIツールを使っている？')">使用ツール</span>
-            <span class="inline-bot-btn" onclick="openBotWithQ('料金について')">料金</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section class="section" id="services">
+<section class="section section-alt" id="services">
   <div class="container">
-    <span class="sec-label anim">Services</span>
-    <h2 class="sec-title anim">提供サービス — <span class="hl">3つの柱</span></h2>
-    <p class="sec-desc anim">お客様の課題に合わせて最適なサービスを設計します。</p>
+    <span class="sec-label">Service</span>
+    <h2 class="sec-title">提供サービス</h2>
+    <p class="sec-desc">お客様の課題に合わせて、最適なサービスを設計します。</p>
     <div class="services-grid">
-      <div class="card service-card anim">
+      <div class="service-card">
         <div class="service-img">
           <img src="https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=600&h=300&fit=crop" alt="LINE Marketing" loading="lazy">
           <div class="service-num">01</div>
@@ -486,7 +319,7 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
           </ul>
         </div>
       </div>
-      <div class="card service-card anim anim-d1">
+      <div class="service-card">
         <div class="service-img">
           <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=300&fit=crop" alt="AI Chatbot" loading="lazy">
           <div class="service-num">02</div>
@@ -504,7 +337,7 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
           </ul>
         </div>
       </div>
-      <div class="card service-card anim anim-d2">
+      <div class="service-card">
         <div class="service-img">
           <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop" alt="Consulting" loading="lazy">
           <div class="service-num">03</div>
@@ -526,132 +359,90 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
   </div>
 </section>
 
-<!-- USE CASES -->
-<section class="section section-alt" id="cases">
+<!-- WORKS -->
+<section class="section" id="works">
   <div class="container">
-    <span class="sec-label anim">AI in Action</span>
-    <h2 class="sec-title anim">さまざまな業種で、<span class="hl">AIはもう動いている。</span></h2>
-    <p class="sec-desc anim">「うちの業界には関係ない」——そんなことはありません。こんな使い方がされています。</p>
-    <div class="cases-grid">
-      <div class="card case-card anim">
-        <div class="case-img">
+    <span class="sec-label">Works</span>
+    <h2 class="sec-title">活用事例・制作実績</h2>
+    <p class="sec-desc">さまざまな業種で、AIは活躍しています。</p>
+    <div class="works-grid">
+      <div class="work-card">
+        <div class="work-thumb">
+          <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=500&h=300&fit=crop" alt="LINE Bot" loading="lazy">
+          <span class="work-cat">制作実績</span>
+        </div>
+        <div class="work-info">
+          <h3>LINE公式チャットボット</h3>
+          <p>AI搭載のLINEボット。質問自動応答から予約・日程調整まで処理。</p>
+          <div class="work-tags"><span>LINE API</span><span>AI Chatbot</span><span>自動応答</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=300&fit=crop" alt="Custom AI" loading="lazy">
+          <span class="work-cat">制作実績</span>
+        </div>
+        <div class="work-info">
+          <h3>カスタムAIチャットボット</h3>
+          <p>業務知識を学習させたオーダーメイドのチャットボット。社内FAQ・顧客対応を自動化。</p>
+          <div class="work-tags"><span>Claude API</span><span>RAG</span><span>ナレッジベース</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb">
           <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&h=300&fit=crop" alt="飲食店" loading="lazy">
-          <span class="case-cat">飲食・サービス業</span>
+          <span class="work-cat">飲食・サービス業</span>
         </div>
-        <div class="case-body">
+        <div class="work-info">
           <h3>来客数をAIが予測して、仕入れ・シフトを最適化</h3>
-          <p>天候や周辺イベントなどのデータをAIが分析し、「いつ・何人来るか」を高精度で予測。食材ロスの削減とスタッフ配置の最適化で、利益率が大幅に改善されています。</p>
-          <div class="case-tags"><span>需要予測</span><span>在庫最適化</span><span>シフト管理</span></div>
+          <p>天候や周辺イベントなどのデータをAIが分析し、食材ロスの削減とスタッフ配置の最適化を実現。</p>
+          <div class="work-tags"><span>需要予測</span><span>在庫最適化</span><span>シフト管理</span></div>
         </div>
       </div>
-      <div class="card case-card anim anim-d1">
-        <div class="case-img">
+      <div class="work-card">
+        <div class="work-thumb">
           <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&h=300&fit=crop" alt="製造業" loading="lazy">
-          <span class="case-cat">製造業</span>
+          <span class="work-cat">製造業</span>
         </div>
-        <div class="case-body">
+        <div class="work-info">
           <h3>見積り・検品をAIが自動化して、属人業務を解消</h3>
-          <p>図面を読み取って見積りを自動算出したり、画像認識で不良品を検出したり。「あの人しかできない」という業務をAIが引き受け、誰でも対応できる体制に変わっています。</p>
-          <div class="case-tags"><span>自動見積り</span><span>画像検査</span><span>属人化解消</span></div>
+          <p>図面を読み取って見積りを自動算出。画像認識で不良品を検出し、誰でも対応できる体制に。</p>
+          <div class="work-tags"><span>自動見積り</span><span>画像検査</span><span>属人化解消</span></div>
         </div>
       </div>
-      <div class="card case-card anim anim-d2">
-        <div class="case-img">
+      <div class="work-card">
+        <div class="work-thumb">
           <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?w=500&h=300&fit=crop" alt="オフィス" loading="lazy">
-          <span class="case-cat">バックオフィス</span>
+          <span class="work-cat">バックオフィス</span>
         </div>
-        <div class="case-body">
+        <div class="work-info">
           <h3>社内の「ちょっとした質問」をAIチャットボットが対応</h3>
-          <p>「経費精算のやり方は？」「有給の残日数は？」——こうした問い合わせをAIが自動回答。担当者の負担が減り、本来の業務に集中できるようになっています。</p>
-          <div class="case-tags"><span>社内FAQ</span><span>チャットボット</span><span>業務効率化</span></div>
+          <p>経費精算やルールの問い合わせをAIが自動回答。担当者の負担が減り、本来の業務に集中。</p>
+          <div class="work-tags"><span>社内FAQ</span><span>チャットボット</span><span>業務効率化</span></div>
         </div>
       </div>
-      <div class="card case-card anim">
-        <div class="case-img">
-          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop" alt="小売" loading="lazy">
-          <span class="case-cat">小売・EC</span>
+      <div class="work-card">
+        <div class="work-thumb">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop" alt="Automation" loading="lazy">
+          <span class="work-cat">制作実績</span>
         </div>
-        <div class="case-body">
-          <h3>問い合わせ対応をAIに任せて、売上施策に集中</h3>
-          <p>「配送状況は？」「返品したい」といった定型的な問い合わせをAIが24時間自動対応。スタッフは接客や商品企画など、売上に直結する仕事に時間を使えるようになっています。</p>
-          <div class="case-tags"><span>顧客対応自動化</span><span>24時間対応</span><span>CS改善</span></div>
-        </div>
-      </div>
-      <div class="card case-card anim anim-d1">
-        <div class="case-img">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&h=300&fit=crop" alt="建設" loading="lazy">
-          <span class="case-cat">建設・不動産</span>
-        </div>
-        <div class="case-body">
-          <h3>書類処理・報告書作成をAIで時短</h3>
-          <p>現場写真の整理、日報の自動生成、契約書類のデータ化——紙とExcelに追われていた事務作業をAIが代行。現場監督が本来の管理業務に集中できるようになっています。</p>
-          <div class="case-tags"><span>AI-OCR</span><span>レポート自動生成</span><span>書類処理</span></div>
+        <div class="work-info">
+          <h3>業務自動化ツール</h3>
+          <p>繰り返し発生する事務作業をAIで自動処理。データ入力・集計・レポート生成を効率化。</p>
+          <div class="work-tags"><span>Dify</span><span>Python</span><span>自動化</span></div>
         </div>
       </div>
-      <div class="card case-card anim anim-d2">
-        <div class="case-img">
-          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=500&h=300&fit=crop" alt="物流" loading="lazy">
-          <span class="case-cat">物流・運送</span>
-        </div>
-        <div class="case-body">
-          <h3>配送ルートと在庫をAIが最適化</h3>
-          <p>交通状況や荷物量をAIがリアルタイムに分析し、最適な配送計画を自動作成。ドライバーの拘束時間を減らしながら、配送効率と顧客満足度を両立しています。</p>
-          <div class="case-tags"><span>ルート最適化</span><span>在庫管理</span><span>コスト削減</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AI STACK -->
-<section class="section" id="whynow">
-  <div class="container">
-    <span class="sec-label anim">AI Stack</span>
-    <h2 class="sec-title anim">2026年のAI活用は、<span class="hl">「チーム」で考える。</span></h2>
-    <div class="anim" style="max-width:640px;margin:0 auto 2.5rem;text-align:center">
-      <div style="display:inline-block;font-size:.82rem;color:var(--t3);text-decoration:line-through;margin-bottom:.4rem">❌ 何でもできる最強のAIを1つ探す</div>
-      <div style="font-size:1.1rem;font-weight:800;color:var(--t1);margin-bottom:.6rem">⬇ <em style="font-style:normal;color:var(--accent)">AIスタック</em>という新しい常識へ</div>
-      <p style="font-size:.85rem;color:var(--t2);line-height:1.8">リサーチ、文章作成、データ分析、顧客対応——<br>それぞれの仕事に<strong>得意なAI</strong>を割り当てて、あなただけのチームを組む。<br>これが「AIスタック」という考え方です。</p>
-    </div>
-    <div class="stack-visual anim">
-      <div class="stack-team">
-        <div class="stack-member"><div class="stack-icon si1"><i class="fas fa-search"></i></div><div class="stack-member-info"><h4>リサーチ担当AI</h4><p>情報収集・市場調査・競合分析</p></div></div>
-        <div class="stack-member"><div class="stack-icon si2"><i class="fas fa-pen-fancy"></i></div><div class="stack-member-info"><h4>ライティング担当AI</h4><p>メール・SNS投稿・提案書の下書き</p></div></div>
-        <div class="stack-member"><div class="stack-icon si3"><i class="fas fa-comments"></i></div><div class="stack-member-info"><h4>顧客対応担当AI</h4><p>チャットボット・FAQ・LINE応答</p></div></div>
-        <div class="stack-member"><div class="stack-icon si4"><i class="fas fa-chart-bar"></i></div><div class="stack-member-info"><h4>分析担当AI</h4><p>売上分析・需要予測・レポート生成</p></div></div>
-      </div>
-      <div class="stack-arrow">&#x2192;</div>
-      <div class="stack-result">
-        <h3>あなただけの<br>AIチーム完成</h3>
-        <p>1人の社員が、5人分の<br>仕事をこなせる体制に。</p>
-      </div>
-    </div>
-    <div class="stack-bottom anim" style="text-align:center;max-width:560px;margin:0 auto"><p style="font-size:.85rem;color:var(--t2);line-height:1.8">人間がひとりでは使い切れない時間や手間を、<br>それぞれの仕事に合ったAIが肩代わりする——<br><strong>私はこの「AIスタック」の設計・構築をお手伝いします。</strong></p></div>
-  </div>
-</section>
-
-<!-- SECURITY -->
-<section class="section section-alt" id="security">
-  <div class="container">
-    <span class="sec-label anim">Security</span>
-    <h2 class="sec-title anim">お客様のデータは<span class="hl">こう守られています</span></h2>
-    <p class="sec-desc anim">「うちのデータは大丈夫？」——最も多いご質問です。</p>
-    <div class="security-grid">
-      <div class="security-card anim"><div class="security-icon"><i class="fas fa-lock"></i></div><h4>通信・保存の暗号化</h4><p>業界標準の暗号化技術で保護します</p></div>
-      <div class="security-card anim anim-d1"><div class="security-icon"><i class="fas fa-eye-slash"></i></div><h4>AI学習への不使用</h4><p>お客様データがAIの学習に使われることはありません</p></div>
-      <div class="security-card anim anim-d2"><div class="security-icon"><i class="fas fa-shield-alt"></i></div><h4>信頼性の高い基盤</h4><p>Anthropic社Claude等、企業水準のセキュリティ基盤を採用</p></div>
-      <div class="security-card anim anim-d3"><div class="security-icon"><i class="fas fa-file-signature"></i></div><h4>NDA締結</h4><p>プロジェクト開始前に秘密保持契約を締結します</p></div>
     </div>
   </div>
 </section>
 
 <!-- FLOW -->
-<section class="section" id="flow">
+<section class="section section-alt" id="flow">
   <div class="container">
-    <span class="sec-label anim">Flow</span>
-    <h2 class="sec-title anim">ご相談から導入までの<span class="hl">流れ</span></h2>
-    <p class="sec-desc anim">小さく検証、成果を確認しながら段階的に拡大します。</p>
-    <div class="flow-row anim">
+    <span class="sec-label">Flow</span>
+    <h2 class="sec-title">ご相談から導入までの流れ</h2>
+    <p class="sec-desc">小さく検証、成果を確認しながら段階的に拡大します。</p>
+    <div class="flow-row">
       <div class="flow-step"><div class="flow-num">01</div><h4>無料相談</h4><p>課題ヒアリング<br>AI適性の簡易診断</p><span class="flow-duration">初回無料</span></div>
       <div class="flow-step"><div class="flow-num">02</div><h4>課題整理・設計</h4><p>業務を可視化し<br>AI化すべき箇所を特定</p><span class="flow-duration">約0.5ヶ月</span></div>
       <div class="flow-step"><div class="flow-num">03</div><h4>PoC・試作</h4><p>小さく試作して<br>効果を検証</p><span class="flow-duration">約0.5ヶ月</span></div>
@@ -661,89 +452,41 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
   </div>
 </section>
 
-<!-- PORTFOLIO SLIDER -->
-<section class="section section-alt" id="portfolio">
+<!-- CTA -->
+<section class="cta-section">
   <div class="container">
-    <span class="sec-label anim">Portfolio</span>
-    <h2 class="sec-title anim"><span class="hl">制作実績</span></h2>
-    <p class="sec-desc anim">横にスワイプして実績をご覧ください。</p>
-  </div>
-  <div class="portfolio-slider-wrap">
-    <div class="portfolio-slider" id="portfolioSlider">
-      <div class="portfolio-card">
-        <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=500&h=300&fit=crop" alt="LINE Bot" loading="lazy"></div>
-        <div class="portfolio-info">
-          <h3>LINE公式チャットボット</h3>
-          <p>AI搭載のLINEボット。質問自動応答から予約・日程調整まで処理。</p>
-          <div class="portfolio-tags"><span class="portfolio-tag">LINE API</span><span class="portfolio-tag">AI Chatbot</span><span class="portfolio-tag">自動応答</span></div>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=300&fit=crop" alt="Custom AI" loading="lazy"></div>
-        <div class="portfolio-info">
-          <h3>カスタムAIチャットボット</h3>
-          <p>業務知識を学習させたオーダーメイドのチャットボット。社内FAQ・顧客対応を自動化。</p>
-          <div class="portfolio-tags"><span class="portfolio-tag">Claude API</span><span class="portfolio-tag">RAG</span><span class="portfolio-tag">ナレッジベース</span></div>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop" alt="Automation" loading="lazy"></div>
-        <div class="portfolio-info">
-          <h3>業務自動化ツール</h3>
-          <p>繰り返し発生する事務作業をAIで自動処理。データ入力・集計・レポート生成を効率化。</p>
-          <div class="portfolio-tags"><span class="portfolio-tag">Dify</span><span class="portfolio-tag">Python</span><span class="portfolio-tag">自動化</span></div>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop" alt="Analytics" loading="lazy"></div>
-        <div class="portfolio-info">
-          <h3>データ分析ダッシュボード</h3>
-          <p>AIが売上データを自動分析し、経営判断に必要なレポートを生成。</p>
-          <div class="portfolio-tags"><span class="portfolio-tag">データ分析</span><span class="portfolio-tag">可視化</span><span class="portfolio-tag">AI予測</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="slider-nav">
-      <button class="slider-btn" onclick="slidePortfolio(-1)"><i class="fas fa-chevron-left"></i></button>
-      <button class="slider-btn" onclick="slidePortfolio(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="cta-inner">
+      <h3>AIの力で、御社のビジネスを<br>次のステージへ。</h3>
+      <p>まずは無料相談から。お気軽にお問い合わせください。</p>
+      <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> 無料で相談する</a>
     </div>
   </div>
 </section>
 
-<!-- CTA BAR -->
-<div class="cta-bar">
-  <div class="hero-grid"></div>
-  <div class="container">
-    <h3 class="anim">飲食、製造、小売、物流——あらゆる業種でAIは動いています。</h3>
-    <p class="anim anim-d1">次は御社の番です。「AIで何ができるか知りたい」——そんな段階でも大歓迎です。</p>
-    <a href="#contact" class="btn btn-white anim anim-d2"><i class="fas fa-paper-plane"></i> 無料で相談する</a>
-  </div>
-</div>
-
 <!-- FAQ -->
-<section class="section section-alt" id="faq">
+<section class="section" id="faq">
   <div class="container">
-    <span class="sec-label anim">FAQ</span>
-    <h2 class="sec-title anim">よくある<span class="hl">ご質問</span></h2>
+    <span class="sec-label">FAQ</span>
+    <h2 class="sec-title">よくあるご質問</h2>
     <div class="faq-list">
-      <div class="faq-item anim"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">AIのことが全くわからなくても相談できますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">はい、大歓迎です。実際にご相談いただく方の多くが「AIって何ができるの？」という段階からスタートしています。専門用語を使わず、御社の業務に合わせてわかりやすくご説明します。</div></div></div>
-      <div class="faq-item anim"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">料金体系はどうなっていますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">プロジェクトの内容・規模に応じて個別にご提案します。初回のご相談は無料で、現状の課題整理やAI活用の方向性まで一緒にお話しできます。「まず概算を知りたい」というご要望にもお応えしますので、お気軽にどうぞ。</div></div></div>
-      <div class="faq-item anim"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">小さな会社でも効果がありますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">むしろ小規模な組織ほど効果を実感しやすいです。例えば、従業員119名の製造業がAI需要予測で在庫リスクを解消した事例や、大衆食堂がAIで売上5倍を達成した事例があります。少人数でも大企業並みの業務効率を実現できるのがAIの強みです。</div></div></div>
-      <div class="faq-item anim"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">データのセキュリティは大丈夫ですか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">万全の体制を整えています。通信・保存データの暗号化、お客様データのAI学習への不使用を徹底し、プロジェクト開始前にはNDA（秘密保持契約）を締結します。使用するAI基盤もAnthropic社Claude等、企業水準のセキュリティを備えたサービスを選定しています。</div></div></div>
-      <div class="faq-item anim"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">導入後のサポートはありますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">はい。操作研修・マニュアル作成から、効果測定・継続改善までサポートします。最終的には「コンサルに依存しない自走組織」を目指しており、御社の社員様がAIを自分たちで使いこなせる状態をゴールとしています。</div></div></div>
-      <div class="faq-item anim"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">相談だけでも大丈夫ですか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">もちろんです。「うちの業務にAIが使えるか聞いてみたい」という段階から大歓迎です。無料相談で無理にお勧めすることはありませんので、ご安心ください。</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">AIのことが全くわからなくても相談できますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">はい、大歓迎です。実際にご相談いただく方の多くが「AIって何ができるの？」という段階からスタートしています。専門用語を使わず、御社の業務に合わせてわかりやすくご説明します。</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">料金体系はどうなっていますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">プロジェクトの内容・規模に応じて個別にご提案します。初回のご相談は無料で、現状の課題整理やAI活用の方向性まで一緒にお話しできます。「まず概算を知りたい」というご要望にもお応えしますので、お気軽にどうぞ。</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">小さな会社でも効果がありますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">むしろ小規模な組織ほど効果を実感しやすいです。少人数でも大企業並みの業務効率を実現できるのがAIの強みです。</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">データのセキュリティは大丈夫ですか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">万全の体制を整えています。通信・保存データの暗号化、お客様データのAI学習への不使用を徹底し、プロジェクト開始前にはNDA（秘密保持契約）を締結します。使用するAI基盤もAnthropic社Claude等、企業水準のセキュリティを備えたサービスを選定しています。</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">導入後のサポートはありますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">はい。操作研修・マニュアル作成から、効果測定・継続改善までサポートします。最終的には「コンサルに依存しない自走組織」を目指しており、御社の社員様がAIを自分たちで使いこなせる状態をゴールとしています。</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">相談だけでも大丈夫ですか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">もちろんです。「うちの業務にAIが使えるか聞いてみたい」という段階から大歓迎です。無料相談で無理にお勧めすることはありませんので、ご安心ください。</div></div></div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="section" id="contact">
+<section class="section section-alt" id="contact">
   <div class="container">
-    <span class="sec-label anim">Contact</span>
-    <h2 class="sec-title anim"><span class="hl">お問い合わせ</span></h2>
-    <p class="sec-desc anim">まずはお気軽にご相談ください。</p>
+    <span class="sec-label">Contact</span>
+    <h2 class="sec-title">お問い合わせ</h2>
+    <p class="sec-desc">まずはお気軽にご相談ください。</p>
     <div class="contact-grid">
-      <form class="anim" onsubmit="event.preventDefault();alert('送信ありがとうございます！（デモ）')">
+      <form onsubmit="event.preventDefault();alert('送信ありがとうございます！（デモ）')">
         <div class="form-group"><label>お名前 *</label><input type="text" required placeholder="山田 太郎"></div>
         <div class="form-group"><label>会社名</label><input type="text" placeholder="株式会社〇〇"></div>
         <div class="form-group"><label>メールアドレス *</label><input type="email" required placeholder="example@company.co.jp"></div>
@@ -754,13 +497,13 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
         <div class="form-group"><label>メッセージ</label><textarea placeholder="お気軽にお書きください"></textarea></div>
         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> 送信する</button>
       </form>
-      <div class="contact-side anim">
+      <div class="contact-side">
         <h3>「AIのことはわからない」大歓迎です</h3>
         <p>御社の課題をお聞かせください。最適なAI活用プランをご提案します。</p>
         <div class="contact-detail"><div class="contact-detail-icon"><i class="fas fa-envelope"></i></div><div><div class="cd-label">メール</div><div class="cd-value">uta.ai.work@gmail.com</div></div></div>
         <div class="contact-detail"><div class="contact-detail-icon"><i class="fas fa-phone"></i></div><div><div class="cd-label">お電話</div><div class="cd-value">070-4482-8244</div></div></div>
         <div class="contact-detail"><div class="contact-detail-icon"><i class="fab fa-line"></i></div><div><div class="cd-label">LINE公式</div><div class="cd-value">準備中（近日公開予定）</div></div></div>
-        <div class="inline-bot" id="bot-diagnose" style="margin-top:1rem">
+        <div class="inline-bot" id="bot-diagnose" style="margin-top:1.2rem">
           <h4><i class="fas fa-comments"></i> AI導入お悩み診断</h4>
           <p>チャットボットで簡易診断できます。</p>
           <div class="inline-bot-prompts">
@@ -778,8 +521,38 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-row"><div class="footer-logo">UTA<span>.</span>AI</div><div class="footer-socials"><a href="#" class="footer-social"><i class="fab fa-line"></i></a><a href="#" class="footer-social"><i class="fab fa-x-twitter"></i></a></div></div>
-    <div class="footer-copy">&copy; 2026 松本海太 / UTA.AI — All rights reserved.</div>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">UTA<span>.</span>AI</div>
+        <p class="footer-tagline">AIで、あなたの力を何倍にも拡張する。<br>業務課題の発見からAI導入・運用まで、一気通貫でサポート。</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" aria-label="LINE"><i class="fab fa-line"></i></a>
+          <a href="#" class="footer-social" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Service</h4>
+        <a href="services.html">公式LINE構築</a>
+        <a href="services.html">AIチャットボット</a>
+        <a href="services.html">AI活用コンサルティング</a>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <a href="about.html">自己紹介</a>
+        <a href="works.html">活用事例・実績</a>
+        <a href="services.html#flow">ご相談の流れ</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:uta.ai.work@gmail.com">uta.ai.work@gmail.com</a>
+        <a href="tel:07044828244">070-4482-8244</a>
+        <a href="contact.html">お問い合わせフォーム</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 松本海太 / UTA.AI — All rights reserved.</p>
+    </div>
   </div>
 </footer>
 
@@ -792,61 +565,97 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
   <div class="cb-input-area"><input id="cbInput" placeholder="メッセージを入力..." onkeydown="if(event.key==='Enter')sendMsg()"><button onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button></div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
 <script>
-// Hero title word-by-word animation
-(function(){
-  const words = ['AIで、','あなたの','力を','<br>','<span class="highlight">何倍にも','拡張する。</span>'];
-  const el = document.getElementById('heroTitle');
-  let html = '';
-  let delay = 0.5;
-  words.forEach(w => {
-    if(w === '<br>'){html += '<br>'; return;}
-    html += `<span class="hero-word" style="animation-delay:${delay}s">${w}</span> `;
-    delay += 0.15;
-  });
-  el.innerHTML = html;
-})();
+gsap.registerPlugin(ScrollTrigger);
 
-// Counter animation
-function animateCounters(){
-  document.querySelectorAll('.counter').forEach(c => {
-    const target = +c.dataset.target;
-    if(target === 0){c.textContent = '0'; return;}
-    let current = 0;
-    const step = Math.ceil(target / 30);
-    const timer = setInterval(() => {
-      current += step;
-      if(current >= target){current = target; clearInterval(timer);}
-      c.textContent = current;
-    }, 50);
-  });
-}
-setTimeout(animateCounters, 2500);
-
-// Scroll animations
-const obs = new IntersectionObserver(es => {
-  es.forEach(e => {
-    if(e.isIntersecting){e.target.classList.add('vis'); obs.unobserve(e.target);}
-  });
-}, {threshold: .1});
-document.querySelectorAll('.anim,.anim-scale,.anim-left,.anim-right').forEach(el => obs.observe(el));
-
-// Nav
+// ===== NAV SCROLL =====
 const navEl = document.getElementById('nav');
-function updateNav(){
-  if(window.scrollY > 60){navEl.classList.remove('nav--hero'); navEl.classList.add('nav--scrolled');}
-  else{navEl.classList.add('nav--hero'); navEl.classList.remove('nav--scrolled');}
-}
-updateNav();
-window.addEventListener('scroll', updateNav);
+ScrollTrigger.create({
+  trigger: '.hero',
+  start: 'top top',
+  end: 'bottom 80px',
+  onLeave: () => { navEl.classList.remove('nav--hero'); navEl.classList.add('nav--scrolled'); },
+  onEnterBack: () => { navEl.classList.add('nav--hero'); navEl.classList.remove('nav--scrolled'); },
+});
+if(window.scrollY > 60){ navEl.classList.remove('nav--hero'); navEl.classList.add('nav--scrolled'); }
 
-// Portfolio slider
-function slidePortfolio(dir){
-  const s = document.getElementById('portfolioSlider');
-  s.scrollBy({left: dir * 340, behavior: 'smooth'});
+// ===== GSAP SCROLL ANIMATIONS =====
+
+function animSectionHeader(sel){
+  const s = document.querySelector(sel);
+  if(!s) return;
+  const tl = gsap.timeline({ scrollTrigger:{ trigger: sel, start:'top 80%' }});
+  const label = s.querySelector('.sec-label');
+  const title = s.querySelector('.sec-title');
+  const desc  = s.querySelector('.sec-desc');
+  if(label) tl.fromTo(label, { autoAlpha:0, y:10 }, { autoAlpha:1, y:0, duration:.4 });
+  if(title) tl.fromTo(title, { autoAlpha:0, y:15 }, { autoAlpha:1, y:0, duration:.5 }, '-=.2');
+  if(desc)  tl.fromTo(desc,  { autoAlpha:0, y:10 }, { autoAlpha:1, y:0, duration:.4 }, '-=.2');
+  return tl;
 }
 
-// Chatbot
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if(!prefersReducedMotion){
+
+  // --- HERO ---
+  gsap.fromTo('.hero-label',   { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.8, delay:.3 });
+  gsap.fromTo('.hero-title',   { autoAlpha:0, y:30 }, { autoAlpha:1, y:0, duration:.8, delay:.6 });
+  gsap.fromTo('.hero-desc',    { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.6, delay:1.0 });
+  gsap.fromTo('.hero-cta',     { autoAlpha:0, y:15 }, { autoAlpha:1, y:0, duration:.5, delay:1.3 });
+  gsap.fromTo('.hero-scroll',  { autoAlpha:0 },       { autoAlpha:1, duration:.5, delay:1.8 });
+
+  gsap.to('.hero-content', { y:60, opacity:.3, scrollTrigger:{ trigger:'.hero', start:'center center', end:'bottom top', scrub:.5 }});
+
+  // --- ABOUT ---
+  animSectionHeader('#about');
+  gsap.fromTo('.about-photo', { autoAlpha:0, x:-40 }, { autoAlpha:1, x:0, duration:.8, ease:'power2.out',
+    scrollTrigger:{ trigger:'#about', start:'top 75%' }});
+  gsap.fromTo('.about-grid > div:last-child', { autoAlpha:0, x:30 }, { autoAlpha:1, x:0, duration:.8, ease:'power2.out',
+    scrollTrigger:{ trigger:'#about', start:'top 75%' }});
+
+  // --- SERVICES ---
+  animSectionHeader('#services');
+  gsap.fromTo('.service-card', { autoAlpha:0, y:30 }, { autoAlpha:1, y:0, duration:.6, stagger:.15, ease:'power2.out',
+    scrollTrigger:{ trigger:'.services-grid', start:'top 82%' }});
+
+  // --- WORKS ---
+  animSectionHeader('#works');
+  ScrollTrigger.batch('.work-card', {
+    onEnter: batch => gsap.fromTo(batch, { autoAlpha:0, y:25 }, { autoAlpha:1, y:0, duration:.5, stagger:.08, ease:'power2.out' }),
+    start:'top 85%', once:true
+  });
+
+  // --- FLOW ---
+  animSectionHeader('#flow');
+  gsap.fromTo('.flow-step', { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.5, stagger:.1, ease:'power2.out',
+    scrollTrigger:{ trigger:'.flow-row', start:'top 80%' }});
+
+  // --- CTA ---
+  gsap.fromTo('.cta-inner', { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.6,
+    scrollTrigger:{ trigger:'.cta-section', start:'top 80%' }});
+
+  // --- FAQ ---
+  animSectionHeader('#faq');
+  ScrollTrigger.batch('.faq-item', {
+    onEnter: batch => gsap.fromTo(batch, { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.5, stagger:.06, ease:'power2.out' }),
+    start:'top 88%', once:true
+  });
+
+  // --- CONTACT ---
+  animSectionHeader('#contact');
+  gsap.fromTo('#contact form', { autoAlpha:0, x:-40 }, { autoAlpha:1, x:0, duration:.8, ease:'power2.out',
+    scrollTrigger:{ trigger:'#contact', start:'top 72%' }});
+  gsap.fromTo('.contact-side', { autoAlpha:0, x:40 }, { autoAlpha:1, x:0, duration:.8, ease:'power2.out',
+    scrollTrigger:{ trigger:'#contact', start:'top 72%' }});
+
+} // end !prefersReducedMotion
+
+window.addEventListener('load', () => ScrollTrigger.refresh());
+
+// ===== CHATBOT =====
 let cTab=0;
 const R0={'default':'松本海太は、中小企業向けにAI導入・活用を支援するコンサルタントです。「AIであなたの力を何倍にも拡張する」をミッションに、LINE公式構築からAIチャットボット開発、業務コンサルティングまで一気通貫でサポートしています。何でも聞いてください！','強み':'最大の強みは「自分自身がAIで弱点を克服した」実体験です。文章が書けなかった人間がAIで高品質な資料を作れるようになった——だからこそ、中小企業の現場目線で「本当に使える形」まで落とし込めます。加えて会計学科で培った数値分析力で、ROI試算や経営層向け提案も得意です。','会計':'3年間公認会計士試験に挑戦したバックグラウンドがあります。会計・財務の知識はAI導入のROI（投資対効果）試算や、経営層への導入提案書の作成に直結しています。数字に基づいた説得力のあるプランを提供できるのが強みです。','AI':'AIの可能性に気づいたのは2022年のChatGPT登場がきっかけです。使い込むほど「ほとんどの人がAIを使いこなせていない」と実感。一人の人間がAIを駆使すれば何倍もの力を発揮できる——この可能性を届けたくて、3年間挑戦した会計士試験の道を離れる決断をしました。','料金':'料金はプロジェクトの規模・内容に応じて個別にご提案しています。「まずはどんなことが可能か知りたい」という段階からご相談いただけます。初回相談は無料ですので、お気軽にお問い合わせフォームからどうぞ！','ツール':'ChatGPT、Claude、Geminiなど複数の生成AIを目的別に使い分けています。チャットボット構築にはDify等のノーコードツールも活用。お客様の業務に最適な組み合わせをご提案します。特定のツールに縛られない「目的ドリブン」の選定がモットーです。'};
 const R1={'default':'お悩みの内容をお聞かせください。「人手不足」「効率化」「売上」「何ができる」などキーワードでもOKです！具体的な業種や課題を教えていただければ、より的確なアドバイスができます。','人手':'人手不足には、AIによる業務自動化が効果的です。例えば、データ入力の自動化（月20時間→2時間に短縮した事例あり）、AIチャットボットによる24時間顧客対応、レポート自動生成など。まずは「最も時間がかかっている繰り返し作業」の洗い出しから始めましょう。無料相談でヒアリングいたします！','効率':'業務効率化のポイントは「繰り返し作業」の特定です。よくある自動化対象：データ入力・転記、請求書処理（AI-OCRで最大90%短縮の事例あり）、問い合わせ対応（チャットボットで50%削減の実績多数）、資料作成（AIドラフトで数時間→数分）。御社の業務フローをお聞かせいただければ、最適な改善プランをご提案します。','売上':'売上アップには「AI×マーケティング」が強力です。公式LINE×AIチャットボットで自動ナーチャリング → 成約率アップ。顧客データ分析でクロスセルの機会を発見。AI需要予測で来客数を95%精度で予測し売上5倍を達成した飲食店の事例もあります。まずは無料相談で御社の状況をお聞かせください！','何ができる':'AIでできることは幅広いですが、中小企業で特に効果が出やすいのは：①顧客対応の自動化（チャットボット・LINE）、②データ入力・書類処理の自動化、③文章・資料の自動生成、④需要予測・在庫最適化、⑤社内ナレッジの共有・検索。大切なのは「御社に最適な使い方」を見つけること。無料相談でお気軽にどうぞ！'};

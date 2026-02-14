@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お問い合わせ | UTA.AI</title>
+<meta name="description" content="UTA.AIへのお問い合わせ。AI導入・活用に関するご相談は初回無料。お気軽にご連絡ください。">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#ffffff;--off-white:#f7f8fa;--light-gray:#f0f2f5;
+  --border:#e5e7eb;--border-light:#f0f0f0;
+  --t1:#1a1a2e;--t2:#4a4a5a;--t3:#8a8a9a;--t4:#b0b0c0;
+  --accent:#0066cc;--accent-hover:#0052a3;--accent-light:rgba(0,102,204,.06);
+  --dark:#0f0f1a;
+  --font-primary:'Inter','Noto Sans JP',sans-serif;
+  --font-en:'Inter',sans-serif;
+  --shadow-md:0 4px 16px rgba(0,0,0,.06);--shadow-hover:0 12px 40px rgba(0,0,0,.1);
+  --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-primary);background:var(--white);color:var(--t1);line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none;transition:.3s}
+.container{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,4rem)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.8rem 0;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light)}
+.nav .container{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;letter-spacing:-.5px;color:var(--t1)}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--t3);transition:.3s}.nav-links a:hover,.nav-links a.active{color:var(--t1)}
+.nav-label-en{font-family:var(--font-en);font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.nav-label-jp{font-size:.62rem;font-weight:400;color:var(--t4)}
+.nav-cta{background:var(--accent)!important;color:#fff!important;padding:.55rem 1.3rem;border-radius:var(--radius-sm);flex-direction:row!important;gap:.4rem!important}
+.nav-cta .nav-label-en,.nav-cta .nav-label-jp{color:#fff!important}
+.nav-toggle{display:none;background:0;border:0;font-size:1.3rem;cursor:pointer;color:var(--t1)}
+@media(max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}.nav-links.open{display:flex}.nav-toggle{display:block}}
+
+/* PAGE HERO */
+.page-hero{padding:8rem 0 4rem;background:var(--off-white);text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,102,204,.04) 0%,transparent 70%);border-radius:50%}
+.page-hero-label{font-family:var(--font-en);font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:block}
+.page-hero-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.8rem}
+.page-hero-desc{color:var(--t3);font-size:.95rem;max-width:560px;margin:0 auto}
+
+/* CONTACT */
+.contact-section{padding:4rem 0 6rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:3rem}}
+
+/* FORM */
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:.82rem;font-weight:600;margin-bottom:.4rem;color:var(--t2)}
+.form-group label .required{color:#ef4444;margin-left:.2rem;font-size:.75rem}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.85rem 1.1rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--t1);font-family:var(--font-primary);font-size:.88rem;transition:.3s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,102,204,.08)}
+.form-group textarea{min-height:120px;resize:vertical}
+.form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238a8a9a' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:var(--radius-sm);font-weight:600;font-size:.88rem;border:0;cursor:pointer;transition:all .3s;font-family:var(--font-primary)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(0,102,204,.25)}.btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px)}
+.form-note{font-size:.72rem;color:var(--t3);margin-top:.8rem}
+
+/* SIDE */
+.contact-side h3{font-size:1.3rem;font-weight:700;margin-bottom:.8rem}
+.contact-side>p{color:var(--t2);font-size:.92rem;margin-bottom:2rem;line-height:1.9}
+.contact-detail{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;padding:1rem 1.2rem;background:var(--off-white);border:1px solid var(--border-light);border-radius:var(--radius-md);transition:.3s}
+.contact-detail:hover{border-color:var(--accent);box-shadow:var(--shadow-md)}
+.contact-detail-icon{width:44px;height:44px;background:var(--accent-light);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;font-size:.95rem}
+.cd-label{font-size:.68rem;color:var(--t3);margin-bottom:.1rem}
+.cd-value{font-size:.92rem;font-weight:600}
+
+/* INLINE BOT */
+.inline-bot{background:var(--off-white);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:1.3rem;margin-top:1.5rem}
+.inline-bot h4{font-size:.88rem;font-weight:700;margin-bottom:.4rem;color:var(--accent);display:flex;align-items:center;gap:.4rem}
+.inline-bot p{font-size:.8rem;color:var(--t2);margin-bottom:.6rem}
+.inline-bot-prompts{display:flex;flex-wrap:wrap;gap:.35rem}
+.inline-bot-btn{background:var(--accent-light);color:var(--accent);padding:.3rem .7rem;border-radius:50px;font-size:.72rem;cursor:pointer;transition:.3s;font-family:var(--font-primary);font-weight:600;border:1px solid transparent}
+.inline-bot-btn:hover{border-color:var(--accent);background:var(--white)}
+
+/* CHATBOT */
+.cb-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;background:var(--accent);border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;box-shadow:0 4px 20px rgba(0,102,204,.3);z-index:999;transition:.3s}.cb-btn:hover{transform:scale(1.08)}
+.cb-panel{position:fixed;bottom:5rem;right:1.5rem;width:340px;max-height:450px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);z-index:998;display:none;flex-direction:column;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.08)}.cb-panel.open{display:flex}
+.cb-header{padding:.6rem 1rem;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:space-between}
+.cb-header h4{font-size:.78rem;font-weight:700;color:#fff}
+.cb-close{background:0;border:0;color:#fff;cursor:pointer;font-size:1rem;opacity:.7}.cb-close:hover{opacity:1}
+.cb-tabs{display:flex;border-bottom:1px solid var(--border)}
+.cb-tab{flex:1;padding:.45rem;background:0;border:0;color:var(--t3);font-family:var(--font-primary);font-size:.72rem;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:.2s}.cb-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.cb-messages{flex:1;overflow-y:auto;padding:.55rem;display:flex;flex-direction:column;gap:.35rem;max-height:250px;background:var(--off-white)}
+.cb-msg{max-width:85%;padding:.45rem .65rem;border-radius:var(--radius-md);font-size:.76rem;line-height:1.6}
+.cb-msg.bot{background:#fff;border:1px solid var(--border-light);align-self:flex-start;border-bottom-left-radius:3px;color:var(--t2)}
+.cb-msg.usr{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.cb-input-area{display:flex;gap:.3rem;padding:.45rem;border-top:1px solid var(--border)}
+.cb-input-area input{flex:1;padding:.38rem .55rem;background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--t1);font-family:var(--font-primary);font-size:.76rem}.cb-input-area input:focus{outline:0;border-color:var(--accent)}
+.cb-input-area button{padding:.38rem .55rem;background:var(--accent);border:0;border-radius:var(--radius-sm);color:#fff;cursor:pointer;font-size:.76rem}.cb-input-area button:hover{background:var(--accent-hover)}
+@media(max-width:500px){.cb-panel{right:.5rem;left:.5rem;width:auto;bottom:4.5rem}}
+
+/* FOOTER */
+.footer{background:var(--dark);color:#fff;padding:4rem 0 1.5rem}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.footer-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;margin-bottom:.5rem}.footer-logo span{color:var(--accent)}
+.footer-tagline{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:1rem;line-height:1.7}
+.footer-socials{display:flex;gap:.4rem}
+.footer-social{width:38px;height:38px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:.3s;font-size:.8rem}.footer-social:hover{border-color:var(--accent);color:var(--accent)}
+.footer-col h4{font-family:var(--font-en);font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;color:rgba(255,255,255,.6)}
+.footer-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:.5rem;transition:color .3s}.footer-col a:hover{color:#fff}
+.footer-bottom{padding-top:1.5rem;text-align:center;font-size:.7rem;color:rgba(255,255,255,.25)}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="container"><a href="index.html" class="nav-logo">UTA<span>.</span>AI</a><button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button><div class="nav-links"><a href="about.html"><span class="nav-label-en">About</span><span class="nav-label-jp">自己紹介</span></a><a href="services.html"><span class="nav-label-en">Service</span><span class="nav-label-jp">サービス</span></a><a href="works.html"><span class="nav-label-en">Works</span><span class="nav-label-jp">実績</span></a><a href="faq.html"><span class="nav-label-en">FAQ</span><span class="nav-label-jp">よくある質問</span></a><a href="contact.html" class="nav-cta active"><span class="nav-label-en">Contact</span><span class="nav-label-jp">お問い合わせ</span></a></div></div></nav>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="page-hero-label">Contact</span>
+    <h1 class="page-hero-title">お問い合わせ</h1>
+    <p class="page-hero-desc">まずはお気軽にご相談ください。初回相談は無料です。</p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+      <form onsubmit="event.preventDefault();alert('送信ありがとうございます！（デモ）')">
+        <div class="form-group"><label>お名前<span class="required">*</span></label><input type="text" required placeholder="山田 太郎"></div>
+        <div class="form-group"><label>会社名</label><input type="text" placeholder="株式会社〇〇"></div>
+        <div class="form-group"><label>メールアドレス<span class="required">*</span></label><input type="email" required placeholder="example@company.co.jp"></div>
+        <div class="form-group"><label>電話番号</label><input type="tel" placeholder="090-1234-5678"></div>
+        <div class="form-group"><label>ご相談内容</label>
+          <select><option>選択してください</option><option>公式LINE構築について</option><option>AIチャットボット導入について</option><option>AI活用コンサルティングについて</option><option>その他のご相談</option></select>
+        </div>
+        <div class="form-group"><label>メッセージ</label><textarea placeholder="お気軽にお書きください。現在の課題や、AIで実現したいことなどをお聞かせください。"></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> 送信する</button>
+        <p class="form-note">※ 通常1営業日以内にご返信いたします。</p>
+      </form>
+      <div class="contact-side">
+        <h3>「AIのことはわからない」<br>大歓迎です</h3>
+        <p>御社の課題をお聞かせください。「何ができるか知りたい」という段階から、最適なAI活用プランをご提案します。</p>
+        <div class="contact-detail"><div class="contact-detail-icon"><i class="fas fa-envelope"></i></div><div><div class="cd-label">メール</div><div class="cd-value">uta.ai.work@gmail.com</div></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon"><i class="fas fa-phone"></i></div><div><div class="cd-label">お電話</div><div class="cd-value">070-4482-8244</div></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon"><i class="fab fa-line"></i></div><div><div class="cd-label">LINE公式</div><div class="cd-value">準備中（近日公開予定）</div></div></div>
+        <div class="inline-bot" id="bot-diagnose">
+          <h4><i class="fas fa-comments"></i> AI導入お悩み診断</h4>
+          <p>チャットボットで簡易診断もできます。</p>
+          <div class="inline-bot-prompts">
+            <span class="inline-bot-btn" onclick="openBotWithQ2('人手不足で困っています')">人手不足</span>
+            <span class="inline-bot-btn" onclick="openBotWithQ2('業務を効率化したい')">業務効率化</span>
+            <span class="inline-bot-btn" onclick="openBotWithQ2('売上を伸ばしたい')">売上UP</span>
+            <span class="inline-bot-btn" onclick="openBotWithQ2('AIで何ができるか知りたい')">何ができる？</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo">UTA<span>.</span>AI</div><p class="footer-tagline">AIで、あなたの力を何倍にも拡張する。</p><div class="footer-socials"><a href="#" class="footer-social" aria-label="LINE"><i class="fab fa-line"></i></a><a href="#" class="footer-social" aria-label="X"><i class="fab fa-x-twitter"></i></a></div></div><div class="footer-col"><h4>Service</h4><a href="services.html">公式LINE構築</a><a href="services.html">AIチャットボット</a><a href="services.html">AI活用コンサルティング</a></div><div class="footer-col"><h4>Information</h4><a href="about.html">自己紹介</a><a href="works.html">制作実績</a><a href="faq.html">FAQ</a></div><div class="footer-col"><h4>Contact</h4><a href="mailto:uta.ai.work@gmail.com">uta.ai.work@gmail.com</a><a href="tel:07044828244">070-4482-8244</a><a href="contact.html">お問い合わせフォーム</a></div></div><div class="footer-bottom"><p>&copy; 2026 松本海太 / UTA.AI — All rights reserved.</p></div></div></footer>
+
+<!-- CHATBOT -->
+<button class="cb-btn" onclick="toggleBot()"><i class="fas fa-comment-dots"></i></button>
+<div class="cb-panel" id="cbPanel">
+  <div class="cb-header"><h4><i class="fas fa-robot"></i> AIアシスタント</h4><button class="cb-close" onclick="toggleBot()"><i class="fas fa-times"></i></button></div>
+  <div class="cb-tabs"><button class="cb-tab active" onclick="switchTab(0,this)">&#x1F64B; 自己紹介</button><button class="cb-tab" onclick="switchTab(1,this)">&#x1F4BC; お悩み相談</button></div>
+  <div class="cb-messages" id="cbMsgs"><div class="cb-msg bot">こんにちは！松本海太のAIアシスタントです &#x1F60A;</div></div>
+  <div class="cb-input-area"><input id="cbInput" placeholder="メッセージを入力..." onkeydown="if(event.key==='Enter')sendMsg()"><button onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+<script>
+// Entrance
+gsap.fromTo('.page-hero-label',{autoAlpha:0,y:15},{autoAlpha:1,y:0,duration:.5,delay:.1});
+gsap.fromTo('.page-hero-title',{autoAlpha:0,y:20},{autoAlpha:1,y:0,duration:.6,delay:.2});
+gsap.fromTo('.page-hero-desc',{autoAlpha:0,y:15},{autoAlpha:1,y:0,duration:.5,delay:.35});
+gsap.fromTo('.contact-grid form',{autoAlpha:0,x:-30},{autoAlpha:1,x:0,duration:.7,delay:.5,ease:'power2.out'});
+gsap.fromTo('.contact-side',{autoAlpha:0,x:30},{autoAlpha:1,x:0,duration:.7,delay:.6,ease:'power2.out'});
+
+// Chatbot
+let cTab=0;
+const R0={'default':'松本海太は、中小企業向けにAI導入・活用を支援するコンサルタントです。「AIであなたの力を何倍にも拡張する」をミッションに、LINE公式構築からAIチャットボット開発、業務コンサルティングまで一気通貫でサポートしています。何でも聞いてください！','強み':'最大の強みは「自分自身がAIで弱点を克服した」実体験です。文章が書けなかった人間がAIで高品質な資料を作れるようになった——だからこそ、中小企業の現場目線で「本当に使える形」まで落とし込めます。','会計':'3年間公認会計士試験に挑戦したバックグラウンドがあります。会計・財務の知識はAI導入のROI試算や、経営層への導入提案書の作成に直結しています。','AI':'AIの可能性に気づいたのは2022年のChatGPT登場がきっかけです。一人の人間がAIを駆使すれば何倍もの力を発揮できる——この可能性を届けたくて、会計士試験の道を離れる決断をしました。','料金':'料金はプロジェクトの規模・内容に応じて個別にご提案しています。初回相談は無料ですので、お気軽にどうぞ！','ツール':'ChatGPT、Claude、Geminiなど複数の生成AIを目的別に使い分けています。お客様の業務に最適な組み合わせをご提案します。'};
+const R1={'default':'お悩みの内容をお聞かせください。「人手不足」「効率化」「売上」「何ができる」などキーワードでもOKです！','人手':'人手不足には、AIによる業務自動化が効果的です。データ入力の自動化、AIチャットボットによる24時間顧客対応、レポート自動生成など。無料相談でヒアリングいたします！','効率':'業務効率化のポイントは「繰り返し作業」の特定です。データ入力・転記、問い合わせ対応、資料作成など。御社の業務フローをお聞かせいただければ、最適な改善プランをご提案します。','売上':'売上アップには「AI×マーケティング」が強力です。公式LINE×AIチャットボットで自動ナーチャリング → 成約率アップ。まずは無料相談で御社の状況をお聞かせください！','何ができる':'中小企業で特に効果が出やすいのは：①顧客対応の自動化、②データ入力・書類処理の自動化、③文章・資料の自動生成、④需要予測・在庫最適化、⑤社内ナレッジの共有・検索です。'};
+function getR(t,tab){t=t.toLowerCase();if(tab===0){if(t.includes('強み')||t.includes('特徴'))return R0['強み'];if(t.includes('会計')||t.includes('資格'))return R0['会計'];if(t.includes('なぜ')||t.includes('きっかけ'))return R0['AI'];if(t.includes('料金')||t.includes('費用'))return R0['料金'];if(t.includes('ツール')||t.includes('使'))return R0['ツール'];return R0['default']}else{if(t.includes('人手')||t.includes('不足'))return R1['人手'];if(t.includes('効率')||t.includes('自動'))return R1['効率'];if(t.includes('売上')||t.includes('集客'))return R1['売上'];if(t.includes('何ができる')||t.includes('知りたい'))return R1['何ができる'];return R1['default']}}
+function toggleBot(){document.getElementById('cbPanel').classList.toggle('open')}
+function switchTab(i,btn){cTab=i;document.querySelectorAll('.cb-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.getElementById('cbMsgs').innerHTML=i===0?'<div class="cb-msg bot">\u3053\u3093\u306b\u3061\u306f\uff01\u677e\u672c\u6d77\u592a\u306eAI\u30a2\u30b7\u30b9\u30bf\u30f3\u30c8\u3067\u3059 \u{1F60A}</div>':'<div class="cb-msg bot">AI\u5c0e\u5165\u304a\u60a9\u307f\u76f8\u8ac7\u30dc\u30c3\u30c8\u3067\u3059\uff01\u5fa1\u793e\u306e\u8ab2\u984c\u3092\u304a\u805e\u304b\u305b\u304f\u3060\u3055\u3044 \u{1F4BC}</div>'}
+function sendMsg(){const inp=document.getElementById('cbInput'),t=inp.value.trim();if(!t)return;const m=document.getElementById('cbMsgs');m.innerHTML+='<div class="cb-msg usr">'+t+'</div>';inp.value='';setTimeout(()=>{m.innerHTML+='<div class="cb-msg bot">'+getR(t,cTab)+'</div>';m.scrollTop=m.scrollHeight},500)}
+function openBotWithQ(q){const p=document.getElementById('cbPanel');if(!p.classList.contains('open'))p.classList.add('open');switchTab(0,document.querySelectorAll('.cb-tab')[0]);document.getElementById('cbInput').value=q;sendMsg()}
+function openBotWithQ2(q){const p=document.getElementById('cbPanel');if(!p.classList.contains('open'))p.classList.add('open');switchTab(1,document.querySelectorAll('.cb-tab')[1]);document.getElementById('cbInput').value=q;sendMsg()}
+</script>
+</body>
+</html>

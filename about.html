@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自己紹介 | UTA.AI</title>
+<meta name="description" content="松本海太の自己紹介。会計士から AI コンサルタントへ。中小企業のAI導入を一気通貫でサポートします。">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#ffffff;--off-white:#f7f8fa;--light-gray:#f0f2f5;
+  --border:#e5e7eb;--border-light:#f0f0f0;
+  --t1:#1a1a2e;--t2:#4a4a5a;--t3:#8a8a9a;--t4:#b0b0c0;
+  --accent:#0066cc;--accent-hover:#0052a3;--accent-light:rgba(0,102,204,.06);
+  --dark:#0f0f1a;
+  --font-primary:'Inter','Noto Sans JP',sans-serif;
+  --font-en:'Inter',sans-serif;
+  --shadow-md:0 4px 16px rgba(0,0,0,.06);--shadow-hover:0 12px 40px rgba(0,0,0,.1);
+  --radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:24px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-primary);background:var(--white);color:var(--t1);line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none;transition:.3s}
+.container{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,4rem)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.8rem 0;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light)}
+.nav .container{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;letter-spacing:-.5px;color:var(--t1)}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--t3);transition:.3s}.nav-links a:hover,.nav-links a.active{color:var(--t1)}
+.nav-label-en{font-family:var(--font-en);font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.nav-label-jp{font-size:.62rem;font-weight:400;color:var(--t4)}
+.nav-cta{background:var(--accent)!important;color:#fff!important;padding:.55rem 1.3rem;border-radius:var(--radius-sm);flex-direction:row!important;gap:.4rem!important}
+.nav-cta .nav-label-en,.nav-cta .nav-label-jp{color:#fff!important}
+.nav-toggle{display:none;background:0;border:0;font-size:1.3rem;cursor:pointer;color:var(--t1)}
+@media(max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}.nav-links.open{display:flex}.nav-toggle{display:block}}
+
+/* PAGE HERO */
+.page-hero{padding:8rem 0 4rem;background:var(--off-white);text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,102,204,.04) 0%,transparent 70%);border-radius:50%}
+.page-hero-label{font-family:var(--font-en);font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:block}
+.page-hero-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.8rem}
+.page-hero-desc{color:var(--t3);font-size:.95rem;max-width:560px;margin:0 auto}
+
+/* PROFILE */
+.profile{padding:5rem 0}
+.profile-grid{display:grid;grid-template-columns:340px 1fr;gap:5rem;align-items:start}
+@media(max-width:900px){.profile-grid{grid-template-columns:1fr;gap:3rem}}
+.profile-photo{width:100%;aspect-ratio:3/4;border-radius:var(--radius-xl);overflow:hidden;background:var(--light-gray);display:flex;align-items:center;justify-content:center;font-size:4rem;color:var(--accent);position:sticky;top:6rem}
+.profile-photo img{width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.profile-photo{max-width:280px;margin:0 auto;position:static}}
+.profile-name{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.2rem}
+.profile-en{font-family:var(--font-en);font-size:.8rem;color:var(--t3);letter-spacing:3px;text-transform:uppercase;margin-bottom:1.2rem}
+.profile-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:2rem}
+.profile-tag{background:var(--accent-light);color:var(--accent);padding:.3rem .8rem;border-radius:50px;font-size:.75rem;font-weight:600}
+
+/* STORY */
+.story-chapter{margin-bottom:3rem;position:relative;padding-left:2.5rem}
+.story-chapter::before{content:'';position:absolute;left:0;top:.6rem;width:2px;height:calc(100% - .6rem);background:var(--border-light)}
+.story-num{position:absolute;left:-6px;top:0;width:14px;height:14px;background:var(--accent);border-radius:50%;border:3px solid var(--white)}
+.story-chapter h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.story-chapter p{font-size:.92rem;color:var(--t2);line-height:2}
+.story-chapter:last-child::before{height:14px}
+
+/* VALUES */
+.values{padding:5rem 0;background:var(--off-white)}
+.values-title{text-align:center;font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
+.values-label{text-align:center;font-family:var(--font-en);font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:block}
+.values-desc{text-align:center;color:var(--t3);font-size:.92rem;max-width:500px;margin:0 auto 3rem}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:768px){.values-grid{grid-template-columns:1fr}}
+.value-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2rem;text-align:center;transition:all .35s}
+.value-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px)}
+.value-icon{width:56px;height:56px;background:var(--accent-light);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--accent);margin:0 auto 1rem}
+.value-card h4{font-size:1rem;font-weight:700;margin-bottom:.4rem}
+.value-card p{font-size:.84rem;color:var(--t2);line-height:1.8}
+
+/* SKILLS */
+.skills{padding:5rem 0}
+.skills-label{text-align:center;font-family:var(--font-en);font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:block}
+.skills-title{text-align:center;font-size:1.5rem;font-weight:700;margin-bottom:3rem}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:900px;margin:0 auto}
+@media(max-width:768px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
+.skill-item{text-align:center;padding:1.5rem 1rem;border:1px solid var(--border-light);border-radius:var(--radius-md);transition:all .3s}
+.skill-item:hover{border-color:var(--accent);box-shadow:var(--shadow-md)}
+.skill-item i{font-size:1.5rem;color:var(--accent);margin-bottom:.5rem;display:block}
+.skill-item h5{font-size:.82rem;font-weight:700;margin-bottom:.15rem}
+.skill-item p{font-size:.68rem;color:var(--t3)}
+
+/* CTA */
+.page-cta{padding:5rem 0;background:var(--dark);text-align:center;position:relative;overflow:hidden}
+.page-cta::before{content:'';position:absolute;top:-50%;left:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,102,204,.08) 0%,transparent 70%);border-radius:50%}
+.page-cta h3{color:#fff;font-size:1.5rem;font-weight:700;margin-bottom:.6rem;position:relative}
+.page-cta p{color:rgba(255,255,255,.5);font-size:.92rem;margin-bottom:2rem;position:relative}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:var(--radius-sm);font-weight:600;font-size:.88rem;border:0;cursor:pointer;transition:all .3s;font-family:var(--font-primary)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(0,102,204,.25);position:relative}.btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px)}
+
+/* FOOTER */
+.footer{background:var(--dark);color:#fff;padding:4rem 0 1.5rem}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.footer-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;margin-bottom:.5rem}.footer-logo span{color:var(--accent)}
+.footer-tagline{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:1rem;line-height:1.7}
+.footer-socials{display:flex;gap:.4rem}
+.footer-social{width:38px;height:38px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:.3s;font-size:.8rem}.footer-social:hover{border-color:var(--accent);color:var(--accent)}
+.footer-col h4{font-family:var(--font-en);font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;color:rgba(255,255,255,.6)}
+.footer-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:.5rem;transition:color .3s}.footer-col a:hover{color:#fff}
+.footer-bottom{padding-top:1.5rem;text-align:center;font-size:.7rem;color:rgba(255,255,255,.25)}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="container"><a href="index.html" class="nav-logo">UTA<span>.</span>AI</a><button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button><div class="nav-links"><a href="about.html" class="active"><span class="nav-label-en">About</span><span class="nav-label-jp">自己紹介</span></a><a href="services.html"><span class="nav-label-en">Service</span><span class="nav-label-jp">サービス</span></a><a href="works.html"><span class="nav-label-en">Works</span><span class="nav-label-jp">実績</span></a><a href="faq.html"><span class="nav-label-en">FAQ</span><span class="nav-label-jp">よくある質問</span></a><a href="contact.html" class="nav-cta"><span class="nav-label-en">Contact</span><span class="nav-label-jp">お問い合わせ</span></a></div></div></nav>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="page-hero-label">About</span>
+    <h1 class="page-hero-title">自己紹介</h1>
+    <p class="page-hero-desc">AIの可能性を体感し、届ける側へ。</p>
+  </div>
+</section>
+
+<section class="profile">
+  <div class="container">
+    <div class="profile-grid">
+      <div class="profile-photo"><i class="fas fa-user"></i></div>
+      <div>
+        <div class="profile-name">松本 海太</div>
+        <div class="profile-en">MATSUMOTO UTA</div>
+        <div class="profile-tags">
+          <span class="profile-tag">AI導入コンサルタント</span>
+          <span class="profile-tag">個人事業主</span>
+          <span class="profile-tag">会計学科出身</span>
+          <span class="profile-tag">公認会計士試験 3年間挑戦</span>
+        </div>
+
+        <div class="story-chapter">
+          <div class="story-num"></div>
+          <h3>理想はあるのに、形にできなかった</h3>
+          <p>大学で会計学科に所属し、3年間公認会計士試験に挑戦してきました。しかし私には長年のコンプレックスがありました。文章作成がどうしても苦手で、頭の中にある理想を言葉にして形にすることができなかったのです。</p>
+        </div>
+        <div class="story-chapter">
+          <div class="story-num"></div>
+          <h3>AIが、自分の力を何倍にもしてくれた</h3>
+          <p>2022年にChatGPTが登場し、使い込むほどに気づいたのは、ほとんどの人がAIを「使っている」だけで「使いこなせていない」ということ。AIを本気で駆使すると、一人では絶対にできなかった高品質な資料作成や、頭の中の想いの的確な言語化が可能になりました。</p>
+        </div>
+        <div class="story-chapter">
+          <div class="story-num"></div>
+          <h3>会計士の道を離れ、AIの道へ</h3>
+          <p>AIを駆使できる人間が圧倒的に強くなる——。3年間続けた会計士の道を離れる決断は簡単ではありませんでしたが、この可能性を届けたいという想いが勝りました。御社の力を何倍にも拡張する、そのお手伝いをさせてください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="container">
+    <span class="values-label">Values</span>
+    <h2 class="values-title">大切にしていること</h2>
+    <p class="values-desc">お客様との関わりにおいて、3つの価値を大切にしています。</p>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon"><i class="fas fa-handshake"></i></div>
+        <h4>伴走型サポート</h4>
+        <p>「導入して終わり」ではなく、御社がAIを自走できるまで伴走します。最終的にはコンサルに依存しない組織を目指します。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="fas fa-comments"></i></div>
+        <h4>わかりやすさ</h4>
+        <p>専門用語を使わず、御社の業務に合わせてわかりやすくご説明します。「AIがわからない」段階からの相談を大歓迎しています。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="fas fa-chart-line"></i></div>
+        <h4>数字で示す成果</h4>
+        <p>会計学科で培った数値分析力で、ROI試算や効果測定を徹底。「なんとなく良さそう」ではなく、数字で効果を実感していただきます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills">
+  <div class="container">
+    <span class="skills-label">Skills & Tools</span>
+    <h2 class="skills-title">使用ツール・スキル</h2>
+    <div class="skills-grid">
+      <div class="skill-item"><i class="fas fa-brain"></i><h5>ChatGPT / Claude</h5><p>生成AI</p></div>
+      <div class="skill-item"><i class="fas fa-robot"></i><h5>Dify</h5><p>ノーコードAI</p></div>
+      <div class="skill-item"><i class="fab fa-python"></i><h5>Python</h5><p>自動化・分析</p></div>
+      <div class="skill-item"><i class="fab fa-line"></i><h5>LINE API</h5><p>公式LINE構築</p></div>
+      <div class="skill-item"><i class="fas fa-database"></i><h5>RAG</h5><p>ナレッジ検索</p></div>
+      <div class="skill-item"><i class="fas fa-code"></i><h5>Web開発</h5><p>HTML/CSS/JS</p></div>
+      <div class="skill-item"><i class="fas fa-calculator"></i><h5>会計・財務</h5><p>ROI試算</p></div>
+      <div class="skill-item"><i class="fas fa-project-diagram"></i><h5>業務設計</h5><p>プロセス分析</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="page-cta">
+  <div class="container">
+    <h3>お気軽にお問い合わせください</h3>
+    <p>「AIのことがわからない」段階からのご相談、大歓迎です。</p>
+    <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> 無料で相談する</a>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo">UTA<span>.</span>AI</div><p class="footer-tagline">AIで、あなたの力を何倍にも拡張する。</p><div class="footer-socials"><a href="#" class="footer-social" aria-label="LINE"><i class="fab fa-line"></i></a><a href="#" class="footer-social" aria-label="X"><i class="fab fa-x-twitter"></i></a></div></div><div class="footer-col"><h4>Service</h4><a href="services.html">公式LINE構築</a><a href="services.html">AIチャットボット</a><a href="services.html">AI活用コンサルティング</a></div><div class="footer-col"><h4>Information</h4><a href="about.html">自己紹介</a><a href="works.html">制作実績</a><a href="faq.html">FAQ</a></div><div class="footer-col"><h4>Contact</h4><a href="mailto:uta.ai.work@gmail.com">uta.ai.work@gmail.com</a><a href="tel:07044828244">070-4482-8244</a><a href="contact.html">お問い合わせフォーム</a></div></div><div class="footer-bottom"><p>&copy; 2026 松本海太 / UTA.AI — All rights reserved.</p></div></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+gsap.fromTo('.page-hero-label',{autoAlpha:0,y:15},{autoAlpha:1,y:0,duration:.5,delay:.1});
+gsap.fromTo('.page-hero-title',{autoAlpha:0,y:20},{autoAlpha:1,y:0,duration:.6,delay:.2});
+gsap.fromTo('.page-hero-desc',{autoAlpha:0,y:15},{autoAlpha:1,y:0,duration:.5,delay:.35});
+gsap.fromTo('.profile-photo',{autoAlpha:0,x:-40},{autoAlpha:1,x:0,duration:.8,ease:'power2.out',scrollTrigger:{trigger:'.profile',start:'top 75%'}});
+gsap.fromTo('.profile-grid > div:last-child',{autoAlpha:0,x:30},{autoAlpha:1,x:0,duration:.8,ease:'power2.out',scrollTrigger:{trigger:'.profile',start:'top 75%'}});
+gsap.fromTo('.value-card',{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.6,stagger:.15,ease:'power2.out',scrollTrigger:{trigger:'.values-grid',start:'top 82%'}});
+gsap.fromTo('.skill-item',{autoAlpha:0,y:20},{autoAlpha:1,y:0,duration:.4,stagger:.06,ease:'power2.out',scrollTrigger:{trigger:'.skills-grid',start:'top 85%'}});
+</script>
+</body>
+</html>

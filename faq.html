@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ | UTA.AI</title>
+<meta name="description" content="UTA.AIのよくあるご質問。AI導入、料金、セキュリティ、サポートについてお答えします。">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#ffffff;--off-white:#f7f8fa;--light-gray:#f0f2f5;
+  --border:#e5e7eb;--border-light:#f0f0f0;
+  --t1:#1a1a2e;--t2:#4a4a5a;--t3:#8a8a9a;--t4:#b0b0c0;
+  --accent:#0066cc;--accent-hover:#0052a3;--accent-light:rgba(0,102,204,.06);
+  --dark:#0f0f1a;
+  --font-primary:'Inter','Noto Sans JP',sans-serif;
+  --font-en:'Inter',sans-serif;
+  --shadow-md:0 4px 16px rgba(0,0,0,.06);--shadow-hover:0 12px 40px rgba(0,0,0,.1);
+  --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-primary);background:var(--white);color:var(--t1);line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none;transition:.3s}
+.container{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,4rem)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.8rem 0;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light)}
+.nav .container{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;letter-spacing:-.5px;color:var(--t1)}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--t3);transition:.3s}.nav-links a:hover,.nav-links a.active{color:var(--t1)}
+.nav-label-en{font-family:var(--font-en);font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.nav-label-jp{font-size:.62rem;font-weight:400;color:var(--t4)}
+.nav-cta{background:var(--accent)!important;color:#fff!important;padding:.55rem 1.3rem;border-radius:var(--radius-sm);flex-direction:row!important;gap:.4rem!important}
+.nav-cta .nav-label-en,.nav-cta .nav-label-jp{color:#fff!important}
+.nav-toggle{display:none;background:0;border:0;font-size:1.3rem;cursor:pointer;color:var(--t1)}
+@media(max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}.nav-links.open{display:flex}.nav-toggle{display:block}}
+
+/* PAGE HERO */
+.page-hero{padding:8rem 0 4rem;background:var(--off-white);text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,102,204,.04) 0%,transparent 70%);border-radius:50%}
+.page-hero-label{font-family:var(--font-en);font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:block}
+.page-hero-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.8rem}
+.page-hero-desc{color:var(--t3);font-size:.95rem;max-width:560px;margin:0 auto}
+
+/* FAQ */
+.faq-section{padding:4rem 0 6rem}
+.faq-category{margin-bottom:3rem}
+.faq-cat-title{display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem;max-width:760px;margin-left:auto;margin-right:auto}
+.faq-cat-icon{width:36px;height:36px;background:var(--accent-light);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.85rem;flex-shrink:0}
+.faq-cat-title h3{font-size:1rem;font-weight:700}
+.faq-list{max-width:760px;margin:0 auto}
+.faq-item{border:1px solid var(--border-light);border-radius:var(--radius-md);margin-bottom:.6rem;background:var(--white);transition:.3s}
+.faq-item:hover{border-color:var(--border)}
+.faq-question{width:100%;padding:1.1rem 1.3rem;background:0;border:0;color:var(--t1);font-family:var(--font-primary);font-size:.92rem;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.faq-toggle{font-size:1.2rem;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-toggle{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}
+.faq-item.open .faq-answer{max-height:500px}
+.faq-answer-inner{padding:0 1.3rem 1.1rem;font-size:.88rem;color:var(--t2);line-height:1.9}
+
+/* CTA */
+.page-cta{padding:5rem 0;background:var(--dark);text-align:center;position:relative;overflow:hidden}
+.page-cta::before{content:'';position:absolute;top:-50%;left:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,102,204,.08) 0%,transparent 70%);border-radius:50%}
+.page-cta h3{color:#fff;font-size:1.5rem;font-weight:700;margin-bottom:.6rem;position:relative}
+.page-cta p{color:rgba(255,255,255,.5);font-size:.92rem;margin-bottom:2rem;position:relative}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:var(--radius-sm);font-weight:600;font-size:.88rem;border:0;cursor:pointer;transition:all .3s;font-family:var(--font-primary)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(0,102,204,.25);position:relative}.btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px)}
+
+/* FOOTER */
+.footer{background:var(--dark);color:#fff;padding:4rem 0 1.5rem}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.footer-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;margin-bottom:.5rem}.footer-logo span{color:var(--accent)}
+.footer-tagline{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:1rem;line-height:1.7}
+.footer-socials{display:flex;gap:.4rem}
+.footer-social{width:38px;height:38px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:.3s;font-size:.8rem}.footer-social:hover{border-color:var(--accent);color:var(--accent)}
+.footer-col h4{font-family:var(--font-en);font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;color:rgba(255,255,255,.6)}
+.footer-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:.5rem;transition:color .3s}.footer-col a:hover{color:#fff}
+.footer-bottom{padding-top:1.5rem;text-align:center;font-size:.7rem;color:rgba(255,255,255,.25)}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="container"><a href="index.html" class="nav-logo">UTA<span>.</span>AI</a><button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button><div class="nav-links"><a href="about.html"><span class="nav-label-en">About</span><span class="nav-label-jp">自己紹介</span></a><a href="services.html"><span class="nav-label-en">Service</span><span class="nav-label-jp">サービス</span></a><a href="works.html"><span class="nav-label-en">Works</span><span class="nav-label-jp">実績</span></a><a href="faq.html" class="active"><span class="nav-label-en">FAQ</span><span class="nav-label-jp">よくある質問</span></a><a href="contact.html" class="nav-cta"><span class="nav-label-en">Contact</span><span class="nav-label-jp">お問い合わせ</span></a></div></div></nav>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="page-hero-label">FAQ</span>
+    <h1 class="page-hero-title">よくあるご質問</h1>
+    <p class="page-hero-desc">お客様からよくいただくご質問をカテゴリ別にまとめました。</p>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="container">
+
+    <div class="faq-category">
+      <div class="faq-cat-title"><div class="faq-cat-icon"><i class="fas fa-comment-dots"></i></div><h3>ご相談について</h3></div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">AIのことが全くわからなくても相談できますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">はい、大歓迎です。実際にご相談いただく方の多くが「AIって何ができるの？」という段階からスタートしています。専門用語を使わず、御社の業務に合わせてわかりやすくご説明します。</div></div></div>
+        <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">相談だけでも大丈夫ですか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">もちろんです。「うちの業務にAIが使えるか聞いてみたい」という段階から大歓迎です。無料相談で無理にお勧めすることはありませんので、ご安心ください。</div></div></div>
+        <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">小さな会社でも効果がありますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">むしろ小規模な組織ほど効果を実感しやすいです。少人数でも大企業並みの業務効率を実現できるのがAIの強みです。</div></div></div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-cat-title"><div class="faq-cat-icon"><i class="fas fa-yen-sign"></i></div><h3>料金・お見積り</h3></div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">料金体系はどうなっていますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">プロジェクトの内容・規模に応じて個別にご提案します。初回のご相談は無料で、現状の課題整理やAI活用の方向性まで一緒にお話しできます。「まず概算を知りたい」というご要望にもお応えしますので、お気軽にどうぞ。</div></div></div>
+        <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">追加費用は発生しますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">お見積り時にすべての費用を明示します。スコープ外の追加要望が発生した場合は、事前にご相談のうえ対応いたします。不透明な追加課金は一切ありません。</div></div></div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-cat-title"><div class="faq-cat-icon"><i class="fas fa-shield-alt"></i></div><h3>セキュリティ</h3></div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">データのセキュリティは大丈夫ですか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">万全の体制を整えています。通信・保存データの暗号化、お客様データのAI学習への不使用を徹底し、プロジェクト開始前にはNDA（秘密保持契約）を締結します。使用するAI基盤もAnthropic社Claude等、企業水準のセキュリティを備えたサービスを選定しています。</div></div></div>
+        <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">お客様のデータがAIの学習に使われることはありますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">いいえ、一切ありません。お客様のデータがAIモデルの学習に使用されないAPI・プランを選定して利用しています。データの取り扱いについては、契約時に詳しくご説明いたします。</div></div></div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-cat-title"><div class="faq-cat-icon"><i class="fas fa-headset"></i></div><h3>導入後のサポート</h3></div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">導入後のサポートはありますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">はい。操作研修・マニュアル作成から、効果測定・継続改善までサポートします。最終的には「コンサルに依存しない自走組織」を目指しており、御社の社員様がAIを自分たちで使いこなせる状態をゴールとしています。</div></div></div>
+        <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">導入にはどのくらいの期間がかかりますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">プロジェクトの規模によりますが、一般的にはPoC（実証実験）に約2週間〜1ヶ月、本格導入に1〜2ヶ月程度です。小さく始めて段階的に拡大するアプローチを推奨しています。</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="page-cta">
+  <div class="container">
+    <h3>他にもご質問がありましたら、お気軽にどうぞ。</h3>
+    <p>初回相談は無料です。何でもお聞きください。</p>
+    <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> お問い合わせ</a>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo">UTA<span>.</span>AI</div><p class="footer-tagline">AIで、あなたの力を何倍にも拡張する。</p><div class="footer-socials"><a href="#" class="footer-social" aria-label="LINE"><i class="fab fa-line"></i></a><a href="#" class="footer-social" aria-label="X"><i class="fab fa-x-twitter"></i></a></div></div><div class="footer-col"><h4>Service</h4><a href="services.html">公式LINE構築</a><a href="services.html">AIチャットボット</a><a href="services.html">AI活用コンサルティング</a></div><div class="footer-col"><h4>Information</h4><a href="about.html">自己紹介</a><a href="works.html">制作実績</a><a href="faq.html">FAQ</a></div><div class="footer-col"><h4>Contact</h4><a href="mailto:uta.ai.work@gmail.com">uta.ai.work@gmail.com</a><a href="tel:07044828244">070-4482-8244</a><a href="contact.html">お問い合わせフォーム</a></div></div><div class="footer-bottom"><p>&copy; 2026 松本海太 / UTA.AI — All rights reserved.</p></div></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+gsap.fromTo('.page-hero-label',{autoAlpha:0,y:15},{autoAlpha:1,y:0,duration:.5,delay:.1});
+gsap.fromTo('.page-hero-title',{autoAlpha:0,y:20},{autoAlpha:1,y:0,duration:.6,delay:.2});
+gsap.fromTo('.page-hero-desc',{autoAlpha:0,y:15},{autoAlpha:1,y:0,duration:.5,delay:.35});
+document.querySelectorAll('.faq-category').forEach(cat=>{
+  gsap.fromTo(cat,{autoAlpha:0,y:25},{autoAlpha:1,y:0,duration:.6,ease:'power2.out',scrollTrigger:{trigger:cat,start:'top 85%'}});
+});
+</script>
+</body>
+</html>
