@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>制作実績 | UTA.AI</title>
-<meta name="description" content="UTA.AIの制作実績。LINE公式構築、AIチャットボット、AI活用コンサルティングの事例をご紹介します。">
+<meta name="description" content="UTA.AIの制作実績。公式LINE×AIチャットボット、Webチャットボット、AI業務効率化、AIアプリ開発の事例をご紹介します。">
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -26,42 +26,35 @@ body{font-family:var(--font-primary);background:var(--white);color:var(--t1);lin
 a{color:var(--accent);text-decoration:none;transition:.3s}
 .container{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,4rem)}
 
-/* ===== NAV ===== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.8rem 0;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);transition:all .4s ease}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.8rem 0;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light)}
 .nav .container{display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;letter-spacing:-.5px;color:var(--t1)}
-.nav-logo span{color:var(--accent)}
+.nav-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;letter-spacing:-.5px;color:var(--t1)}.nav-logo span{color:var(--accent)}
 .nav-links{display:flex;gap:2rem;align-items:center}
-.nav-links a{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--t3);transition:.3s}
-.nav-links a:hover,.nav-links a.active{color:var(--t1)}
+.nav-links a{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--t3);transition:.3s}.nav-links a:hover,.nav-links a.active{color:var(--t1)}
 .nav-label-en{font-family:var(--font-en);font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase}
 .nav-label-jp{font-size:.62rem;font-weight:400;color:var(--t4)}
 .nav-cta{background:var(--accent)!important;color:#fff!important;padding:.55rem 1.3rem;border-radius:var(--radius-sm);flex-direction:row!important;gap:.4rem!important}
 .nav-cta .nav-label-en,.nav-cta .nav-label-jp{color:#fff!important}
 .nav-toggle{display:none;background:0;border:0;font-size:1.3rem;cursor:pointer;color:var(--t1)}
-@media(max-width:768px){
-  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}
-  .nav-links.open{display:flex}
-  .nav-toggle{display:block}
-}
+@media(max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}.nav-links.open{display:flex}.nav-toggle{display:block}}
 
-/* ===== PAGE HERO ===== */
+/* PAGE HERO */
 .page-hero{padding:8rem 0 4rem;background:var(--off-white);text-align:center;position:relative;overflow:hidden}
 .page-hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,102,204,.04) 0%,transparent 70%);border-radius:50%}
 .page-hero-label{font-family:var(--font-en);font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:block}
 .page-hero-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.8rem}
 .page-hero-desc{color:var(--t3);font-size:.95rem;max-width:560px;margin:0 auto}
 
-/* ===== SERVICE TABS ===== */
+/* TABS */
 .tabs-wrap{position:sticky;top:52px;z-index:100;background:var(--white);border-bottom:1px solid var(--border-light);padding:.8rem 0}
 .tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
-.tab-btn{display:flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;border:1.5px solid var(--border);border-radius:50px;background:var(--white);color:var(--t2);font-family:var(--font-primary);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s ease}
+.tab-btn{display:flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;border:1.5px solid var(--border);border-radius:50px;background:var(--white);color:var(--t2);font-family:var(--font-primary);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s}
 .tab-btn:hover{border-color:var(--accent);color:var(--accent)}
 .tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(0,102,204,.25)}
 .tab-btn i{font-size:.9rem}
-.tab-indicator{display:none}
 
-/* ===== SLIDER SECTION ===== */
+/* SLIDER */
 .slider-section{padding:3rem 0 5rem;min-height:70vh}
 .slider-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}
 .slider-title{display:flex;align-items:center;gap:.8rem}
@@ -71,20 +64,18 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
 .slider-nav{display:flex;gap:.4rem}
 .slider-nav-btn{width:44px;height:44px;border-radius:50%;background:var(--white);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;color:var(--t3);font-size:.85rem}
 .slider-nav-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow-md)}
-.slider-nav-btn:disabled{opacity:.3;cursor:not-allowed}
 
-/* ===== HORIZONTAL SLIDER ===== */
 .slider-viewport{overflow:hidden;position:relative}
 .slider-track{display:flex;gap:1.5rem;cursor:grab;user-select:none;will-change:transform}
 .slider-track:active{cursor:grabbing}
 .slider-track.is-dragging *{pointer-events:none}
 
-/* ===== WORK CARD ===== */
+/* CARD */
 .work-card{min-width:380px;max-width:380px;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-xl);overflow:hidden;transition:all .4s cubic-bezier(.16,1,.3,1);flex-shrink:0}
 .work-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-6px)}
 @media(max-width:560px){.work-card{min-width:300px;max-width:300px}}
 .work-card-thumb{height:220px;overflow:hidden;position:relative}
-.work-card-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.work-card-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .work-card:hover .work-card-thumb img{transform:scale(1.06)}
 .work-card-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.4))}
 .work-card-status{position:absolute;top:1rem;left:1rem;z-index:1;font-size:.65rem;font-weight:700;padding:.25rem .7rem;border-radius:50px;backdrop-filter:blur(8px)}
@@ -101,17 +92,12 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
 .work-card-tags{display:flex;gap:.3rem;flex-wrap:wrap}
 .work-card-tags span{font-size:.62rem;background:var(--accent-light);color:var(--accent);padding:.15rem .5rem;border-radius:50px;font-weight:600}
 
-/* ===== SLIDER DOTS ===== */
+/* DOTS */
 .slider-dots{display:flex;justify-content:center;gap:.4rem;margin-top:2rem}
 .slider-dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:0;cursor:pointer;transition:all .3s;padding:0}
 .slider-dot.active{background:var(--accent);width:24px;border-radius:4px}
 
-/* ===== EMPTY STATE ===== */
-.slider-empty{text-align:center;padding:4rem 2rem;color:var(--t3)}
-.slider-empty i{font-size:2.5rem;margin-bottom:1rem;opacity:.3;display:block}
-.slider-empty p{font-size:.9rem}
-
-/* ===== CTA ===== */
+/* CTA */
 .page-cta{padding:5rem 0;background:var(--dark);text-align:center;position:relative;overflow:hidden}
 .page-cta::before{content:'';position:absolute;top:-50%;left:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,102,204,.08) 0%,transparent 70%);border-radius:50%}
 .page-cta h3{color:#fff;font-size:1.5rem;font-weight:700;margin-bottom:.6rem;position:relative}
@@ -120,7 +106,7 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
 .btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(0,102,204,.25);position:relative}.btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px)}
 .btn-outline-white{background:0;border:1.5px solid rgba(255,255,255,.3);color:#fff;position:relative}.btn-outline-white:hover{background:rgba(255,255,255,.1);border-color:#fff}
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer{background:var(--dark);color:#fff;padding:4rem 0 1.5rem}
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
 @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
@@ -128,67 +114,47 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
 .footer-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;margin-bottom:.5rem}.footer-logo span{color:var(--accent)}
 .footer-tagline{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:1rem;line-height:1.7}
 .footer-socials{display:flex;gap:.4rem}
-.footer-social{width:38px;height:38px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:.3s;font-size:.8rem}
-.footer-social:hover{border-color:var(--accent);color:var(--accent)}
+.footer-social{width:38px;height:38px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:.3s;font-size:.8rem}.footer-social:hover{border-color:var(--accent);color:var(--accent)}
 .footer-col h4{font-family:var(--font-en);font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;color:rgba(255,255,255,.6)}
-.footer-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:.5rem;transition:color .3s}
-.footer-col a:hover{color:#fff}
+.footer-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:.5rem;transition:color .3s}.footer-col a:hover{color:#fff}
 .footer-bottom{padding-top:1.5rem;text-align:center;font-size:.7rem;color:rgba(255,255,255,.25)}
 
-/* ===== TRANSITION ===== */
 .fade-panel{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
 .fade-panel.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="container">
-    <a href="index.html" class="nav-logo">UTA<span>.</span>AI</a>
-    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button>
-    <div class="nav-links">
-      <a href="about.html"><span class="nav-label-en">About</span><span class="nav-label-jp">自己紹介</span></a>
-      <a href="services.html"><span class="nav-label-en">Service</span><span class="nav-label-jp">サービス</span></a>
-      <a href="works.html" class="active"><span class="nav-label-en">Works</span><span class="nav-label-jp">実績</span></a>
-      <a href="faq.html"><span class="nav-label-en">FAQ</span><span class="nav-label-jp">よくある質問</span></a>
-      <a href="contact.html" class="nav-cta"><span class="nav-label-en">Contact</span><span class="nav-label-jp">お問い合わせ</span></a>
-    </div>
-  </div>
-</nav>
+<nav class="nav"><div class="container"><a href="index.html" class="nav-logo">UTA<span>.</span>AI</a><button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button><div class="nav-links"><a href="about.html"><span class="nav-label-en">About</span><span class="nav-label-jp">自己紹介</span></a><a href="services.html"><span class="nav-label-en">Service</span><span class="nav-label-jp">サービス</span></a><a href="works.html" class="active"><span class="nav-label-en">Works</span><span class="nav-label-jp">実績</span></a><a href="faq.html"><span class="nav-label-en">FAQ</span><span class="nav-label-jp">よくある質問</span></a><a href="contact.html" class="nav-cta"><span class="nav-label-en">Contact</span><span class="nav-label-jp">お問い合わせ</span></a></div></div></nav>
 
-<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="container">
     <span class="page-hero-label">Works</span>
     <h1 class="page-hero-title">制作実績・活用事例</h1>
-    <p class="page-hero-desc">3つのサービス領域ごとに、これまでの実績と活用事例をご紹介します。</p>
+    <p class="page-hero-desc">4つのサービス領域ごとに、これまでの実績と活用事例をご紹介します。</p>
   </div>
 </section>
 
-<!-- SERVICE TABS -->
-<div class="tabs-wrap" id="tabsWrap">
+<!-- TABS -->
+<div class="tabs-wrap">
   <div class="container">
     <div class="tabs">
-      <button class="tab-btn active" data-tab="0"><i class="fab fa-line"></i> 公式LINE構築</button>
-      <button class="tab-btn" data-tab="1"><i class="fas fa-robot"></i> AIチャットボット</button>
-      <button class="tab-btn" data-tab="2"><i class="fas fa-lightbulb"></i> AI活用コンサルティング</button>
+      <button class="tab-btn active" data-tab="0"><i class="fab fa-line"></i> 公式LINE × AI</button>
+      <button class="tab-btn" data-tab="1"><i class="fas fa-globe"></i> Webチャットボット</button>
+      <button class="tab-btn" data-tab="2"><i class="fas fa-bolt"></i> AI業務効率化</button>
+      <button class="tab-btn" data-tab="3"><i class="fas fa-code"></i> AIアプリ開発</button>
     </div>
   </div>
 </div>
 
-<!-- SLIDER PANELS -->
 <div class="container">
 
-  <!-- PANEL 0: 公式LINE構築 -->
+  <!-- PANEL 0: 公式LINE × AIチャットボット -->
   <div class="slider-section fade-panel visible" id="panel-0">
     <div class="slider-header">
       <div class="slider-title">
         <div class="slider-title-icon"><i class="fab fa-line"></i></div>
-        <div>
-          <h2>公式LINE構築</h2>
-          <p>生成AIマーケティング</p>
-        </div>
+        <div><h2>公式LINE × AIチャットボット</h2><p>AI搭載LINEマーケティング</p></div>
       </div>
       <div class="slider-nav">
         <button class="slider-nav-btn" onclick="slidePanel(0,-1)"><i class="fas fa-chevron-left"></i></button>
@@ -204,7 +170,7 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
           </div>
           <div class="work-card-body">
             <span class="work-card-cat">LINE Official</span>
-            <h3>LINE公式チャットボット</h3>
+            <h3>LINE公式AIチャットボット</h3>
             <p>AI搭載のLINEボット。顧客からの質問自動応答、予約受付、日程調整まで一貫して処理。24時間対応で問い合わせ対応の負担を大幅に軽減。</p>
             <div class="work-card-metrics">
               <div class="work-metric"><div class="work-metric-value">24h</div><div class="work-metric-label">自動対応</div></div>
@@ -222,7 +188,7 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
           <div class="work-card-body">
             <span class="work-card-cat">LINE CRM</span>
             <h3>小売業のLINEリストマーケティング</h3>
-            <p>顧客セグメントに応じたAI自動配信で、リピート購入率を大幅改善。購買データと連携し、最適なタイミングでクーポンやお知らせを自動送信。</p>
+            <p>顧客セグメントに応じたAI自動配信で、リピート購入率を大幅改善。購買データと連携し、最適なタイミングでクーポンを自動送信。</p>
             <div class="work-card-metrics">
               <div class="work-metric"><div class="work-metric-value">2.5x</div><div class="work-metric-label">リピート率</div></div>
               <div class="work-metric"><div class="work-metric-value">40%</div><div class="work-metric-label">開封率</div></div>
@@ -248,37 +214,17 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
             <div class="work-card-tags"><span>事前注文</span><span>予約管理</span><span>メニュー連携</span></div>
           </div>
         </div>
-        <div class="work-card">
-          <div class="work-card-thumb">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="LINE Analytics" loading="lazy">
-            <span class="work-card-status case-study">活用事例</span>
-          </div>
-          <div class="work-card-body">
-            <span class="work-card-cat">LINE Analytics</span>
-            <h3>不動産会社のLINE集客自動化</h3>
-            <p>物件問い合わせからAIが自動でヒアリング、条件に合った物件を提案。営業担当の初動対応を自動化し、成約率を向上。</p>
-            <div class="work-card-metrics">
-              <div class="work-metric"><div class="work-metric-value">60%</div><div class="work-metric-label">初動対応自動化</div></div>
-              <div class="work-metric"><div class="work-metric-value">2x</div><div class="work-metric-label">成約率向上</div></div>
-              <div class="work-metric"><div class="work-metric-value">-15h</div><div class="work-metric-label">月間工数削減</div></div>
-            </div>
-            <div class="work-card-tags"><span>自動ヒアリング</span><span>物件提案AI</span><span>営業効率化</span></div>
-          </div>
-        </div>
       </div>
     </div>
     <div class="slider-dots" id="dots-0"></div>
   </div>
 
-  <!-- PANEL 1: AIチャットボット -->
+  <!-- PANEL 1: Webチャットボット -->
   <div class="slider-section fade-panel" id="panel-1" style="display:none">
     <div class="slider-header">
       <div class="slider-title">
-        <div class="slider-title-icon"><i class="fas fa-robot"></i></div>
-        <div>
-          <h2>AIチャットボット</h2>
-          <p>業務効率化ソリューション</p>
-        </div>
+        <div class="slider-title-icon"><i class="fas fa-globe"></i></div>
+        <div><h2>Webチャットボット</h2><p>24時間AI顧客対応</p></div>
       </div>
       <div class="slider-nav">
         <button class="slider-nav-btn" onclick="slidePanel(1,-1)"><i class="fas fa-chevron-left"></i></button>
@@ -289,13 +235,13 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
       <div class="slider-track" data-panel="1">
         <div class="work-card">
           <div class="work-card-thumb">
-            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="Custom AI Bot" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="Web Chatbot" loading="lazy">
             <span class="work-card-status completed">制作実績</span>
           </div>
           <div class="work-card-body">
-            <span class="work-card-cat">Custom AI</span>
-            <h3>カスタムAIチャットボット</h3>
-            <p>業務知識を学習させたオーダーメイドのAIチャットボット。社内FAQ対応・顧客からの問い合わせを24時間自動で処理。</p>
+            <span class="work-card-cat">Web AI Chat</span>
+            <h3>Webサイト埋め込みAIチャットボット</h3>
+            <p>企業のWebサイトに設置するAIチャットウィジェット。業務知識を学習させ、訪問者の質問に24時間自動で回答。問い合わせ数の削減と顧客満足度向上を実現。</p>
             <div class="work-card-metrics">
               <div class="work-metric"><div class="work-metric-value">90%</div><div class="work-metric-label">回答精度</div></div>
               <div class="work-metric"><div class="work-metric-value">-50%</div><div class="work-metric-label">問い合わせ削減</div></div>
@@ -338,6 +284,25 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
             <div class="work-card-tags"><span>RAG</span><span>ドキュメント検索</span><span>属人化解消</span></div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="slider-dots" id="dots-1"></div>
+  </div>
+
+  <!-- PANEL 2: AI業務効率化 -->
+  <div class="slider-section fade-panel" id="panel-2" style="display:none">
+    <div class="slider-header">
+      <div class="slider-title">
+        <div class="slider-title-icon"><i class="fas fa-bolt"></i></div>
+        <div><h2>AI業務効率化</h2><p>業務自動化・生産性向上</p></div>
+      </div>
+      <div class="slider-nav">
+        <button class="slider-nav-btn" onclick="slidePanel(2,-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-nav-btn" onclick="slidePanel(2,1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="slider-viewport">
+      <div class="slider-track" data-panel="2">
         <div class="work-card">
           <div class="work-card-thumb">
             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="自動化ツール" loading="lazy">
@@ -355,45 +320,6 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
             <div class="work-card-tags"><span>Dify</span><span>Python</span><span>自動化</span></div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="slider-dots" id="dots-1"></div>
-  </div>
-
-  <!-- PANEL 2: AI活用コンサルティング -->
-  <div class="slider-section fade-panel" id="panel-2" style="display:none">
-    <div class="slider-header">
-      <div class="slider-title">
-        <div class="slider-title-icon"><i class="fas fa-lightbulb"></i></div>
-        <div>
-          <h2>AI活用コンサルティング</h2>
-          <p>戦略立案・導入設計</p>
-        </div>
-      </div>
-      <div class="slider-nav">
-        <button class="slider-nav-btn" onclick="slidePanel(2,-1)"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-nav-btn" onclick="slidePanel(2,1)"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </div>
-    <div class="slider-viewport">
-      <div class="slider-track" data-panel="2">
-        <div class="work-card">
-          <div class="work-card-thumb">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Consulting" loading="lazy">
-            <span class="work-card-status case-study">活用事例</span>
-          </div>
-          <div class="work-card-body">
-            <span class="work-card-cat">Strategy</span>
-            <h3>小売チェーンのAI導入戦略策定</h3>
-            <p>全30店舗の業務プロセスを分析し、AI導入のロードマップを策定。在庫管理・需要予測・接客支援の3領域で段階的な導入計画を設計。</p>
-            <div class="work-card-metrics">
-              <div class="work-metric"><div class="work-metric-value">30店</div><div class="work-metric-label">対象店舗</div></div>
-              <div class="work-metric"><div class="work-metric-value">3領域</div><div class="work-metric-label">AI適用範囲</div></div>
-              <div class="work-metric"><div class="work-metric-value">12ヶ月</div><div class="work-metric-label">導入計画</div></div>
-            </div>
-            <div class="work-card-tags"><span>業務分析</span><span>ロードマップ</span><span>ROI試算</span></div>
-          </div>
-        </div>
         <div class="work-card">
           <div class="work-card-thumb">
             <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop" alt="建設業" loading="lazy">
@@ -402,7 +328,7 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
           <div class="work-card-body">
             <span class="work-card-cat">Construction</span>
             <h3>建設会社の書類処理AI化</h3>
-            <p>現場写真の整理、日報自動生成、契約書類のデータ化を実現。紙とExcelに追われていた事務作業をAIが代行し、現場監督が本来の管理業務に集中。</p>
+            <p>現場写真の整理、日報自動生成、契約書類のデータ化を実現。紙とExcelに追われていた事務作業をAIが代行し、現場監督が管理業務に集中。</p>
             <div class="work-card-metrics">
               <div class="work-metric"><div class="work-metric-value">-75%</div><div class="work-metric-label">書類作成時間</div></div>
               <div class="work-metric"><div class="work-metric-value">AI-OCR</div><div class="work-metric-label">導入技術</div></div>
@@ -413,13 +339,66 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
         </div>
         <div class="work-card">
           <div class="work-card-thumb">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="データ分析" loading="lazy">
+            <span class="work-card-status case-study">活用事例</span>
+          </div>
+          <div class="work-card-body">
+            <span class="work-card-cat">Analytics</span>
+            <h3>小売チェーンの需要予測・在庫最適化</h3>
+            <p>天候や周辺イベントなどのデータをAIが分析し、来客数を高精度で予測。食材ロスの削減とスタッフ配置の最適化を実現。</p>
+            <div class="work-card-metrics">
+              <div class="work-metric"><div class="work-metric-value">95%</div><div class="work-metric-label">予測精度</div></div>
+              <div class="work-metric"><div class="work-metric-value">-40%</div><div class="work-metric-label">食材ロス</div></div>
+              <div class="work-metric"><div class="work-metric-value">5x</div><div class="work-metric-label">売上向上</div></div>
+            </div>
+            <div class="work-card-tags"><span>需要予測</span><span>在庫最適化</span><span>データ分析</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-dots" id="dots-2"></div>
+  </div>
+
+  <!-- PANEL 3: AIアプリ開発 -->
+  <div class="slider-section fade-panel" id="panel-3" style="display:none">
+    <div class="slider-header">
+      <div class="slider-title">
+        <div class="slider-title-icon"><i class="fas fa-code"></i></div>
+        <div><h2>AIアプリ開発</h2><p>オーダーメイドAIソリューション</p></div>
+      </div>
+      <div class="slider-nav">
+        <button class="slider-nav-btn" onclick="slidePanel(3,-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-nav-btn" onclick="slidePanel(3,1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="slider-viewport">
+      <div class="slider-track" data-panel="3">
+        <div class="work-card">
+          <div class="work-card-thumb">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop" alt="AIアプリ" loading="lazy">
+            <span class="work-card-status completed">制作実績</span>
+          </div>
+          <div class="work-card-body">
+            <span class="work-card-cat">Custom App</span>
+            <h3>AI見積り自動生成アプリ</h3>
+            <p>図面や仕様書をアップロードするだけで、AIが自動で見積りを算出。属人化していた見積り業務を誰でも対応できる仕組みに変革。</p>
+            <div class="work-card-metrics">
+              <div class="work-metric"><div class="work-metric-value">-85%</div><div class="work-metric-label">見積り時間</div></div>
+              <div class="work-metric"><div class="work-metric-value">97%</div><div class="work-metric-label">精度</div></div>
+              <div class="work-metric"><div class="work-metric-value">全員</div><div class="work-metric-label">対応可能</div></div>
+            </div>
+            <div class="work-card-tags"><span>Claude API</span><span>OCR</span><span>見積り自動化</span></div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card-thumb">
             <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop" alt="物流" loading="lazy">
             <span class="work-card-status case-study">活用事例</span>
           </div>
           <div class="work-card-body">
             <span class="work-card-cat">Logistics</span>
-            <h3>物流会社の配送ルート最適化</h3>
-            <p>交通状況や荷物量をAIがリアルタイム分析し、最適な配送計画を自動作成。ドライバーの拘束時間を削減しながら、配送効率と顧客満足度を両立。</p>
+            <h3>物流会社の配送ルート最適化アプリ</h3>
+            <p>交通状況や荷物量をAIがリアルタイム分析し、最適な配送計画を自動作成。ドライバーの拘束時間を削減しながら配送効率を向上。</p>
             <div class="work-card-metrics">
               <div class="work-metric"><div class="work-metric-value">-30%</div><div class="work-metric-label">配送時間</div></div>
               <div class="work-metric"><div class="work-metric-value">-25%</div><div class="work-metric-label">燃料コスト</div></div>
@@ -428,9 +407,26 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
             <div class="work-card-tags"><span>ルート最適化</span><span>リアルタイム分析</span><span>コスト削減</span></div>
           </div>
         </div>
+        <div class="work-card">
+          <div class="work-card-thumb">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="不動産AI" loading="lazy">
+            <span class="work-card-status case-study">活用事例</span>
+          </div>
+          <div class="work-card-body">
+            <span class="work-card-cat">Real Estate</span>
+            <h3>不動産会社の物件マッチングAIアプリ</h3>
+            <p>顧客の希望条件をAIが分析し、最適な物件をスコアリングして提案。営業担当の初動対応を自動化し、成約率を大幅に向上。</p>
+            <div class="work-card-metrics">
+              <div class="work-metric"><div class="work-metric-value">2x</div><div class="work-metric-label">成約率向上</div></div>
+              <div class="work-metric"><div class="work-metric-value">60%</div><div class="work-metric-label">初動自動化</div></div>
+              <div class="work-metric"><div class="work-metric-value">-15h</div><div class="work-metric-label">月間工数削減</div></div>
+            </div>
+            <div class="work-card-tags"><span>マッチングAI</span><span>物件提案</span><span>営業効率化</span></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="slider-dots" id="dots-2"></div>
+    <div class="slider-dots" id="dots-3"></div>
   </div>
 
 </div>
@@ -447,31 +443,13 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo">UTA<span>.</span>AI</div>
-        <p class="footer-tagline">AIで、あなたの力を何倍にも拡張する。</p>
-        <div class="footer-socials">
-          <a href="#" class="footer-social" aria-label="LINE"><i class="fab fa-line"></i></a>
-          <a href="#" class="footer-social" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-        </div>
-      </div>
-      <div class="footer-col"><h4>Service</h4><a href="services.html">公式LINE構築</a><a href="services.html">AIチャットボット</a><a href="services.html">AI活用コンサルティング</a></div>
-      <div class="footer-col"><h4>Information</h4><a href="about.html">自己紹介</a><a href="works.html">制作実績</a><a href="faq.html">FAQ</a></div>
-      <div class="footer-col"><h4>Contact</h4><a href="mailto:uta.ai.work@gmail.com">uta.ai.work@gmail.com</a><a href="tel:07044828244">070-4482-8244</a><a href="contact.html">お問い合わせフォーム</a></div>
-    </div>
-    <div class="footer-bottom"><p>&copy; 2026 松本海太 / UTA.AI — All rights reserved.</p></div>
-  </div>
-</footer>
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo">UTA<span>.</span>AI</div><p class="footer-tagline">AIで、あなたの力を何倍にも拡張する。</p><div class="footer-socials"><a href="#" class="footer-social" aria-label="LINE"><i class="fab fa-line"></i></a><a href="#" class="footer-social" aria-label="X"><i class="fab fa-x-twitter"></i></a></div></div><div class="footer-col"><h4>Service</h4><a href="services.html#line">公式LINE × AIチャットボット</a><a href="services.html#web">Webチャットボット</a><a href="services.html#efficiency">AI業務効率化</a><a href="services.html#app">AIアプリ開発</a></div><div class="footer-col"><h4>Information</h4><a href="about.html">自己紹介</a><a href="works.html">制作実績</a><a href="faq.html">FAQ</a></div><div class="footer-col"><h4>Contact</h4><a href="mailto:uta.ai.work@gmail.com">uta.ai.work@gmail.com</a><a href="tel:07044828244">070-4482-8244</a><a href="contact.html">お問い合わせフォーム</a></div></div><div class="footer-bottom"><p>&copy; 2026 松本海太 / UTA.AI — All rights reserved.</p></div></div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
 <script>
-// ===== TAB SWITCHING =====
+const PANEL_COUNT = 4;
 const tabBtns = document.querySelectorAll('.tab-btn');
-const panels = [document.getElementById('panel-0'), document.getElementById('panel-1'), document.getElementById('panel-2')];
+const panels = Array.from({length:PANEL_COUNT},(_,i)=>document.getElementById('panel-'+i));
 let activeTab = 0;
 
 tabBtns.forEach(btn => {
@@ -480,14 +458,11 @@ tabBtns.forEach(btn => {
     if(idx === activeTab) return;
     tabBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
-    // Fade out current
     panels[activeTab].classList.remove('visible');
     setTimeout(() => {
       panels[activeTab].style.display = 'none';
       activeTab = idx;
       panels[idx].style.display = 'block';
-      // Force reflow
       panels[idx].offsetHeight;
       panels[idx].classList.add('visible');
       initDots(idx);
@@ -496,130 +471,41 @@ tabBtns.forEach(btn => {
   });
 });
 
-// ===== SLIDER (GSAP + DRAG) =====
-const sliderState = [{pos:0},{pos:0},{pos:0}];
+const sliderState = Array.from({length:PANEL_COUNT},()=>({pos:0}));
 
-function getCardWidth(panelIdx) {
-  const track = document.querySelector(`.slider-track[data-panel="${panelIdx}"]`);
-  if(!track) return 380;
-  const card = track.querySelector('.work-card');
-  if(!card) return 380;
-  return card.offsetWidth + 24; // card width + gap
+function getCardWidth(p){const t=document.querySelector(`.slider-track[data-panel="${p}"]`);if(!t)return 380;const c=t.querySelector('.work-card');return c?c.offsetWidth+24:380}
+function getMaxScroll(p){const t=document.querySelector(`.slider-track[data-panel="${p}"]`);if(!t)return 0;return Math.max(0,t.scrollWidth-t.parentElement.offsetWidth)}
+function getCardCount(p){const t=document.querySelector(`.slider-track[data-panel="${p}"]`);return t?t.querySelectorAll('.work-card').length:0}
+function getVisibleCount(p){const v=document.querySelector(`#panel-${p} .slider-viewport`);return v?Math.max(1,Math.floor(v.offsetWidth/getCardWidth(p))):1}
+
+function slidePanel(p,dir){
+  const s=sliderState[p],cw=getCardWidth(p),mx=getMaxScroll(p);
+  let np=s.pos+dir*cw;np=Math.max(0,Math.min(np,mx));s.pos=np;
+  gsap.to(document.querySelector(`.slider-track[data-panel="${p}"]`),{x:-np,duration:.5,ease:'power2.out'});
+  updateDots(p);
 }
+function resetSlider(p){sliderState[p].pos=0;const t=document.querySelector(`.slider-track[data-panel="${p}"]`);if(t)gsap.set(t,{x:0})}
 
-function getMaxScroll(panelIdx) {
-  const track = document.querySelector(`.slider-track[data-panel="${panelIdx}"]`);
-  if(!track) return 0;
-  const viewport = track.parentElement;
-  return Math.max(0, track.scrollWidth - viewport.offsetWidth);
+function initDots(p){
+  const d=document.getElementById('dots-'+p);if(!d)return;
+  const total=getCardCount(p),vis=getVisibleCount(p),cnt=Math.max(1,total-vis+1);
+  d.innerHTML='';
+  for(let i=0;i<cnt;i++){const b=document.createElement('button');b.className='slider-dot'+(i===0?' active':'');b.addEventListener('click',()=>{const cw=getCardWidth(p),mx=getMaxScroll(p);sliderState[p].pos=Math.min(i*cw,mx);gsap.to(document.querySelector(`.slider-track[data-panel="${p}"]`),{x:-sliderState[p].pos,duration:.5,ease:'power2.out'});updateDots(p)});d.appendChild(b)}
 }
+function updateDots(p){const d=document.getElementById('dots-'+p);if(!d)return;const dots=d.querySelectorAll('.slider-dot'),cw=getCardWidth(p),ci=Math.round(sliderState[p].pos/cw);dots.forEach((dot,i)=>dot.classList.toggle('active',i===ci))}
 
-function getCardCount(panelIdx) {
-  const track = document.querySelector(`.slider-track[data-panel="${panelIdx}"]`);
-  if(!track) return 0;
-  return track.querySelectorAll('.work-card').length;
-}
-
-function getVisibleCount(panelIdx) {
-  const viewport = document.querySelector(`#panel-${panelIdx} .slider-viewport`);
-  if(!viewport) return 1;
-  return Math.max(1, Math.floor(viewport.offsetWidth / getCardWidth(panelIdx)));
-}
-
-function slidePanel(panelIdx, dir) {
-  const state = sliderState[panelIdx];
-  const cardW = getCardWidth(panelIdx);
-  const maxScroll = getMaxScroll(panelIdx);
-  let newPos = state.pos + dir * cardW;
-  newPos = Math.max(0, Math.min(newPos, maxScroll));
-  state.pos = newPos;
-  const track = document.querySelector(`.slider-track[data-panel="${panelIdx}"]`);
-  gsap.to(track, { x: -newPos, duration: .5, ease: 'power2.out' });
-  updateDots(panelIdx);
-}
-
-function resetSlider(panelIdx) {
-  sliderState[panelIdx].pos = 0;
-  const track = document.querySelector(`.slider-track[data-panel="${panelIdx}"]`);
-  if(track) gsap.set(track, { x: 0 });
-}
-
-// ===== DOTS =====
-function initDots(panelIdx) {
-  const dotsEl = document.getElementById(`dots-${panelIdx}`);
-  if(!dotsEl) return;
-  const total = getCardCount(panelIdx);
-  const visible = getVisibleCount(panelIdx);
-  const dotCount = Math.max(1, total - visible + 1);
-  dotsEl.innerHTML = '';
-  for(let i = 0; i < dotCount; i++) {
-    const dot = document.createElement('button');
-    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => {
-      const cardW = getCardWidth(panelIdx);
-      const maxScroll = getMaxScroll(panelIdx);
-      sliderState[panelIdx].pos = Math.min(i * cardW, maxScroll);
-      const track = document.querySelector(`.slider-track[data-panel="${panelIdx}"]`);
-      gsap.to(track, { x: -sliderState[panelIdx].pos, duration: .5, ease: 'power2.out' });
-      updateDots(panelIdx);
-    });
-    dotsEl.appendChild(dot);
-  }
-}
-
-function updateDots(panelIdx) {
-  const dotsEl = document.getElementById(`dots-${panelIdx}`);
-  if(!dotsEl) return;
-  const dots = dotsEl.querySelectorAll('.slider-dot');
-  const cardW = getCardWidth(panelIdx);
-  const currentIdx = Math.round(sliderState[panelIdx].pos / cardW);
-  dots.forEach((d, i) => d.classList.toggle('active', i === currentIdx));
-}
-
-// ===== TOUCH/DRAG =====
-document.querySelectorAll('.slider-track').forEach(track => {
-  const panelIdx = +track.dataset.panel;
-  let startX = 0, startPos = 0, isDragging = false;
-
-  track.addEventListener('pointerdown', e => {
-    isDragging = true;
-    startX = e.clientX;
-    startPos = sliderState[panelIdx].pos;
-    track.classList.add('is-dragging');
-    track.setPointerCapture(e.pointerId);
-  });
-
-  track.addEventListener('pointermove', e => {
-    if(!isDragging) return;
-    const dx = startX - e.clientX;
-    const maxScroll = getMaxScroll(panelIdx);
-    sliderState[panelIdx].pos = Math.max(0, Math.min(startPos + dx, maxScroll));
-    gsap.set(track, { x: -sliderState[panelIdx].pos });
-  });
-
-  track.addEventListener('pointerup', e => {
-    if(!isDragging) return;
-    isDragging = false;
-    track.classList.remove('is-dragging');
-    // Snap to nearest card
-    const cardW = getCardWidth(panelIdx);
-    const maxScroll = getMaxScroll(panelIdx);
-    let snapped = Math.round(sliderState[panelIdx].pos / cardW) * cardW;
-    snapped = Math.max(0, Math.min(snapped, maxScroll));
-    sliderState[panelIdx].pos = snapped;
-    gsap.to(track, { x: -snapped, duration: .3, ease: 'power2.out' });
-    updateDots(panelIdx);
-  });
+document.querySelectorAll('.slider-track').forEach(track=>{
+  const p=+track.dataset.panel;let sx=0,sp=0,drag=false;
+  track.addEventListener('pointerdown',e=>{drag=true;sx=e.clientX;sp=sliderState[p].pos;track.classList.add('is-dragging');track.setPointerCapture(e.pointerId)});
+  track.addEventListener('pointermove',e=>{if(!drag)return;const dx=sx-e.clientX,mx=getMaxScroll(p);sliderState[p].pos=Math.max(0,Math.min(sp+dx,mx));gsap.set(track,{x:-sliderState[p].pos})});
+  track.addEventListener('pointerup',()=>{if(!drag)return;drag=false;track.classList.remove('is-dragging');const cw=getCardWidth(p),mx=getMaxScroll(p);let sn=Math.round(sliderState[p].pos/cw)*cw;sn=Math.max(0,Math.min(sn,mx));sliderState[p].pos=sn;gsap.to(track,{x:-sn,duration:.3,ease:'power2.out'});updateDots(p)});
 });
 
-// ===== INIT =====
 initDots(0);
-
-// ===== ENTRANCE ANIMATION =====
-gsap.fromTo('.page-hero-label', { autoAlpha:0, y:15 }, { autoAlpha:1, y:0, duration:.5, delay:.1 });
-gsap.fromTo('.page-hero-title', { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.6, delay:.2 });
-gsap.fromTo('.page-hero-desc',  { autoAlpha:0, y:15 }, { autoAlpha:1, y:0, duration:.5, delay:.35 });
-gsap.fromTo('.tabs',            { autoAlpha:0, y:10 }, { autoAlpha:1, y:0, duration:.4, delay:.5 });
+gsap.fromTo('.page-hero-label',{autoAlpha:0,y:15},{autoAlpha:1,y:0,duration:.5,delay:.1});
+gsap.fromTo('.page-hero-title',{autoAlpha:0,y:20},{autoAlpha:1,y:0,duration:.6,delay:.2});
+gsap.fromTo('.page-hero-desc',{autoAlpha:0,y:15},{autoAlpha:1,y:0,duration:.5,delay:.35});
+gsap.fromTo('.tabs',{autoAlpha:0,y:10},{autoAlpha:1,y:0,duration:.4,delay:.5});
 </script>
 </body>
 </html>
