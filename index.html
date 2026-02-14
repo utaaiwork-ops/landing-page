@@ -30,26 +30,32 @@
   --gray:#8a8a9a;
   --font:'Inter','Noto Sans JP',sans-serif;
 }
-html{scroll-behavior:smooth}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 
-/* ===== CANVAS BG ===== */
+/* ===== CANVAS ===== */
 #bgCanvas{position:fixed;inset:0;z-index:0}
 
-/* ===== LAYOUT ===== */
-.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
+/* ===== SECTIONS ===== */
+.sec{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;scroll-snap-align:start;pointer-events:none}
+.sec a,.sec button{pointer-events:auto}
 
 /* ===== NAV ===== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;pointer-events:auto}
 .nav-logo{font-weight:900;font-size:1.2rem;letter-spacing:-.5px}
 .nav-logo em{font-style:normal;color:var(--blue)}
-.nav-right{display:flex;gap:1.8rem;align-items:center}
-.nav-right a{font-size:.75rem;font-weight:500;color:var(--gray);letter-spacing:1px;text-transform:uppercase;transition:.3s}
-.nav-right a:hover{color:var(--white)}
-.nav-cta{background:var(--blue)!important;color:var(--white)!important;padding:.5rem 1.2rem;border-radius:6px;font-weight:600!important}
+.nav-right{display:flex;gap:1.6rem;align-items:center}
+.nav-link{display:flex;flex-direction:column;align-items:center;gap:1px;transition:.3s}
+.nav-link .en{font-size:.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--blue);opacity:.6;transition:.3s}
+.nav-link .jp{font-size:.72rem;font-weight:500;color:var(--gray);transition:.3s}
+.nav-link:hover .en{opacity:1}
+.nav-link:hover .jp{color:var(--white)}
+.nav-cta{background:var(--blue)!important;color:var(--white)!important;padding:.5rem 1.2rem;border-radius:6px}
+.nav-cta .jp{color:var(--white)!important}
+.nav-cta .en{color:rgba(255,255,255,.7)!important;opacity:1!important}
 .nav-cta:hover{box-shadow:0 0 20px var(--blue-glow)}
-.nav-toggle{display:none;background:0;border:0;color:var(--white);font-size:1.3rem;cursor:pointer}
+.nav-toggle{display:none;background:0;border:0;color:var(--white);font-size:1.3rem;cursor:pointer;pointer-events:auto}
 @media(max-width:768px){
   .nav{padding:1rem 1.5rem}
   .nav-right{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(8,8,15,.96);backdrop-filter:blur(16px);padding:1.5rem 2rem;gap:1.2rem;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -57,51 +63,51 @@ a{color:inherit;text-decoration:none}
   .nav-toggle{display:block}
 }
 
-/* ===== HERO CENTER ===== */
-.hero-center{text-align:center;max-width:900px;margin-top:2rem}
+/* ===== HERO ===== */
+.hero-center{text-align:center;max-width:900px}
 .hero-label{font-size:.7rem;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:var(--blue);margin-bottom:1.5rem;opacity:.8}
 .hero-title{font-size:clamp(2.8rem,7vw,5.5rem);font-weight:900;letter-spacing:-.06em;line-height:1.1;margin-bottom:1rem}
 .hero-title em{font-style:normal;color:var(--blue);position:relative}
 .hero-title em::after{content:'';position:absolute;bottom:-.1em;left:0;right:0;height:3px;background:var(--blue);border-radius:2px;opacity:.5}
-.hero-sub{font-size:clamp(.95rem,1.8vw,1.15rem);color:var(--gray);line-height:1.8;margin-bottom:3.5rem;font-weight:300;max-width:600px;margin-left:auto;margin-right:auto}
+.hero-sub{font-size:clamp(.95rem,1.8vw,1.15rem);color:var(--gray);line-height:1.8;font-weight:300;max-width:600px;margin-left:auto;margin-right:auto}
 
-/* ===== SERVICE CARDS ===== */
-.services{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;width:100%;max-width:1000px;margin-bottom:3.5rem}
-@media(max-width:900px){.services{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.services{grid-template-columns:1fr;max-width:360px}}
-
-.svc{position:relative;border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:2rem 1.5rem;background:rgba(255,255,255,.02);backdrop-filter:blur(4px);transition:all .4s cubic-bezier(.16,1,.3,1);cursor:pointer;overflow:hidden;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.8rem}
-.svc::before{content:'';position:absolute;inset:0;border-radius:14px;background:radial-gradient(circle at 50% 0%,var(--blue-subtle),transparent 70%);opacity:0;transition:opacity .4s}
-.svc:hover{border-color:rgba(0,102,204,.3);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 40px var(--blue-glow)}
-.svc:hover::before{opacity:1}
-
-.svc-icon{width:52px;height:52px;border-radius:12px;background:rgba(0,102,204,.1);border:1px solid rgba(0,102,204,.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--blue);transition:.3s;position:relative;z-index:1}
-.svc:hover .svc-icon{background:var(--blue);color:var(--white);box-shadow:0 4px 20px var(--blue-glow)}
-
-.svc-num{position:absolute;top:.8rem;right:1rem;font-size:.65rem;font-weight:700;color:rgba(255,255,255,.08);letter-spacing:1px}
-
-.svc h3{font-size:.88rem;font-weight:700;line-height:1.4;position:relative;z-index:1}
-.svc p{font-size:.72rem;color:var(--gray);line-height:1.6;position:relative;z-index:1}
-.svc-arrow{font-size:.65rem;color:rgba(255,255,255,.15);transition:.3s;position:relative;z-index:1}
-.svc:hover .svc-arrow{color:var(--blue);transform:translateX(4px)}
-
-/* ===== BOTTOM LINKS ===== */
-.bottom-links{display:flex;gap:2.5rem;margin-bottom:2rem}
-.bottom-links a{font-size:.72rem;font-weight:500;color:var(--gray);letter-spacing:2px;text-transform:uppercase;transition:.3s;position:relative;padding-bottom:.3rem}
-.bottom-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--blue);transition:width .3s}
-.bottom-links a:hover{color:var(--white)}
-.bottom-links a:hover::after{width:100%}
-@media(max-width:500px){.bottom-links{flex-wrap:wrap;justify-content:center;gap:1.5rem}}
-
-/* ===== SCROLL INDICATOR ===== */
+/* ===== SCROLL HINT ===== */
 .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem}
 .scroll-hint span{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.2)}
 .scroll-line{width:1px;height:36px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}
 .scroll-line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--blue);animation:pulse 2.5s ease-in-out infinite}
 @keyframes pulse{0%{top:-100%}100%{top:100%}}
 
+/* ===== SECTION CARDS ===== */
+.sec-card{display:block;width:100%;max-width:520px;padding:3rem 2.5rem;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:20px;backdrop-filter:blur(12px);text-align:center;transition:all .45s cubic-bezier(.16,1,.3,1);cursor:pointer;position:relative;overflow:hidden}
+.sec-card::before{content:'';position:absolute;inset:0;border-radius:20px;background:radial-gradient(circle at 50% 0%,rgba(0,102,204,.06),transparent 70%);opacity:0;transition:opacity .4s}
+.sec-card:hover{border-color:rgba(0,102,204,.35);transform:translateY(-8px);box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 50px rgba(0,102,204,.12)}
+.sec-card:hover::before{opacity:1}
+.sec-card:hover .card-icon{background:var(--blue);color:var(--white);box-shadow:0 8px 30px var(--blue-glow)}
+.sec-card:hover .card-arrow i{transform:translateX(4px)}
+
+.card-icon{width:72px;height:72px;border-radius:50%;background:rgba(0,102,204,.08);border:1px solid rgba(0,102,204,.2);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--blue);margin:0 auto 1.8rem;transition:.4s}
+.card-label{font-size:.6rem;letter-spacing:5px;text-transform:uppercase;color:var(--blue);margin-bottom:.5rem;opacity:.7}
+.card-title{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;margin-bottom:1rem;letter-spacing:-.02em}
+.card-desc{font-size:.85rem;color:var(--gray);line-height:1.8;margin-bottom:2rem;font-weight:300}
+.card-arrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--blue)}
+.card-arrow i{transition:.3s}
+
+@media(max-width:500px){
+  .sec-card{padding:2rem 1.5rem;max-width:360px}
+  .card-icon{width:60px;height:60px;font-size:1.3rem;margin-bottom:1.2rem}
+}
+
+/* ===== SIDE DOTS ===== */
+.side-dots{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:.8rem;pointer-events:auto}
+.side-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(255,255,255,.15);background:transparent;transition:.3s;cursor:pointer;position:relative}
+.side-dot.active{background:var(--blue);border-color:var(--blue);box-shadow:0 0 12px var(--blue-glow)}
+.side-dot::after{content:attr(data-label);position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);font-size:.6rem;color:var(--gray);white-space:nowrap;opacity:0;transition:.3s;pointer-events:none}
+.side-dot:hover::after{opacity:1}
+@media(max-width:768px){.side-dots{display:none}}
+
 /* ===== FOOTER ===== */
-.footer{position:relative;z-index:1;padding:1.5rem 2.5rem;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center}
+.footer{position:relative;z-index:1;padding:1.5rem 2.5rem;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center;pointer-events:auto}
 .footer-copy{font-size:.65rem;color:rgba(255,255,255,.15)}
 .footer-socials{display:flex;gap:.5rem}
 .footer-social{width:32px;height:32px;border:1px solid rgba(255,255,255,.08);border-radius:6px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-size:.7rem;transition:.3s}
@@ -109,8 +115,8 @@ a{color:inherit;text-decoration:none}
 @media(max-width:500px){.footer{flex-direction:column;gap:.8rem;text-align:center;padding:1.5rem}}
 
 /* ===== CHATBOT ===== */
-.cb-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:52px;height:52px;background:var(--blue);border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;box-shadow:0 4px 24px var(--blue-glow);z-index:999;transition:.3s}.cb-btn:hover{transform:scale(1.08)}
-.cb-panel{position:fixed;bottom:5rem;right:1.5rem;width:340px;max-height:450px;background:rgba(12,12,20,.97);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.08);border-radius:16px;z-index:998;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}.cb-panel.open{display:flex}
+.cb-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:52px;height:52px;background:var(--blue);border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;box-shadow:0 4px 24px var(--blue-glow);z-index:999;transition:.3s;pointer-events:auto}.cb-btn:hover{transform:scale(1.08)}
+.cb-panel{position:fixed;bottom:5rem;right:1.5rem;width:340px;max-height:450px;background:rgba(12,12,20,.97);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.08);border-radius:16px;z-index:998;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);pointer-events:auto}.cb-panel.open{display:flex}
 .cb-header{padding:.6rem 1rem;background:var(--blue);display:flex;align-items:center;justify-content:space-between}
 .cb-header h4{font-size:.78rem;font-weight:700;color:#fff}
 .cb-close{background:0;border:0;color:#fff;cursor:pointer;font-size:1rem;opacity:.7}.cb-close:hover{opacity:1}
@@ -135,65 +141,91 @@ a{color:inherit;text-decoration:none}
   <a href="index.html" class="nav-logo">UTA<em>.</em>AI</a>
   <button class="nav-toggle" onclick="document.querySelector('.nav-right').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button>
   <div class="nav-right">
-    <a href="about.html">About</a>
-    <a href="services.html">Service</a>
-    <a href="works.html">Works</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html" class="nav-cta">Contact</a>
+    <a href="about.html" class="nav-link"><span class="en">About</span><span class="jp">自己紹介</span></a>
+    <a href="services.html" class="nav-link"><span class="en">Service</span><span class="jp">サービス</span></a>
+    <a href="works.html" class="nav-link"><span class="en">Works</span><span class="jp">実績</span></a>
+    <a href="faq.html" class="nav-link"><span class="en">FAQ</span><span class="jp">よくある質問</span></a>
+    <a href="contact.html" class="nav-link nav-cta"><span class="en">Contact</span><span class="jp">お問い合わせ</span></a>
   </div>
 </nav>
 
-<!-- MAIN -->
-<div class="page">
+<!-- SIDE DOTS -->
+<div class="side-dots">
+  <div class="side-dot active" data-section="0" data-label="Top"></div>
+  <div class="side-dot" data-section="1" data-label="自己紹介"></div>
+  <div class="side-dot" data-section="2" data-label="サービス"></div>
+  <div class="side-dot" data-section="3" data-label="実績"></div>
+  <div class="side-dot" data-section="4" data-label="FAQ"></div>
+  <div class="side-dot" data-section="5" data-label="お問い合わせ"></div>
+</div>
+
+<!-- PAGE 1: HERO -->
+<section class="sec" id="sec-hero">
   <div class="hero-center">
     <p class="hero-label">AI Consulting</p>
     <h1 class="hero-title">AIで、あなたの力を<br><em>何倍にも</em>拡張する。</h1>
     <p class="hero-sub">業務課題の発見からAI導入・運用まで、<br>一気通貫でサポートします。</p>
-
-    <div class="services">
-      <a href="services.html#line" class="svc">
-        <span class="svc-num">01</span>
-        <div class="svc-icon"><i class="fab fa-line"></i></div>
-        <h3>公式LINE ×<br>AIチャットボット</h3>
-        <p>AI搭載LINEボットで相談から日程調整まで自動化</p>
-        <span class="svc-arrow"><i class="fas fa-arrow-right"></i></span>
-      </a>
-      <a href="services.html#web" class="svc">
-        <span class="svc-num">02</span>
-        <div class="svc-icon"><i class="fas fa-globe"></i></div>
-        <h3>Web<br>チャットボット</h3>
-        <p>Webサイトに設置するAIチャットで24時間顧客対応</p>
-        <span class="svc-arrow"><i class="fas fa-arrow-right"></i></span>
-      </a>
-      <a href="services.html#efficiency" class="svc">
-        <span class="svc-num">03</span>
-        <div class="svc-icon"><i class="fas fa-bolt"></i></div>
-        <h3>AI<br>業務効率化</h3>
-        <p>繰り返し作業をAIで自動化し生産性を劇的に向上</p>
-        <span class="svc-arrow"><i class="fas fa-arrow-right"></i></span>
-      </a>
-      <a href="services.html#app" class="svc">
-        <span class="svc-num">04</span>
-        <div class="svc-icon"><i class="fas fa-code"></i></div>
-        <h3>AI<br>アプリ開発</h3>
-        <p>御社専用のAIアプリケーションをオーダーメイド開発</p>
-        <span class="svc-arrow"><i class="fas fa-arrow-right"></i></span>
-      </a>
-    </div>
-
-    <div class="bottom-links">
-      <a href="about.html">About</a>
-      <a href="works.html">Works</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </div>
   </div>
-
   <div class="scroll-hint">
     <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
-</div>
+</section>
+
+<!-- PAGE 2: ABOUT -->
+<section class="sec" id="sec-about">
+  <a href="about.html" class="sec-card">
+    <div class="card-icon"><i class="fas fa-user"></i></div>
+    <div class="card-label">About</div>
+    <h2 class="card-title">自己紹介</h2>
+    <p class="card-desc">松本海太のビジョン・経歴・スキルを<br>ご紹介します。</p>
+    <div class="card-arrow"><span>詳しく見る</span> <i class="fas fa-arrow-right"></i></div>
+  </a>
+</section>
+
+<!-- PAGE 3: SERVICE -->
+<section class="sec" id="sec-service">
+  <a href="services.html" class="sec-card">
+    <div class="card-icon"><i class="fas fa-cogs"></i></div>
+    <div class="card-label">Service</div>
+    <h2 class="card-title">サービス内容</h2>
+    <p class="card-desc">LINE × AIチャットボット、Webチャットボット、<br>AI業務効率化、AIアプリ開発の4つの軸でサポート。</p>
+    <div class="card-arrow"><span>詳しく見る</span> <i class="fas fa-arrow-right"></i></div>
+  </a>
+</section>
+
+<!-- PAGE 4: WORKS -->
+<section class="sec" id="sec-works">
+  <a href="works.html" class="sec-card">
+    <div class="card-icon"><i class="fas fa-briefcase"></i></div>
+    <div class="card-label">Works</div>
+    <h2 class="card-title">実績・活用事例</h2>
+    <p class="card-desc">実際のAI導入事例と成果を<br>ご覧いただけます。</p>
+    <div class="card-arrow"><span>詳しく見る</span> <i class="fas fa-arrow-right"></i></div>
+  </a>
+</section>
+
+<!-- PAGE 5: FAQ -->
+<section class="sec" id="sec-faq">
+  <a href="faq.html" class="sec-card">
+    <div class="card-icon"><i class="fas fa-question-circle"></i></div>
+    <div class="card-label">FAQ</div>
+    <h2 class="card-title">よくある質問</h2>
+    <p class="card-desc">AI導入に関するよくある疑問に<br>お答えします。</p>
+    <div class="card-arrow"><span>詳しく見る</span> <i class="fas fa-arrow-right"></i></div>
+  </a>
+</section>
+
+<!-- PAGE 6: CONTACT -->
+<section class="sec" id="sec-contact">
+  <a href="contact.html" class="sec-card">
+    <div class="card-icon"><i class="fas fa-envelope"></i></div>
+    <div class="card-label">Contact</div>
+    <h2 class="card-title">お問い合わせ</h2>
+    <p class="card-desc">初回相談無料。まずはお気軽に<br>ご連絡ください。</p>
+    <div class="card-arrow"><span>お問い合わせへ</span> <i class="fas fa-arrow-right"></i></div>
+  </a>
+</section>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -214,7 +246,7 @@ a{color:inherit;text-decoration:none}
 </div>
 
 <script>
-// ===== PARTICLE NETWORK BACKGROUND =====
+// ===== PARTICLE NETWORK + CUTE ROBOT =====
 (function(){
   const c = document.getElementById('bgCanvas');
   const ctx = c.getContext('2d');
@@ -243,7 +275,6 @@ a{color:inherit;text-decoration:none}
       this.isBlue = Math.random() < .3;
     }
     update(){
-      // mouse repel
       if(mouse.x !== null){
         const dx = this.x - mouse.x;
         const dy = this.y - mouse.y;
@@ -256,10 +287,8 @@ a{color:inherit;text-decoration:none}
       }
       this.x += this.vx;
       this.y += this.vy;
-      // damping
       this.vx *= .998;
       this.vy *= .998;
-      // wrap
       if(this.x < -10) this.x = W + 10;
       if(this.x > W + 10) this.x = -10;
       if(this.y < -10) this.y = H + 10;
@@ -268,18 +297,13 @@ a{color:inherit;text-decoration:none}
     draw(){
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      if(this.isBlue){
-        ctx.fillStyle = `rgba(${BLUE.r},${BLUE.g},${BLUE.b},.6)`;
-      } else {
-        ctx.fillStyle = 'rgba(255,255,255,.15)';
-      }
+      ctx.fillStyle = this.isBlue ? `rgba(${BLUE.r},${BLUE.g},${BLUE.b},.6)` : 'rgba(255,255,255,.15)';
       ctx.fill();
     }
   }
 
   for(let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
 
-  // floating orbs (large gradient blobs)
   const orbs = [
     {x: W*.2, y: H*.3, r:300, vx:.15, vy:.1},
     {x: W*.7, y: H*.6, r:250, vx:-.12, vy:.08},
@@ -288,8 +312,7 @@ a{color:inherit;text-decoration:none}
 
   function drawOrbs(){
     orbs.forEach(o => {
-      o.x += o.vx;
-      o.y += o.vy;
+      o.x += o.vx; o.y += o.vy;
       if(o.x < -o.r || o.x > W+o.r) o.vx *= -1;
       if(o.y < -o.r || o.y > H+o.r) o.vy *= -1;
       const g = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r);
@@ -312,15 +335,12 @@ a{color:inherit;text-decoration:none}
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = isB
-            ? `rgba(${BLUE.r},${BLUE.g},${BLUE.b},${alpha})`
-            : `rgba(255,255,255,${alpha})`;
+          ctx.strokeStyle = isB ? `rgba(${BLUE.r},${BLUE.g},${BLUE.b},${alpha})` : `rgba(255,255,255,${alpha})`;
           ctx.lineWidth = .5;
           ctx.stroke();
         }
       }
     }
-    // mouse connections
     if(mouse.x !== null){
       particles.forEach(p => {
         const dx = p.x - mouse.x;
@@ -341,12 +361,12 @@ a{color:inherit;text-decoration:none}
 
   // ===== CUTE ROBOT =====
   const bot = {
-    x: W * .15, y: H * .7,
-    targetX: W * .3, targetY: H * .5,
-    speed: .6,
-    dir: 1, // 1=right, -1=left
+    x: W * .3, y: H * .6,
+    targetX: W * .5, targetY: H * .5,
+    speed: .7,
+    dir: 1,
     frame: 0,
-    state: 'walk', // walk, idle, look
+    state: 'walk',
     stateTimer: 0,
     stateDuration: 200,
     blinkTimer: 0,
@@ -356,12 +376,100 @@ a{color:inherit;text-decoration:none}
     antennaAngle: 0,
     bobPhase: 0,
     armPhase: 0,
-    SIZE: 28,
+    SIZE: 55,
+    isDragging: false,
+    dragOffsetX: 0,
+    dragOffsetY: 0,
+    dragStartTime: 0,
+    jumpY: 0,
+    squashX: 1,
+    squashY: 1,
+    headTilt: 0,
   };
 
+  // Heart particles
+  let hearts = [];
+  function spawnHearts(x, y){
+    for(let i = 0; i < 6; i++){
+      hearts.push({
+        x: x + (Math.random()-.5)*20,
+        y: y,
+        vx: (Math.random()-.5)*2.5,
+        vy: -1.5 - Math.random()*2.5,
+        life: 55,
+        maxLife: 55,
+        size: 5 + Math.random()*6,
+        rot: (Math.random()-.5)*.5,
+      });
+    }
+  }
+  function drawHeart(x, y, size, alpha){
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(size/12, size/12);
+    ctx.fillStyle = `rgba(255,120,170,${alpha})`;
+    ctx.beginPath();
+    ctx.moveTo(0, 4);
+    ctx.bezierCurveTo(-1, 1, -6, -2, -6, -5);
+    ctx.bezierCurveTo(-6, -9, 0, -9, 0, -5);
+    ctx.bezierCurveTo(0, -9, 6, -9, 6, -5);
+    ctx.bezierCurveTo(6, -2, 1, 1, 0, 4);
+    ctx.fill();
+    ctx.restore();
+  }
+  function updateDrawHearts(){
+    hearts = hearts.filter(h => {
+      h.x += h.vx;
+      h.y += h.vy;
+      h.vy += .04;
+      h.life--;
+      if(h.life <= 0) return false;
+      const alpha = h.life / h.maxLife;
+      drawHeart(h.x, h.y, h.size, alpha);
+      return true;
+    });
+  }
+
+  // Star particles for extra flair
+  let stars = [];
+  function spawnStars(x, y){
+    for(let i = 0; i < 4; i++){
+      stars.push({
+        x: x + (Math.random()-.5)*30,
+        y: y + (Math.random()-.5)*20,
+        life: 30,
+        maxLife: 30,
+        size: 2 + Math.random()*3,
+        angle: Math.random() * Math.PI * 2,
+      });
+    }
+  }
+  function updateDrawStars(){
+    stars = stars.filter(s => {
+      s.life--;
+      if(s.life <= 0) return false;
+      const alpha = s.life / s.maxLife;
+      ctx.save();
+      ctx.translate(s.x, s.y);
+      ctx.rotate(s.angle);
+      ctx.fillStyle = `rgba(0,180,255,${alpha})`;
+      const sz = s.size;
+      ctx.beginPath();
+      for(let i = 0; i < 4; i++){
+        ctx.moveTo(0, 0);
+        ctx.lineTo(sz, 0);
+        ctx.lineTo(0, sz * .3);
+        ctx.rotate(Math.PI/2);
+      }
+      ctx.fill();
+      ctx.restore();
+      return true;
+    });
+  }
+
   function pickNewTarget(){
-    bot.targetX = 60 + Math.random() * (W - 120);
-    bot.targetY = H * .35 + Math.random() * (H * .5);
+    bot.targetX = 80 + Math.random() * (W - 160);
+    bot.targetY = H * .3 + Math.random() * (H * .5);
   }
 
   function updateBot(){
@@ -369,14 +477,43 @@ a{color:inherit;text-decoration:none}
     bot.stateTimer++;
     bot.blinkTimer++;
 
-    // blink every ~120-200 frames
     if(bot.blinkTimer > 120 + Math.random() * 80){
       bot.blinkTimer = 0;
       bot.blinkFrame = 8;
     }
     if(bot.blinkFrame > 0) bot.blinkFrame--;
 
-    // state machine
+    // Head tilt
+    bot.headTilt += (0 - bot.headTilt) * .05;
+
+    if(bot.isDragging){
+      bot.state = 'drag';
+      bot.stateTimer = 0;
+      bot.squashX += (1 - bot.squashX) * .1;
+      bot.squashY += (1 - bot.squashY) * .1;
+      return;
+    }
+
+    // Animate react jump
+    if(bot.state === 'react'){
+      const t = bot.stateTimer / bot.stateDuration;
+      bot.jumpY = -Math.sin(t * Math.PI) * bot.SIZE * .8;
+      if(t < .2){ bot.squashX = 1.15; bot.squashY = .85; }
+      else if(t < .7){ bot.squashX = .9; bot.squashY = 1.12; }
+      else { bot.squashX += (1 - bot.squashX)*.15; bot.squashY += (1 - bot.squashY)*.15; }
+      if(bot.stateTimer >= bot.stateDuration){
+        bot.state = 'idle';
+        bot.stateTimer = 0;
+        bot.stateDuration = 40;
+        bot.jumpY = 0;
+        bot.squashX = 1; bot.squashY = 1;
+      }
+      bot.bobPhase += .02;
+      bot.antennaAngle = Math.sin(bot.frame * .08) * .2;
+      return;
+    }
+
+    // Normal state machine
     if(bot.stateTimer > bot.stateDuration){
       bot.stateTimer = 0;
       const r = Math.random();
@@ -384,9 +521,11 @@ a{color:inherit;text-decoration:none}
         bot.state = 'look';
         bot.stateDuration = 80 + Math.random() * 60;
         bot.eyeScale = 1.3;
-      } else if(r < .4){
+        bot.headTilt = (Math.random()-.5) * .15;
+      } else if(r < .45){
         bot.state = 'idle';
         bot.stateDuration = 60 + Math.random() * 40;
+        bot.headTilt = (Math.random()-.5) * .1;
       } else {
         bot.state = 'walk';
         bot.stateDuration = 150 + Math.random() * 200;
@@ -403,7 +542,7 @@ a{color:inherit;text-decoration:none}
         bot.y += (dy / dist) * bot.speed;
         bot.dir = dx > 0 ? 1 : -1;
       } else {
-        bot.stateTimer = bot.stateDuration; // trigger new state
+        bot.stateTimer = bot.stateDuration;
       }
       bot.bobPhase += .08;
       bot.armPhase += .1;
@@ -419,190 +558,377 @@ a{color:inherit;text-decoration:none}
       bot.eyeScale += (1 - bot.eyeScale) * .1;
     }
 
+    bot.squashX += (1 - bot.squashX) * .1;
+    bot.squashY += (1 - bot.squashY) * .1;
     bot.antennaAngle = Math.sin(bot.frame * .05) * .15;
+    bot.jumpY += (0 - bot.jumpY) * .15;
 
-    // keep in bounds
-    bot.x = Math.max(40, Math.min(W - 40, bot.x));
-    bot.y = Math.max(H * .25, Math.min(H - 60, bot.y));
+    bot.x = Math.max(60, Math.min(W - 60, bot.x));
+    bot.y = Math.max(H * .2, Math.min(H - 80, bot.y));
   }
 
   function drawBot(){
     const S = bot.SIZE;
     const bx = bot.x;
-    const bob = Math.sin(bot.bobPhase) * (bot.state === 'walk' ? 3 : 1);
-    const by = bot.y + bob;
+    const bob = Math.sin(bot.bobPhase) * (bot.state === 'walk' ? 4 : 1.5);
+    const by = bot.y + bob + bot.jumpY;
     const d = bot.dir;
 
     ctx.save();
     ctx.translate(bx, by);
+    ctx.scale(bot.squashX, bot.squashY);
+    ctx.rotate(bot.headTilt);
 
-    // shadow
+    // Shadow
+    const shadowScale = 1 - Math.abs(bot.jumpY) / (S * 2);
     ctx.beginPath();
-    ctx.ellipse(0, S * .95, S * .5, S * .1, 0, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0,102,204,.08)';
+    ctx.ellipse(0, S * .75 - bot.jumpY, S * .35 * Math.max(.3,shadowScale), S * .07 * Math.max(.3,shadowScale), 0, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(0,102,204,.1)';
     ctx.fill();
 
-    // legs
-    const legSwing = bot.state === 'walk' ? Math.sin(bot.armPhase) * 4 : 0;
-    ctx.strokeStyle = 'rgba(0,102,204,.4)';
-    ctx.lineWidth = 2.5;
-    ctx.lineCap = 'round';
-    // left leg
-    ctx.beginPath();
-    ctx.moveTo(-S*.2, S*.5);
-    ctx.lineTo(-S*.25 + legSwing, S*.9);
-    ctx.stroke();
-    // right leg
-    ctx.beginPath();
-    ctx.moveTo(S*.2, S*.5);
-    ctx.lineTo(S*.25 - legSwing, S*.9);
-    ctx.stroke();
-
-    // body
-    const bodyGrad = ctx.createLinearGradient(0, -S*.1, 0, S*.5);
-    bodyGrad.addColorStop(0, 'rgba(20,20,40,.7)');
-    bodyGrad.addColorStop(1, 'rgba(10,10,25,.7)');
+    // === BODY (small, round) ===
+    const bodyGrad = ctx.createLinearGradient(0, S*.05, 0, S*.5);
+    bodyGrad.addColorStop(0, 'rgba(25,25,50,.85)');
+    bodyGrad.addColorStop(1, 'rgba(12,12,30,.85)');
     ctx.fillStyle = bodyGrad;
     ctx.beginPath();
-    ctx.roundRect(-S*.35, S*.05, S*.7, S*.5, 4);
+    ctx.roundRect(-S*.25, S*.1, S*.5, S*.4, 10);
     ctx.fill();
     ctx.strokeStyle = 'rgba(0,102,204,.25)';
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 1.5;
     ctx.stroke();
 
-    // body glow line
+    // Body glow line
     ctx.fillStyle = 'rgba(0,102,204,.3)';
-    ctx.fillRect(-S*.2, S*.28, S*.4, 2);
-
-    // arms
-    const armSwing = bot.state === 'walk' ? Math.sin(bot.armPhase + 1) * 6 : Math.sin(bot.bobPhase) * 2;
-    ctx.strokeStyle = 'rgba(0,102,204,.4)';
-    ctx.lineWidth = 2.5;
-    // left arm
     ctx.beginPath();
-    ctx.moveTo(-S*.35, S*.15);
-    ctx.lineTo(-S*.55, S*.3 + armSwing);
-    ctx.stroke();
-    // right arm
-    ctx.beginPath();
-    ctx.moveTo(S*.35, S*.15);
-    ctx.lineTo(S*.55, S*.3 - armSwing);
-    ctx.stroke();
+    ctx.roundRect(-S*.12, S*.3, S*.24, 3, 2);
+    ctx.fill();
 
-    // wave arm when looking
-    if(bot.state === 'look' && bot.stateTimer > 20){
-      const wave = Math.sin(bot.frame * .15) * 8;
-      ctx.strokeStyle = 'rgba(0,102,204,.5)';
-      ctx.lineWidth = 2.5;
+    // === LEGS ===
+    const legSwing = bot.state === 'walk' ? Math.sin(bot.armPhase) * 6 :
+                     bot.state === 'drag' ? Math.sin(bot.frame * .12) * 4 : 0;
+    ctx.strokeStyle = 'rgba(0,102,204,.5)';
+    ctx.lineWidth = 3.5;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(-S*.13, S*.5);
+    ctx.lineTo(-S*.18 + legSwing, S*.72);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(S*.13, S*.5);
+    ctx.lineTo(S*.18 - legSwing, S*.72);
+    ctx.stroke();
+    // Feet (round)
+    ctx.fillStyle = 'rgba(0,102,204,.45)';
+    ctx.beginPath();
+    ctx.arc(-S*.18 + legSwing, S*.73, 4, 0, Math.PI*2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(S*.18 - legSwing, S*.73, 4, 0, Math.PI*2);
+    ctx.fill();
+
+    // === ARMS ===
+    const armSwing = bot.state === 'walk' ? Math.sin(bot.armPhase+1)*8 :
+                     bot.state === 'drag' ? Math.sin(bot.frame*.08)*5 :
+                     Math.sin(bot.bobPhase)*2;
+    ctx.strokeStyle = 'rgba(0,102,204,.5)';
+    ctx.lineWidth = 3.5;
+
+    if(bot.state === 'look' && bot.stateTimer > 15){
+      const wave = Math.sin(bot.frame * .15) * 10;
+      // Normal arm
       ctx.beginPath();
-      ctx.moveTo(S*.35 * d, S*.15);
-      ctx.lineTo(S*.6 * d, S*-.1 + wave);
+      ctx.moveTo(-S*.25, S*.2);
+      ctx.lineTo(-S*.42, S*.35 + armSwing);
       ctx.stroke();
-      // little hand
+      ctx.fillStyle='rgba(0,102,204,.45)';
+      ctx.beginPath(); ctx.arc(-S*.42, S*.35+armSwing, 4, 0, Math.PI*2); ctx.fill();
+      // Waving arm
+      ctx.strokeStyle = 'rgba(0,102,204,.6)';
       ctx.beginPath();
-      ctx.arc(S*.6 * d, S*-.1 + wave, 2.5, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(0,102,204,.5)';
-      ctx.fill();
+      ctx.moveTo(S*.25*d, S*.2);
+      ctx.lineTo(S*.45*d, S*-.08 + wave);
+      ctx.stroke();
+      ctx.fillStyle='rgba(0,102,204,.5)';
+      ctx.beginPath(); ctx.arc(S*.45*d, S*-.08+wave, 4.5, 0, Math.PI*2); ctx.fill();
+    } else if(bot.state === 'drag'){
+      // Arms flailing
+      ctx.beginPath();
+      ctx.moveTo(-S*.25, S*.2);
+      ctx.lineTo(-S*.42, S*.05 + Math.sin(bot.frame*.12)*5);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(S*.25, S*.2);
+      ctx.lineTo(S*.42, S*.05 + Math.sin(bot.frame*.12+1)*5);
+      ctx.stroke();
+    } else if(bot.state === 'react'){
+      // Arms up celebrating
+      ctx.beginPath();
+      ctx.moveTo(-S*.25, S*.2);
+      ctx.lineTo(-S*.45, S*-.15);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(S*.25, S*.2);
+      ctx.lineTo(S*.45, S*-.15);
+      ctx.stroke();
+      ctx.fillStyle='rgba(0,102,204,.45)';
+      ctx.beginPath(); ctx.arc(-S*.45, S*-.15, 4, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(S*.45, S*-.15, 4, 0, Math.PI*2); ctx.fill();
+    } else {
+      ctx.beginPath();
+      ctx.moveTo(-S*.25, S*.2);
+      ctx.lineTo(-S*.42, S*.35 + armSwing);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(S*.25, S*.2);
+      ctx.lineTo(S*.42, S*.35 - armSwing);
+      ctx.stroke();
+      ctx.fillStyle='rgba(0,102,204,.45)';
+      ctx.beginPath(); ctx.arc(-S*.42, S*.35+armSwing, 4, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(S*.42, S*.35-armSwing, 4, 0, Math.PI*2); ctx.fill();
     }
 
-    // head
-    const headGrad = ctx.createRadialGradient(0, -S*.15, 0, 0, -S*.15, S*.4);
-    headGrad.addColorStop(0, 'rgba(30,30,55,.8)');
-    headGrad.addColorStop(1, 'rgba(15,15,35,.8)');
-    ctx.fillStyle = headGrad;
+    // === HEAD (large circle = cute) ===
+    const headR = S * .45;
+    const headY = -S * .15;
+
+    // Head glow
+    const hGlow = ctx.createRadialGradient(0, headY, 0, 0, headY, headR*1.4);
+    hGlow.addColorStop(0, 'rgba(0,102,204,.04)');
+    hGlow.addColorStop(1, 'transparent');
+    ctx.fillStyle = hGlow;
     ctx.beginPath();
-    ctx.roundRect(-S*.4, -S*.55, S*.8, S*.65, 8);
+    ctx.arc(0, headY, headR*1.4, 0, Math.PI*2);
     ctx.fill();
-    ctx.strokeStyle = 'rgba(0,102,204,.2)';
-    ctx.lineWidth = 1;
+
+    // Head circle
+    const hGrad = ctx.createRadialGradient(-headR*.3, headY-headR*.3, 0, 0, headY, headR);
+    hGrad.addColorStop(0, 'rgba(35,35,65,.88)');
+    hGrad.addColorStop(1, 'rgba(15,15,35,.88)');
+    ctx.fillStyle = hGrad;
+    ctx.beginPath();
+    ctx.arc(0, headY, headR, 0, Math.PI*2);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(0,102,204,.25)';
+    ctx.lineWidth = 1.5;
     ctx.stroke();
 
-    // antenna
+    // Ear nubs (cat-ear style)
+    ctx.fillStyle = 'rgba(28,28,55,.85)';
+    ctx.strokeStyle = 'rgba(0,102,204,.25)';
+    ctx.lineWidth = 1.2;
+    [-1,1].forEach(side => {
+      ctx.beginPath();
+      ctx.moveTo(side * headR*.55, headY - headR*.75);
+      ctx.lineTo(side * headR*.85, headY - headR*.95);
+      ctx.lineTo(side * headR*.9, headY - headR*.55);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      // Inner ear
+      ctx.fillStyle = 'rgba(0,102,204,.1)';
+      ctx.beginPath();
+      ctx.moveTo(side * headR*.62, headY - headR*.73);
+      ctx.lineTo(side * headR*.8, headY - headR*.88);
+      ctx.lineTo(side * headR*.83, headY - headR*.6);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = 'rgba(28,28,55,.85)';
+    });
+
+    // Antenna
     ctx.save();
+    ctx.translate(0, headY - headR);
     ctx.rotate(bot.antennaAngle);
-    ctx.strokeStyle = 'rgba(0,102,204,.4)';
-    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = 'rgba(0,102,204,.5)';
+    ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(0, -S*.55);
-    ctx.lineTo(0, -S*.8);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0, -S*.22);
     ctx.stroke();
+    const antGlow = .5 + Math.sin(bot.frame*.1)*.3;
     ctx.beginPath();
-    ctx.arc(0, -S*.82, 3, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(0,102,204,${.4 + Math.sin(bot.frame * .1) * .3})`;
+    ctx.arc(0, -S*.24, 5, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(0,180,255,${antGlow})`;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(0, -S*.24, 9, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(0,180,255,${antGlow*.15})`;
     ctx.fill();
     ctx.restore();
 
-    // eyes
-    const es = bot.eyeScale;
-    const isBlinking = bot.blinkFrame > 0;
+    // === EYES ===
+    const eyeSpacing = S * .18;
+    const eyeY = headY - S*.02;
+    const eyeR = S * .11;
+
     let eyeOffX = 0, eyeOffY = 0;
     if(bot.state === 'look' && mouse.x !== null){
-      eyeOffX = Math.cos(bot.lookAngle) * 2.5;
-      eyeOffY = Math.sin(bot.lookAngle) * 1.5;
+      eyeOffX = Math.cos(bot.lookAngle) * 3.5;
+      eyeOffY = Math.sin(bot.lookAngle) * 2;
+    } else if(mouse.x !== null && bot.state !== 'react'){
+      const la = Math.atan2(mouse.y - by, mouse.x - bx);
+      eyeOffX = Math.cos(la) * 1.5;
+      eyeOffY = Math.sin(la) * 1;
     }
 
-    // left eye
-    const leX = -S*.15;
-    const leY = -S*.25;
-    if(isBlinking){
-      ctx.strokeStyle = 'rgba(0,180,255,.8)';
+    const isBlinking = bot.blinkFrame > 0;
+    const isHappy = bot.state === 'react';
+    const isSurprised = bot.state === 'drag';
+
+    [-1,1].forEach(side => {
+      const ex = eyeSpacing * side;
+      if(isHappy){
+        // ^ ^ happy eyes
+        ctx.strokeStyle = 'rgba(0,180,255,.9)';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(ex, eyeY - 2, eyeR*.7, Math.PI*.15, Math.PI*.85);
+        ctx.stroke();
+      } else if(isBlinking){
+        ctx.strokeStyle = 'rgba(0,180,255,.8)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(ex - eyeR, eyeY);
+        ctx.lineTo(ex + eyeR, eyeY);
+        ctx.stroke();
+      } else {
+        const eScale = isSurprised ? 1.25 : 1;
+        // Eye bg
+        ctx.beginPath();
+        ctx.arc(ex, eyeY, eyeR * eScale, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(0,0,0,.45)';
+        ctx.fill();
+        // Iris
+        const irisR = eyeR * .72 * eScale;
+        ctx.beginPath();
+        ctx.arc(ex + eyeOffX, eyeY + eyeOffY, irisR, 0, Math.PI*2);
+        const irisGrad = ctx.createRadialGradient(ex+eyeOffX, eyeY+eyeOffY-irisR*.3, 0, ex+eyeOffX, eyeY+eyeOffY, irisR);
+        irisGrad.addColorStop(0, 'rgba(80,200,255,.95)');
+        irisGrad.addColorStop(1, 'rgba(0,120,255,.9)');
+        ctx.fillStyle = irisGrad;
+        ctx.fill();
+        // Pupil
+        ctx.beginPath();
+        ctx.arc(ex + eyeOffX*1.2, eyeY + eyeOffY*1.2, irisR*.35, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(0,30,80,.85)';
+        ctx.fill();
+        // Main sparkle
+        ctx.beginPath();
+        ctx.arc(ex + eyeR*.28, eyeY - eyeR*.28, irisR*.28, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(255,255,255,.85)';
+        ctx.fill();
+        // Small sparkle
+        ctx.beginPath();
+        ctx.arc(ex - eyeR*.12, eyeY + eyeR*.15, irisR*.13, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(255,255,255,.5)';
+        ctx.fill();
+      }
+    });
+
+    // Blush marks
+    ctx.fillStyle = 'rgba(255,130,180,.12)';
+    ctx.beginPath();
+    ctx.ellipse(-eyeSpacing - S*.07, eyeY + eyeR*1.4, S*.08, S*.04, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(eyeSpacing + S*.07, eyeY + eyeR*1.4, S*.08, S*.04, 0, 0, Math.PI*2);
+    ctx.fill();
+
+    // Mouth
+    const mouthY = eyeY + eyeR * 1.6;
+    if(isHappy){
+      ctx.strokeStyle = 'rgba(0,180,255,.7)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(0, mouthY - 2, S*.09, .1, Math.PI-.1);
+      ctx.stroke();
+    } else if(isSurprised){
+      ctx.strokeStyle = 'rgba(0,180,255,.6)';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.moveTo(leX - 4*es, leY);
-      ctx.lineTo(leX + 4*es, leY);
+      ctx.arc(0, mouthY + 2, S*.045, 0, Math.PI*2);
       ctx.stroke();
-    } else {
-      ctx.beginPath();
-      ctx.arc(leX, leY, 5 * es, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(0,0,0,.5)';
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(leX + eyeOffX, leY + eyeOffY, 3.5 * es, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(0,180,255,.9)';
-      ctx.fill();
-      // pupil
-      ctx.beginPath();
-      ctx.arc(leX + eyeOffX * 1.2, leY + eyeOffY * 1.2, 1.5 * es, 0, Math.PI*2);
-      ctx.fillStyle = '#fff';
-      ctx.fill();
-    }
-
-    // right eye
-    const reX = S*.15;
-    const reY = -S*.25;
-    if(isBlinking){
-      ctx.strokeStyle = 'rgba(0,180,255,.8)';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(reX - 4*es, reY);
-      ctx.lineTo(reX + 4*es, reY);
-      ctx.stroke();
-    } else {
-      ctx.beginPath();
-      ctx.arc(reX, reY, 5 * es, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(0,0,0,.5)';
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(reX + eyeOffX, reY + eyeOffY, 3.5 * es, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(0,180,255,.9)';
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(reX + eyeOffX * 1.2, reY + eyeOffY * 1.2, 1.5 * es, 0, Math.PI*2);
-      ctx.fillStyle = '#fff';
-      ctx.fill();
-    }
-
-    // mouth - smile when looking
-    if(bot.state === 'look'){
+    } else if(bot.state === 'look'){
       ctx.strokeStyle = 'rgba(0,180,255,.5)';
-      ctx.lineWidth = 1.2;
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.arc(0, -S*.08, 4, .1, Math.PI - .1);
+      ctx.arc(0, mouthY, S*.07, .15, Math.PI-.15);
+      ctx.stroke();
+    } else {
+      // ω mouth
+      ctx.strokeStyle = 'rgba(0,180,255,.3)';
+      ctx.lineWidth = 1.3;
+      ctx.beginPath();
+      ctx.arc(-S*.025, mouthY, S*.03, 0, Math.PI);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(S*.025, mouthY, S*.03, 0, Math.PI);
       ctx.stroke();
     }
 
     ctx.restore();
   }
+
+  // === ROBOT INTERACTION ===
+  function isOverBot(px, py){
+    const dx = px - bot.x;
+    const dy = py - bot.y;
+    return Math.abs(dx) < bot.SIZE * .7 && Math.abs(dy) < bot.SIZE * .9;
+  }
+
+  c.addEventListener('pointerdown', e => {
+    if(isOverBot(e.clientX, e.clientY)){
+      bot.isDragging = true;
+      bot.dragOffsetX = e.clientX - bot.x;
+      bot.dragOffsetY = e.clientY - bot.y;
+      bot.dragStartTime = Date.now();
+      bot.state = 'drag';
+      c.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    }
+  });
+
+  window.addEventListener('pointermove', e => {
+    if(bot.isDragging){
+      bot.x = e.clientX - bot.dragOffsetX;
+      bot.y = e.clientY - bot.dragOffsetY;
+      bot.x = Math.max(60, Math.min(W-60, bot.x));
+      bot.y = Math.max(80, Math.min(H-80, bot.y));
+    }
+    // Cursor hint
+    if(isOverBot(e.clientX, e.clientY)){
+      document.body.style.cursor = bot.isDragging ? 'grabbing' : 'grab';
+    } else if(!bot.isDragging){
+      document.body.style.cursor = '';
+    }
+  });
+
+  window.addEventListener('pointerup', e => {
+    if(bot.isDragging){
+      const elapsed = Date.now() - bot.dragStartTime;
+      bot.isDragging = false;
+      document.body.style.cursor = '';
+      if(elapsed < 200){
+        // Tap → react!
+        bot.state = 'react';
+        bot.stateTimer = 0;
+        bot.stateDuration = 50;
+        spawnHearts(bot.x, bot.y - bot.SIZE * .6);
+        spawnStars(bot.x, bot.y - bot.SIZE * .3);
+      } else {
+        bot.state = 'idle';
+        bot.stateTimer = 0;
+        bot.stateDuration = 60;
+        // Bounce on release
+        bot.squashX = 1.15;
+        bot.squashY = .88;
+      }
+    }
+  });
+
+  // Prevent canvas from blocking links - sections have pointer-events:none
+  // except for interactive children, so canvas receives clicks on empty areas
 
   function animate(){
     ctx.clearRect(0, 0, W, H);
@@ -611,26 +937,57 @@ a{color:inherit;text-decoration:none}
     drawConnections();
     updateBot();
     drawBot();
+    updateDrawHearts();
+    updateDrawStars();
     requestAnimationFrame(animate);
   }
   animate();
 })();
-
-// ===== GSAP ENTRANCE =====
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
 <script>
 (function(){
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(prefersReducedMotion) return;
 
+  // Hero entrance
   const tl = gsap.timeline({defaults:{ease:'power3.out'}});
-  tl.fromTo('.hero-label', {autoAlpha:0, y:20}, {autoAlpha:1, y:0, duration:.6, delay:.2})
+  tl.fromTo('.hero-label', {autoAlpha:0, y:20}, {autoAlpha:1, y:0, duration:.6, delay:.3})
     .fromTo('.hero-title', {autoAlpha:0, y:40}, {autoAlpha:1, y:0, duration:.8}, '-=.3')
     .fromTo('.hero-sub', {autoAlpha:0, y:20}, {autoAlpha:1, y:0, duration:.6}, '-=.4')
-    .fromTo('.svc', {autoAlpha:0, y:30, scale:.96}, {autoAlpha:1, y:0, scale:1, duration:.5, stagger:.1}, '-=.3')
-    .fromTo('.bottom-links', {autoAlpha:0}, {autoAlpha:1, duration:.5}, '-=.2')
     .fromTo('.scroll-hint', {autoAlpha:0}, {autoAlpha:1, duration:.5}, '-=.2');
+
+  // Section card animations on scroll
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll('.sec-card').forEach(card => {
+    gsap.fromTo(card,
+      {autoAlpha:0, y:40, scale:.96},
+      {autoAlpha:1, y:0, scale:1, duration:.7, ease:'power3.out',
+       scrollTrigger:{trigger:card, start:'top 80%', toggleActions:'play none none reverse'}
+      }
+    );
+  });
+})();
+
+// ===== SIDE DOTS =====
+(function(){
+  const sections = document.querySelectorAll('.sec');
+  const dots = document.querySelectorAll('.side-dot');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const idx = [...sections].indexOf(entry.target);
+        dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, {threshold:.45});
+  sections.forEach(s => observer.observe(s));
+  dots.forEach(d => {
+    d.addEventListener('click', () => {
+      sections[+d.dataset.section].scrollIntoView({behavior:'smooth'});
+    });
+  });
 })();
 
 // ===== CHATBOT =====
