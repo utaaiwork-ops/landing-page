@@ -22,537 +22,185 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --white:#ffffff;--off-white:#f7f8fa;--light-gray:#f0f2f5;
-  --border:#e5e7eb;--border-light:#f0f0f0;
-  --t1:#1a1a2e;--t2:#4a4a5a;--t3:#8a8a9a;--t4:#b0b0c0;
-  --accent:#0066cc;--accent-hover:#0052a3;--accent-light:rgba(0,102,204,.06);
-  --success:#00b894;
-  --dark:#0f0f1a;
-  --overlay:rgba(0,0,0,.55);
-  --font-primary:'Inter','Noto Sans JP',sans-serif;
-  --font-en:'Inter',sans-serif;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.04);
-  --shadow-md:0 4px 16px rgba(0,0,0,.06);
-  --shadow-lg:0 8px 32px rgba(0,0,0,.08);
-  --shadow-hover:0 12px 40px rgba(0,0,0,.1);
-  --radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:24px;
+  --black:#08080f;
+  --white:#ffffff;
+  --blue:#0066cc;
+  --blue-glow:rgba(0,102,204,.35);
+  --blue-subtle:rgba(0,102,204,.08);
+  --gray:#8a8a9a;
+  --font:'Inter','Noto Sans JP',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--font-primary);background:var(--white);color:var(--t1);line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:var(--accent);text-decoration:none;transition:.3s}
-.container{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,4rem)}
-.section{padding:clamp(4rem,8vw,8rem) 0}
-.section-alt{background:var(--off-white)}
+body{font-family:var(--font);background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* ===== CANVAS BG ===== */
+#bgCanvas{position:fixed;inset:0;z-index:0}
+
+/* ===== LAYOUT ===== */
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
 
 /* ===== NAV ===== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 0;transition:all .4s ease}
-.nav--hero{background:transparent}
-.nav--scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:.8rem 0}
-.nav .container{display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;letter-spacing:-.5px;transition:.3s}
-.nav--hero .nav-logo{color:#fff}.nav--scrolled .nav-logo{color:var(--t1)}
-.nav-logo span{color:var(--accent)}
-.nav-links{display:flex;gap:2rem;align-items:center}
-.nav-links a{display:flex;flex-direction:column;align-items:center;gap:2px;transition:.3s}
-.nav-label-en{font-family:var(--font-en);font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase}
-.nav-label-jp{font-size:.62rem;font-weight:400}
-.nav--hero .nav-links a{color:rgba(255,255,255,.6)}.nav--hero .nav-links a:hover{color:#fff}
-.nav--scrolled .nav-links a{color:var(--t3)}.nav--scrolled .nav-links a:hover{color:var(--t1)}
-.nav--hero .nav-label-jp{color:rgba(255,255,255,.35)}.nav--scrolled .nav-label-jp{color:var(--t4)}
-.nav-cta{background:var(--accent)!important;color:#fff!important;padding:.55rem 1.3rem;border-radius:var(--radius-sm);flex-direction:row!important;gap:.4rem!important}
-.nav-cta .nav-label-en,.nav-cta .nav-label-jp{color:#fff!important}
-.nav-toggle{display:none;background:0;border:0;font-size:1.3rem;cursor:pointer}
-.nav--hero .nav-toggle{color:#fff}.nav--scrolled .nav-toggle{color:var(--t1)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:900;font-size:1.2rem;letter-spacing:-.5px}
+.nav-logo em{font-style:normal;color:var(--blue)}
+.nav-right{display:flex;gap:1.8rem;align-items:center}
+.nav-right a{font-size:.75rem;font-weight:500;color:var(--gray);letter-spacing:1px;text-transform:uppercase;transition:.3s}
+.nav-right a:hover{color:var(--white)}
+.nav-cta{background:var(--blue)!important;color:var(--white)!important;padding:.5rem 1.2rem;border-radius:6px;font-weight:600!important}
+.nav-cta:hover{box-shadow:0 0 20px var(--blue-glow)}
+.nav-toggle{display:none;background:0;border:0;color:var(--white);font-size:1.3rem;cursor:pointer}
 @media(max-width:768px){
-  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}
-  .nav-links.open{display:flex}.nav-links.open a{color:var(--t2)!important}.nav-links.open .nav-label-jp{color:var(--t4)!important}
+  .nav{padding:1rem 1.5rem}
+  .nav-right{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(8,8,15,.96);backdrop-filter:blur(16px);padding:1.5rem 2rem;gap:1.2rem;border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav-right.open{display:flex}
   .nav-toggle{display:block}
 }
 
-/* ===== HERO ===== */
-.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.hero-video-wrap{position:absolute;inset:0}
-.hero-video{width:100%;height:100%;object-fit:cover}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.6) 100%)}
-.hero-content{position:relative;z-index:2;max-width:800px;padding:0 2rem}
-.hero-label{font-family:var(--font-en);font-size:.8rem;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1.5rem}
-.hero-title{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:800;color:#fff;line-height:1.3;letter-spacing:-.04em;margin-bottom:1.5rem}
-.hero-desc{font-size:1.05rem;color:rgba(255,255,255,.7);line-height:1.9;margin-bottom:2.5rem}
-.hero-cta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:var(--radius-sm);font-weight:600;font-size:.88rem;border:0;cursor:pointer;transition:all .3s ease;font-family:var(--font-primary);letter-spacing:.5px}
-.btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(0,102,204,.25)}.btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,102,204,.35)}
-.btn-white-outline{background:0;border:1.5px solid rgba(255,255,255,.5);color:#fff}.btn-white-outline:hover{background:rgba(255,255,255,.1);border-color:#fff}
-.btn-outline{background:#fff;border:1.5px solid var(--border);color:var(--t1)}.btn-outline:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow-md)}
-.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.4);font-family:var(--font-en);font-size:.65rem;letter-spacing:2px;text-transform:uppercase}
-.scroll-line{width:1px;height:40px;background:rgba(255,255,255,.3);position:relative;overflow:hidden}
-.scroll-line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:#fff;animation:scrollPulse 2s ease-in-out infinite}
-@keyframes scrollPulse{0%{top:-100%}100%{top:100%}}
+/* ===== HERO CENTER ===== */
+.hero-center{text-align:center;max-width:900px;margin-top:2rem}
+.hero-label{font-size:.7rem;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:var(--blue);margin-bottom:1.5rem;opacity:.8}
+.hero-title{font-size:clamp(2.8rem,7vw,5.5rem);font-weight:900;letter-spacing:-.06em;line-height:1.1;margin-bottom:1rem}
+.hero-title em{font-style:normal;color:var(--blue);position:relative}
+.hero-title em::after{content:'';position:absolute;bottom:-.1em;left:0;right:0;height:3px;background:var(--blue);border-radius:2px;opacity:.5}
+.hero-sub{font-size:clamp(.95rem,1.8vw,1.15rem);color:var(--gray);line-height:1.8;margin-bottom:3.5rem;font-weight:300;max-width:600px;margin-left:auto;margin-right:auto}
 
-/* ===== SECTION HEADERS ===== */
-.sec-label{font-family:var(--font-en);font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:block;text-align:center}
-.sec-title{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--t1);margin-bottom:.8rem;line-height:1.4;text-align:center;letter-spacing:-.02em}
-.sec-desc{color:var(--t3);font-size:.95rem;text-align:center;max-width:600px;margin:0 auto 3rem}
+/* ===== SERVICE CARDS ===== */
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;width:100%;max-width:1000px;margin-bottom:3.5rem}
+@media(max-width:900px){.services{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.services{grid-template-columns:1fr;max-width:360px}}
 
-/* ===== ABOUT ===== */
-.about-grid{display:grid;grid-template-columns:300px 1fr;gap:4rem;align-items:start;margin-top:3rem}
-@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2rem}}
-.about-photo{width:100%;aspect-ratio:3/4;border-radius:var(--radius-lg);overflow:hidden;background:var(--light-gray);display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--accent)}
-.about-photo img{width:100%;height:100%;object-fit:cover}
-@media(max-width:768px){.about-photo{max-width:240px;margin:0 auto}}
-.about-name{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.2rem}
-.about-en{font-family:var(--font-en);font-size:.75rem;color:var(--t3);letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem}
-.about-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.about-tag{background:var(--accent-light);color:var(--accent);padding:.25rem .7rem;border-radius:50px;font-size:.72rem;font-weight:600}
-.about-chapter{display:flex;align-items:center;gap:.5rem;margin-top:1.5rem;margin-bottom:.3rem}
-.about-chapter span{font-family:var(--font-en);font-size:.6rem;font-weight:800;color:var(--accent);background:var(--accent-light);padding:.1rem .4rem;border-radius:4px}
-.about-chapter h3{font-size:.92rem;font-weight:700}
-.about-text{font-size:.88rem;color:var(--t2);line-height:1.9}
+.svc{position:relative;border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:2rem 1.5rem;background:rgba(255,255,255,.02);backdrop-filter:blur(4px);transition:all .4s cubic-bezier(.16,1,.3,1);cursor:pointer;overflow:hidden;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.8rem}
+.svc::before{content:'';position:absolute;inset:0;border-radius:14px;background:radial-gradient(circle at 50% 0%,var(--blue-subtle),transparent 70%);opacity:0;transition:opacity .4s}
+.svc:hover{border-color:rgba(0,102,204,.3);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 40px var(--blue-glow)}
+.svc:hover::before{opacity:1}
 
-/* ===== SERVICES ===== */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
-@media(max-width:900px){.services-grid{grid-template-columns:1fr}}
-.service-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-lg);overflow:hidden;transition:all .35s cubic-bezier(.16,1,.3,1)}
-.service-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px)}
-.service-img{height:180px;overflow:hidden;position:relative}
-.service-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.service-card:hover .service-img img{transform:scale(1.05)}
-.service-img::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.35))}
-.service-num{font-family:var(--font-en);font-size:5rem;font-weight:900;position:absolute;top:-.5rem;right:.8rem;line-height:1;z-index:1;color:rgba(255,255,255,.1)}
-.service-body{padding:1.8rem}
-.service-icon{width:48px;height:48px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:.8rem;margin-top:-36px;position:relative;z-index:2;box-shadow:0 4px 12px rgba(0,0,0,.1);background:var(--accent);color:#fff}
-.service-body h3{font-size:1.05rem;font-weight:700;margin-bottom:.3rem}
-.service-subtitle{font-size:.75rem;color:var(--t3);margin-bottom:.8rem;display:block}
-.service-body>p{font-size:.88rem;color:var(--t2);line-height:1.8;margin-bottom:1rem}
-.service-list{list-style:none}
-.service-list-item{font-size:.8rem;color:var(--t2);padding:.2rem 0 .2rem 1.2rem;position:relative}
-.service-list-item::before{content:'';position:absolute;left:0;top:.55rem;width:6px;height:6px;background:var(--accent);border-radius:50%}
+.svc-icon{width:52px;height:52px;border-radius:12px;background:rgba(0,102,204,.1);border:1px solid rgba(0,102,204,.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--blue);transition:.3s;position:relative;z-index:1}
+.svc:hover .svc-icon{background:var(--blue);color:var(--white);box-shadow:0 4px 20px var(--blue-glow)}
 
-/* ===== WORKS ===== */
-.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-@media(max-width:900px){.works-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.works-grid{grid-template-columns:1fr}}
-.work-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-lg);overflow:hidden;transition:all .35s ease}
-.work-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px)}
-.work-thumb{height:200px;overflow:hidden;position:relative}
-.work-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.work-card:hover .work-thumb img{transform:scale(1.05)}
-.work-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.3))}
-.work-cat{position:absolute;bottom:.8rem;left:.8rem;z-index:1;display:inline-block;font-size:.68rem;font-weight:600;color:var(--t1);background:rgba(255,255,255,.9);padding:.2rem .6rem;border-radius:50px}
-.work-info{padding:1.5rem}
-.work-info h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem}
-.work-info p{font-size:.82rem;color:var(--t2);line-height:1.7;margin-bottom:.6rem}
-.work-tags{display:flex;gap:.3rem;flex-wrap:wrap}
-.work-tags span{font-size:.6rem;background:var(--accent-light);color:var(--accent);padding:.12rem .4rem;border-radius:4px;font-weight:600}
+.svc-num{position:absolute;top:.8rem;right:1rem;font-size:.65rem;font-weight:700;color:rgba(255,255,255,.08);letter-spacing:1px}
 
-/* ===== FLOW ===== */
-.flow-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;max-width:1000px;margin:3rem auto 0}
-@media(max-width:768px){.flow-row{grid-template-columns:1fr 1fr;gap:.8rem}}
-@media(max-width:480px){.flow-row{grid-template-columns:1fr}}
-.flow-step{text-align:center;padding:1rem .8rem;position:relative}
-.flow-step::after{content:'';position:absolute;right:0;top:28px;width:30px;height:1px;background:var(--border)}
-.flow-step:last-child::after{display:none}
-@media(max-width:768px){.flow-step::after{display:none}}
-.flow-num{width:48px;height:48px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-weight:700;font-size:.85rem;color:#fff;margin:0 auto .8rem}
-.flow-step h4{font-size:.88rem;font-weight:700;margin-bottom:.3rem}
-.flow-step p{font-size:.75rem;color:var(--t3);line-height:1.6}
-.flow-duration{display:inline-block;background:var(--accent-light);color:var(--accent);padding:.15rem .5rem;border-radius:50px;font-size:.65rem;font-weight:600;margin-top:.5rem}
+.svc h3{font-size:.88rem;font-weight:700;line-height:1.4;position:relative;z-index:1}
+.svc p{font-size:.72rem;color:var(--gray);line-height:1.6;position:relative;z-index:1}
+.svc-arrow{font-size:.65rem;color:rgba(255,255,255,.15);transition:.3s;position:relative;z-index:1}
+.svc:hover .svc-arrow{color:var(--blue);transform:translateX(4px)}
 
-/* ===== CTA ===== */
-.cta-section{padding:clamp(4rem,8vw,6rem) 0;background:var(--off-white)}
-.cta-inner{text-align:center;max-width:600px;margin:0 auto}
-.cta-inner h3{font-size:1.5rem;font-weight:700;margin-bottom:.8rem}
-.cta-inner p{font-size:.95rem;color:var(--t2);margin-bottom:2rem}
+/* ===== BOTTOM LINKS ===== */
+.bottom-links{display:flex;gap:2.5rem;margin-bottom:2rem}
+.bottom-links a{font-size:.72rem;font-weight:500;color:var(--gray);letter-spacing:2px;text-transform:uppercase;transition:.3s;position:relative;padding-bottom:.3rem}
+.bottom-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--blue);transition:width .3s}
+.bottom-links a:hover{color:var(--white)}
+.bottom-links a:hover::after{width:100%}
+@media(max-width:500px){.bottom-links{flex-wrap:wrap;justify-content:center;gap:1.5rem}}
 
-/* ===== FAQ ===== */
-.faq-list{max-width:760px;margin:0 auto}
-.faq-item{border:1px solid var(--border-light);border-radius:var(--radius-md);margin-bottom:.6rem;background:var(--white);transition:.3s}
-.faq-item:hover{border-color:var(--border)}
-.faq-question{width:100%;padding:1.1rem 1.3rem;background:0;border:0;color:var(--t1);font-family:var(--font-primary);font-size:.92rem;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
-.faq-toggle{font-size:1.2rem;color:var(--accent);transition:transform .3s;flex-shrink:0}
-.faq-item.open .faq-toggle{transform:rotate(45deg)}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}
-.faq-item.open .faq-answer{max-height:400px}
-.faq-answer-inner{padding:0 1.3rem 1.1rem;font-size:.88rem;color:var(--t2);line-height:1.9}
-
-/* ===== CONTACT ===== */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem}
-@media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
-.form-group{margin-bottom:.8rem}
-.form-group label{display:block;font-size:.78rem;font-weight:600;margin-bottom:.3rem;color:var(--t2)}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:.75rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--t1);font-family:var(--font-primary);font-size:.88rem;transition:.3s}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,102,204,.08)}
-.form-group textarea{min-height:80px;resize:vertical}
-.contact-side h3{font-size:1.1rem;font-weight:700;margin-bottom:.6rem}
-.contact-side>p{color:var(--t2);font-size:.88rem;margin-bottom:1.5rem}
-.contact-detail{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
-.contact-detail-icon{width:40px;height:40px;background:var(--accent-light);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;font-size:.85rem}
-.cd-label{font-size:.65rem;color:var(--t3)}.cd-value{font-size:.88rem;font-weight:600}
-
-/* Inline Bot */
-.inline-bot{background:var(--off-white);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:1.2rem}
-.inline-bot h4{font-size:.85rem;font-weight:700;margin-bottom:.3rem;color:var(--accent)}.inline-bot p{font-size:.78rem;color:var(--t2);margin-bottom:.5rem}
-.inline-bot-prompts{display:flex;flex-wrap:wrap;gap:.3rem}
-.inline-bot-btn{background:var(--accent-light);color:var(--accent);padding:.25rem .6rem;border-radius:50px;font-size:.7rem;cursor:pointer;transition:.3s;font-family:var(--font-primary);font-weight:600;border:1px solid transparent}.inline-bot-btn:hover{border-color:var(--accent);background:#fff}
+/* ===== SCROLL INDICATOR ===== */
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.scroll-hint span{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.2)}
+.scroll-line{width:1px;height:36px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--blue);animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%{top:-100%}100%{top:100%}}
 
 /* ===== FOOTER ===== */
-.footer{background:var(--dark);color:#fff;padding:4rem 0 1.5rem}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
-@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
-@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
-.footer-logo{font-family:var(--font-en);font-weight:900;font-size:1.3rem;margin-bottom:.5rem}.footer-logo span{color:var(--accent)}
-.footer-tagline{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:1rem;line-height:1.7}
-.footer-socials{display:flex;gap:.4rem}
-.footer-social{width:38px;height:38px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:.3s;font-size:.8rem}
-.footer-social:hover{border-color:var(--accent);color:var(--accent)}
-.footer-col h4{font-family:var(--font-en);font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;color:rgba(255,255,255,.6)}
-.footer-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:.5rem;transition:color .3s}
-.footer-col a:hover{color:#fff}
-.footer-bottom{padding-top:1.5rem;text-align:center;font-size:.7rem;color:rgba(255,255,255,.25)}
+.footer{position:relative;z-index:1;padding:1.5rem 2.5rem;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:.65rem;color:rgba(255,255,255,.15)}
+.footer-socials{display:flex;gap:.5rem}
+.footer-social{width:32px;height:32px;border:1px solid rgba(255,255,255,.08);border-radius:6px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-size:.7rem;transition:.3s}
+.footer-social:hover{border-color:var(--blue);color:var(--blue)}
+@media(max-width:500px){.footer{flex-direction:column;gap:.8rem;text-align:center;padding:1.5rem}}
 
 /* ===== CHATBOT ===== */
-.cb-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;background:var(--accent);border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;box-shadow:0 4px 20px rgba(0,102,204,.3);z-index:999;transition:.3s}.cb-btn:hover{transform:scale(1.08)}
-.cb-panel{position:fixed;bottom:5rem;right:1.5rem;width:340px;max-height:450px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);z-index:998;display:none;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-lg)}.cb-panel.open{display:flex}
-.cb-header{padding:.6rem 1rem;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:space-between}
+.cb-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:52px;height:52px;background:var(--blue);border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;box-shadow:0 4px 24px var(--blue-glow);z-index:999;transition:.3s}.cb-btn:hover{transform:scale(1.08)}
+.cb-panel{position:fixed;bottom:5rem;right:1.5rem;width:340px;max-height:450px;background:rgba(12,12,20,.97);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.08);border-radius:16px;z-index:998;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}.cb-panel.open{display:flex}
+.cb-header{padding:.6rem 1rem;background:var(--blue);display:flex;align-items:center;justify-content:space-between}
 .cb-header h4{font-size:.78rem;font-weight:700;color:#fff}
 .cb-close{background:0;border:0;color:#fff;cursor:pointer;font-size:1rem;opacity:.7}.cb-close:hover{opacity:1}
-.cb-tabs{display:flex;border-bottom:1px solid var(--border)}
-.cb-tab{flex:1;padding:.45rem;background:0;border:0;color:var(--t3);font-family:var(--font-primary);font-size:.72rem;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:.2s}.cb-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-.cb-messages{flex:1;overflow-y:auto;padding:.55rem;display:flex;flex-direction:column;gap:.35rem;max-height:250px;background:var(--off-white)}
-.cb-msg{max-width:85%;padding:.45rem .65rem;border-radius:var(--radius-md);font-size:.76rem;line-height:1.6}
-.cb-msg.bot{background:#fff;border:1px solid var(--border-light);align-self:flex-start;border-bottom-left-radius:3px;color:var(--t2)}
-.cb-msg.usr{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
-.cb-input-area{display:flex;gap:.3rem;padding:.45rem;border-top:1px solid var(--border)}
-.cb-input-area input{flex:1;padding:.38rem .55rem;background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--t1);font-family:var(--font-primary);font-size:.76rem}.cb-input-area input:focus{outline:0;border-color:var(--accent)}
-.cb-input-area button{padding:.38rem .55rem;background:var(--accent);border:0;border-radius:var(--radius-sm);color:#fff;cursor:pointer;font-size:.76rem}.cb-input-area button:hover{background:var(--accent-hover)}
+.cb-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.06)}
+.cb-tab{flex:1;padding:.45rem;background:0;border:0;color:var(--gray);font-family:var(--font);font-size:.72rem;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:.2s}.cb-tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.cb-messages{flex:1;overflow-y:auto;padding:.55rem;display:flex;flex-direction:column;gap:.35rem;max-height:250px;background:rgba(0,0,0,.2)}
+.cb-msg{max-width:85%;padding:.45rem .65rem;border-radius:12px;font-size:.76rem;line-height:1.6}
+.cb-msg.bot{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);align-self:flex-start;border-bottom-left-radius:3px;color:rgba(255,255,255,.7)}
+.cb-msg.usr{background:var(--blue);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.cb-input-area{display:flex;gap:.3rem;padding:.45rem;border-top:1px solid rgba(255,255,255,.06)}
+.cb-input-area input{flex:1;padding:.38rem .55rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:var(--white);font-family:var(--font);font-size:.76rem}.cb-input-area input:focus{outline:0;border-color:var(--blue)}
+.cb-input-area button{padding:.38rem .55rem;background:var(--blue);border:0;border-radius:6px;color:#fff;cursor:pointer;font-size:.76rem}.cb-input-area button:hover{opacity:.85}
 @media(max-width:500px){.cb-panel{right:.5rem;left:.5rem;width:auto;bottom:4.5rem}}
 </style>
 </head>
 <body>
 
+<canvas id="bgCanvas"></canvas>
+
 <!-- NAV -->
-<nav class="nav nav--hero" id="nav">
-  <div class="container">
-    <a href="index.html" class="nav-logo">UTA<span>.</span>AI</a>
-    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button>
-    <div class="nav-links">
-      <a href="about.html"><span class="nav-label-en">About</span><span class="nav-label-jp">自己紹介</span></a>
-      <a href="services.html"><span class="nav-label-en">Service</span><span class="nav-label-jp">サービス</span></a>
-      <a href="works.html"><span class="nav-label-en">Works</span><span class="nav-label-jp">実績</span></a>
-      <a href="faq.html"><span class="nav-label-en">FAQ</span><span class="nav-label-jp">よくある質問</span></a>
-      <a href="contact.html" class="nav-cta"><span class="nav-label-en">Contact</span><span class="nav-label-jp">お問い合わせ</span></a>
-    </div>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">UTA<em>.</em>AI</a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-right').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  <div class="nav-right">
+    <a href="about.html">About</a>
+    <a href="services.html">Service</a>
+    <a href="works.html">Works</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-video-wrap">
-    <video class="hero-video" autoplay muted loop playsinline poster="">
-      <source src="./hero-video.mp4" type="video/mp4">
-    </video>
-    <div class="hero-overlay"></div>
-  </div>
-  <div class="hero-content">
-    <p class="hero-label">AI Consulting for SMBs</p>
-    <h1 class="hero-title">AIで、あなたの力を<br>何倍にも拡張する。</h1>
-    <p class="hero-desc">「AIを導入したいけれど、何から始めればいいかわからない」——<br>業務課題の発見からAI導入・運用まで、一気通貫でサポートします。</p>
-    <div class="hero-cta">
-      <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> 無料相談する</a>
-      <a href="about.html" class="btn btn-white-outline">View About Us</a>
+<!-- MAIN -->
+<div class="page">
+  <div class="hero-center">
+    <p class="hero-label">AI Consulting</p>
+    <h1 class="hero-title">AIで、あなたの力を<br><em>何倍にも</em>拡張する。</h1>
+    <p class="hero-sub">業務課題の発見からAI導入・運用まで、<br>一気通貫でサポートします。</p>
+
+    <div class="services">
+      <a href="services.html#line" class="svc">
+        <span class="svc-num">01</span>
+        <div class="svc-icon"><i class="fab fa-line"></i></div>
+        <h3>公式LINE ×<br>AIチャットボット</h3>
+        <p>AI搭載LINEボットで相談から日程調整まで自動化</p>
+        <span class="svc-arrow"><i class="fas fa-arrow-right"></i></span>
+      </a>
+      <a href="services.html#web" class="svc">
+        <span class="svc-num">02</span>
+        <div class="svc-icon"><i class="fas fa-globe"></i></div>
+        <h3>Web<br>チャットボット</h3>
+        <p>Webサイトに設置するAIチャットで24時間顧客対応</p>
+        <span class="svc-arrow"><i class="fas fa-arrow-right"></i></span>
+      </a>
+      <a href="services.html#efficiency" class="svc">
+        <span class="svc-num">03</span>
+        <div class="svc-icon"><i class="fas fa-bolt"></i></div>
+        <h3>AI<br>業務効率化</h3>
+        <p>繰り返し作業をAIで自動化し生産性を劇的に向上</p>
+        <span class="svc-arrow"><i class="fas fa-arrow-right"></i></span>
+      </a>
+      <a href="services.html#app" class="svc">
+        <span class="svc-num">04</span>
+        <div class="svc-icon"><i class="fas fa-code"></i></div>
+        <h3>AI<br>アプリ開発</h3>
+        <p>御社専用のAIアプリケーションをオーダーメイド開発</p>
+        <span class="svc-arrow"><i class="fas fa-arrow-right"></i></span>
+      </a>
+    </div>
+
+    <div class="bottom-links">
+      <a href="about.html">About</a>
+      <a href="works.html">Works</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
-  <div class="hero-scroll">
+
+  <div class="scroll-hint">
     <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
-</section>
-
-<!-- ABOUT -->
-<section class="section" id="about">
-  <div class="container">
-    <span class="sec-label">About</span>
-    <h2 class="sec-title">自己紹介</h2>
-    <div class="about-grid">
-      <div class="about-photo"><i class="fas fa-user"></i></div>
-      <div>
-        <div class="about-name">松本 海太</div>
-        <div class="about-en">MATSUMOTO UTA</div>
-        <div class="about-tags">
-          <span class="about-tag">AI導入コンサルタント</span>
-          <span class="about-tag">個人事業主</span>
-          <span class="about-tag">会計学科出身</span>
-          <span class="about-tag">公認会計士試験 3年間挑戦</span>
-        </div>
-        <div class="about-chapter"><span>01</span><h3>理想はあるのに、形にできなかった</h3></div>
-        <p class="about-text">大学で会計学科に所属し、3年間公認会計士試験に挑戦してきました。しかし私には長年のコンプレックスがありました。文章作成がどうしても苦手で、頭の中にある理想を言葉にして形にすることができなかったのです。</p>
-        <div class="about-chapter"><span>02</span><h3>AIが、自分の力を何倍にもしてくれた</h3></div>
-        <p class="about-text">2022年にChatGPTが登場し、使い込むほどに気づいたのは、ほとんどの人がAIを「使っている」だけで「使いこなせていない」ということ。AIを本気で駆使すると、一人では絶対にできなかった高品質な資料作成や、頭の中の想いの的確な言語化が可能になりました。</p>
-        <div class="about-chapter"><span>03</span><h3>会計士の道を離れ、AIの道へ</h3></div>
-        <p class="about-text">AIを駆使できる人間が圧倒的に強くなる——。3年間続けた会計士の道を離れる決断は簡単ではありませんでしたが、この可能性を届けたいという想いが勝りました。御社の力を何倍にも拡張する、そのお手伝いをさせてください。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="section section-alt" id="services">
-  <div class="container">
-    <span class="sec-label">Service</span>
-    <h2 class="sec-title">提供サービス</h2>
-    <p class="sec-desc">お客様の課題に合わせて、最適なサービスを設計します。</p>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-img">
-          <img src="https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=600&h=300&fit=crop" alt="LINE Marketing" loading="lazy">
-          <div class="service-num">01</div>
-        </div>
-        <div class="service-body">
-          <div class="service-icon"><i class="fab fa-line"></i></div>
-          <h3>公式LINE構築</h3>
-          <span class="service-subtitle">生成AIマーケティング</span>
-          <p>AI搭載のチャットボットで相談から日程調整まで自動化。リストマーケティングで売上に直結する仕組みを構築します。</p>
-          <ul class="service-list">
-            <li class="service-list-item">AI搭載チャットボット構築</li>
-            <li class="service-list-item">外部API連携（予約・決済等）</li>
-            <li class="service-list-item">リストマーケティング設計</li>
-            <li class="service-list-item">CRM最適化・LTV向上施策</li>
-          </ul>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-img">
-          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=300&fit=crop" alt="AI Chatbot" loading="lazy">
-          <div class="service-num">02</div>
-        </div>
-        <div class="service-body">
-          <div class="service-icon"><i class="fas fa-robot"></i></div>
-          <h3>AIチャットボット</h3>
-          <span class="service-subtitle">業務効率化ソリューション</span>
-          <p>社内FAQ、顧客対応、データ処理——御社に最適なAIを設計・構築し、導入から保守まで一貫支援します。</p>
-          <ul class="service-list">
-            <li class="service-list-item">カスタムAI設計・構築</li>
-            <li class="service-list-item">社内ナレッジボット</li>
-            <li class="service-list-item">業務自動化ツール開発</li>
-            <li class="service-list-item">導入研修・保守運用サポート</li>
-          </ul>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-img">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop" alt="Consulting" loading="lazy">
-          <div class="service-num">03</div>
-        </div>
-        <div class="service-body">
-          <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
-          <h3>AI活用コンサルティング</h3>
-          <span class="service-subtitle">戦略立案・導入設計</span>
-          <p>何にAIが使えるかわからない段階から伴走。業務を分析し、目的別に最適なAIを組み合わせた導入計画を策定します。</p>
-          <ul class="service-list">
-            <li class="service-list-item">業務プロセス分析・AI適性診断</li>
-            <li class="service-list-item">最適AI選定・導入設計</li>
-            <li class="service-list-item">PoC計画・実行支援</li>
-            <li class="service-list-item">ROI試算・経営層向け資料作成</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WORKS -->
-<section class="section" id="works">
-  <div class="container">
-    <span class="sec-label">Works</span>
-    <h2 class="sec-title">活用事例・制作実績</h2>
-    <p class="sec-desc">さまざまな業種で、AIは活躍しています。</p>
-    <div class="works-grid">
-      <div class="work-card">
-        <div class="work-thumb">
-          <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=500&h=300&fit=crop" alt="LINE Bot" loading="lazy">
-          <span class="work-cat">制作実績</span>
-        </div>
-        <div class="work-info">
-          <h3>LINE公式チャットボット</h3>
-          <p>AI搭載のLINEボット。質問自動応答から予約・日程調整まで処理。</p>
-          <div class="work-tags"><span>LINE API</span><span>AI Chatbot</span><span>自動応答</span></div>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb">
-          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=300&fit=crop" alt="Custom AI" loading="lazy">
-          <span class="work-cat">制作実績</span>
-        </div>
-        <div class="work-info">
-          <h3>カスタムAIチャットボット</h3>
-          <p>業務知識を学習させたオーダーメイドのチャットボット。社内FAQ・顧客対応を自動化。</p>
-          <div class="work-tags"><span>Claude API</span><span>RAG</span><span>ナレッジベース</span></div>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb">
-          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&h=300&fit=crop" alt="飲食店" loading="lazy">
-          <span class="work-cat">飲食・サービス業</span>
-        </div>
-        <div class="work-info">
-          <h3>来客数をAIが予測して、仕入れ・シフトを最適化</h3>
-          <p>天候や周辺イベントなどのデータをAIが分析し、食材ロスの削減とスタッフ配置の最適化を実現。</p>
-          <div class="work-tags"><span>需要予測</span><span>在庫最適化</span><span>シフト管理</span></div>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb">
-          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&h=300&fit=crop" alt="製造業" loading="lazy">
-          <span class="work-cat">製造業</span>
-        </div>
-        <div class="work-info">
-          <h3>見積り・検品をAIが自動化して、属人業務を解消</h3>
-          <p>図面を読み取って見積りを自動算出。画像認識で不良品を検出し、誰でも対応できる体制に。</p>
-          <div class="work-tags"><span>自動見積り</span><span>画像検査</span><span>属人化解消</span></div>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb">
-          <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?w=500&h=300&fit=crop" alt="オフィス" loading="lazy">
-          <span class="work-cat">バックオフィス</span>
-        </div>
-        <div class="work-info">
-          <h3>社内の「ちょっとした質問」をAIチャットボットが対応</h3>
-          <p>経費精算やルールの問い合わせをAIが自動回答。担当者の負担が減り、本来の業務に集中。</p>
-          <div class="work-tags"><span>社内FAQ</span><span>チャットボット</span><span>業務効率化</span></div>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop" alt="Automation" loading="lazy">
-          <span class="work-cat">制作実績</span>
-        </div>
-        <div class="work-info">
-          <h3>業務自動化ツール</h3>
-          <p>繰り返し発生する事務作業をAIで自動処理。データ入力・集計・レポート生成を効率化。</p>
-          <div class="work-tags"><span>Dify</span><span>Python</span><span>自動化</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FLOW -->
-<section class="section section-alt" id="flow">
-  <div class="container">
-    <span class="sec-label">Flow</span>
-    <h2 class="sec-title">ご相談から導入までの流れ</h2>
-    <p class="sec-desc">小さく検証、成果を確認しながら段階的に拡大します。</p>
-    <div class="flow-row">
-      <div class="flow-step"><div class="flow-num">01</div><h4>無料相談</h4><p>課題ヒアリング<br>AI適性の簡易診断</p><span class="flow-duration">初回無料</span></div>
-      <div class="flow-step"><div class="flow-num">02</div><h4>課題整理・設計</h4><p>業務を可視化し<br>AI化すべき箇所を特定</p><span class="flow-duration">約0.5ヶ月</span></div>
-      <div class="flow-step"><div class="flow-num">03</div><h4>PoC・試作</h4><p>小さく試作して<br>効果を検証</p><span class="flow-duration">約0.5ヶ月</span></div>
-      <div class="flow-step"><div class="flow-num">04</div><h4>開発・構築</h4><p>最適なAIを選定し<br>システムを構築</p><span class="flow-duration">約1〜1.5ヶ月</span></div>
-      <div class="flow-step"><div class="flow-num">05</div><h4>導入・定着支援</h4><p>現場展開・研修<br>効果測定・継続改善</p><span class="flow-duration">継続サポート</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-inner">
-      <h3>AIの力で、御社のビジネスを<br>次のステージへ。</h3>
-      <p>まずは無料相談から。お気軽にお問い合わせください。</p>
-      <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> 無料で相談する</a>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="section" id="faq">
-  <div class="container">
-    <span class="sec-label">FAQ</span>
-    <h2 class="sec-title">よくあるご質問</h2>
-    <div class="faq-list">
-      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">AIのことが全くわからなくても相談できますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">はい、大歓迎です。実際にご相談いただく方の多くが「AIって何ができるの？」という段階からスタートしています。専門用語を使わず、御社の業務に合わせてわかりやすくご説明します。</div></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">料金体系はどうなっていますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">プロジェクトの内容・規模に応じて個別にご提案します。初回のご相談は無料で、現状の課題整理やAI活用の方向性まで一緒にお話しできます。「まず概算を知りたい」というご要望にもお応えしますので、お気軽にどうぞ。</div></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">小さな会社でも効果がありますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">むしろ小規模な組織ほど効果を実感しやすいです。少人数でも大企業並みの業務効率を実現できるのがAIの強みです。</div></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">データのセキュリティは大丈夫ですか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">万全の体制を整えています。通信・保存データの暗号化、お客様データのAI学習への不使用を徹底し、プロジェクト開始前にはNDA（秘密保持契約）を締結します。使用するAI基盤もAnthropic社Claude等、企業水準のセキュリティを備えたサービスを選定しています。</div></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">導入後のサポートはありますか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">はい。操作研修・マニュアル作成から、効果測定・継続改善までサポートします。最終的には「コンサルに依存しない自走組織」を目指しており、御社の社員様がAIを自分たちで使いこなせる状態をゴールとしています。</div></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">相談だけでも大丈夫ですか？<span class="faq-toggle">+</span></button><div class="faq-answer"><div class="faq-answer-inner">もちろんです。「うちの業務にAIが使えるか聞いてみたい」という段階から大歓迎です。無料相談で無理にお勧めすることはありませんので、ご安心ください。</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="section section-alt" id="contact">
-  <div class="container">
-    <span class="sec-label">Contact</span>
-    <h2 class="sec-title">お問い合わせ</h2>
-    <p class="sec-desc">まずはお気軽にご相談ください。</p>
-    <div class="contact-grid">
-      <form onsubmit="event.preventDefault();alert('送信ありがとうございます！（デモ）')">
-        <div class="form-group"><label>お名前 *</label><input type="text" required placeholder="山田 太郎"></div>
-        <div class="form-group"><label>会社名</label><input type="text" placeholder="株式会社〇〇"></div>
-        <div class="form-group"><label>メールアドレス *</label><input type="email" required placeholder="example@company.co.jp"></div>
-        <div class="form-group"><label>電話番号</label><input type="tel" placeholder="090-1234-5678"></div>
-        <div class="form-group"><label>ご相談内容</label>
-          <select><option>選択してください</option><option>公式LINE構築について</option><option>AIチャットボット導入について</option><option>AI活用コンサルティングについて</option><option>その他のご相談</option></select>
-        </div>
-        <div class="form-group"><label>メッセージ</label><textarea placeholder="お気軽にお書きください"></textarea></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> 送信する</button>
-      </form>
-      <div class="contact-side">
-        <h3>「AIのことはわからない」大歓迎です</h3>
-        <p>御社の課題をお聞かせください。最適なAI活用プランをご提案します。</p>
-        <div class="contact-detail"><div class="contact-detail-icon"><i class="fas fa-envelope"></i></div><div><div class="cd-label">メール</div><div class="cd-value">uta.ai.work@gmail.com</div></div></div>
-        <div class="contact-detail"><div class="contact-detail-icon"><i class="fas fa-phone"></i></div><div><div class="cd-label">お電話</div><div class="cd-value">070-4482-8244</div></div></div>
-        <div class="contact-detail"><div class="contact-detail-icon"><i class="fab fa-line"></i></div><div><div class="cd-label">LINE公式</div><div class="cd-value">準備中（近日公開予定）</div></div></div>
-        <div class="inline-bot" id="bot-diagnose" style="margin-top:1.2rem">
-          <h4><i class="fas fa-comments"></i> AI導入お悩み診断</h4>
-          <p>チャットボットで簡易診断できます。</p>
-          <div class="inline-bot-prompts">
-            <span class="inline-bot-btn" onclick="openBotWithQ2('人手不足で困っています')">人手不足</span>
-            <span class="inline-bot-btn" onclick="openBotWithQ2('業務を効率化したい')">業務効率化</span>
-            <span class="inline-bot-btn" onclick="openBotWithQ2('売上を伸ばしたい')">売上UP</span>
-            <span class="inline-bot-btn" onclick="openBotWithQ2('AIで何ができるか知りたい')">何ができる？</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo">UTA<span>.</span>AI</div>
-        <p class="footer-tagline">AIで、あなたの力を何倍にも拡張する。<br>業務課題の発見からAI導入・運用まで、一気通貫でサポート。</p>
-        <div class="footer-socials">
-          <a href="#" class="footer-social" aria-label="LINE"><i class="fab fa-line"></i></a>
-          <a href="#" class="footer-social" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Service</h4>
-        <a href="services.html">公式LINE構築</a>
-        <a href="services.html">AIチャットボット</a>
-        <a href="services.html">AI活用コンサルティング</a>
-      </div>
-      <div class="footer-col">
-        <h4>Information</h4>
-        <a href="about.html">自己紹介</a>
-        <a href="works.html">活用事例・実績</a>
-        <a href="services.html#flow">ご相談の流れ</a>
-        <a href="faq.html">FAQ</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="mailto:uta.ai.work@gmail.com">uta.ai.work@gmail.com</a>
-        <a href="tel:07044828244">070-4482-8244</a>
-        <a href="contact.html">お問い合わせフォーム</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 松本海太 / UTA.AI — All rights reserved.</p>
-    </div>
+  <div class="footer-copy">&copy; 2026 松本海太 / UTA.AI</div>
+  <div class="footer-socials">
+    <a href="#" class="footer-social" aria-label="LINE"><i class="fab fa-line"></i></a>
+    <a href="#" class="footer-social" aria-label="X"><i class="fab fa-x-twitter"></i></a>
   </div>
 </footer>
 
@@ -565,95 +213,158 @@ a{color:var(--accent);text-decoration:none;transition:.3s}
   <div class="cb-input-area"><input id="cbInput" placeholder="メッセージを入力..." onkeydown="if(event.key==='Enter')sendMsg()"><button onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
 <script>
-gsap.registerPlugin(ScrollTrigger);
+// ===== PARTICLE NETWORK BACKGROUND =====
+(function(){
+  const c = document.getElementById('bgCanvas');
+  const ctx = c.getContext('2d');
+  let W, H, particles = [], mouse = {x:null, y:null, radius:120};
+  const PARTICLE_COUNT = 90;
+  const CONNECT_DIST = 160;
+  const BLUE = {r:0, g:102, b:204};
 
-// ===== NAV SCROLL =====
-const navEl = document.getElementById('nav');
-ScrollTrigger.create({
-  trigger: '.hero',
-  start: 'top top',
-  end: 'bottom 80px',
-  onLeave: () => { navEl.classList.remove('nav--hero'); navEl.classList.add('nav--scrolled'); },
-  onEnterBack: () => { navEl.classList.add('nav--hero'); navEl.classList.remove('nav--scrolled'); },
-});
-if(window.scrollY > 60){ navEl.classList.remove('nav--hero'); navEl.classList.add('nav--scrolled'); }
+  function resize(){
+    W = c.width = window.innerWidth;
+    H = c.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
 
-// ===== GSAP SCROLL ANIMATIONS =====
+  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
 
-function animSectionHeader(sel){
-  const s = document.querySelector(sel);
-  if(!s) return;
-  const tl = gsap.timeline({ scrollTrigger:{ trigger: sel, start:'top 80%' }});
-  const label = s.querySelector('.sec-label');
-  const title = s.querySelector('.sec-title');
-  const desc  = s.querySelector('.sec-desc');
-  if(label) tl.fromTo(label, { autoAlpha:0, y:10 }, { autoAlpha:1, y:0, duration:.4 });
-  if(title) tl.fromTo(title, { autoAlpha:0, y:15 }, { autoAlpha:1, y:0, duration:.5 }, '-=.2');
-  if(desc)  tl.fromTo(desc,  { autoAlpha:0, y:10 }, { autoAlpha:1, y:0, duration:.4 }, '-=.2');
-  return tl;
-}
+  class Particle {
+    constructor(){
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.vx = (Math.random() - .5) * .4;
+      this.vy = (Math.random() - .5) * .4;
+      this.r = Math.random() * 1.8 + .5;
+      this.isBlue = Math.random() < .3;
+    }
+    update(){
+      // mouse repel
+      if(mouse.x !== null){
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < mouse.radius){
+          const force = (mouse.radius - dist) / mouse.radius * .02;
+          this.vx += dx * force;
+          this.vy += dy * force;
+        }
+      }
+      this.x += this.vx;
+      this.y += this.vy;
+      // damping
+      this.vx *= .998;
+      this.vy *= .998;
+      // wrap
+      if(this.x < -10) this.x = W + 10;
+      if(this.x > W + 10) this.x = -10;
+      if(this.y < -10) this.y = H + 10;
+      if(this.y > H + 10) this.y = -10;
+    }
+    draw(){
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      if(this.isBlue){
+        ctx.fillStyle = `rgba(${BLUE.r},${BLUE.g},${BLUE.b},.6)`;
+      } else {
+        ctx.fillStyle = 'rgba(255,255,255,.15)';
+      }
+      ctx.fill();
+    }
+  }
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  for(let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
 
-if(!prefersReducedMotion){
+  // floating orbs (large gradient blobs)
+  const orbs = [
+    {x: W*.2, y: H*.3, r:300, vx:.15, vy:.1},
+    {x: W*.7, y: H*.6, r:250, vx:-.12, vy:.08},
+    {x: W*.5, y: H*.8, r:200, vx:.1, vy:-.12},
+  ];
 
-  // --- HERO ---
-  gsap.fromTo('.hero-label',   { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.8, delay:.3 });
-  gsap.fromTo('.hero-title',   { autoAlpha:0, y:30 }, { autoAlpha:1, y:0, duration:.8, delay:.6 });
-  gsap.fromTo('.hero-desc',    { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.6, delay:1.0 });
-  gsap.fromTo('.hero-cta',     { autoAlpha:0, y:15 }, { autoAlpha:1, y:0, duration:.5, delay:1.3 });
-  gsap.fromTo('.hero-scroll',  { autoAlpha:0 },       { autoAlpha:1, duration:.5, delay:1.8 });
+  function drawOrbs(){
+    orbs.forEach(o => {
+      o.x += o.vx;
+      o.y += o.vy;
+      if(o.x < -o.r || o.x > W+o.r) o.vx *= -1;
+      if(o.y < -o.r || o.y > H+o.r) o.vy *= -1;
+      const g = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r);
+      g.addColorStop(0, 'rgba(0,102,204,.04)');
+      g.addColorStop(1, 'transparent');
+      ctx.fillStyle = g;
+      ctx.fillRect(o.x-o.r, o.y-o.r, o.r*2, o.r*2);
+    });
+  }
 
-  gsap.to('.hero-content', { y:60, opacity:.3, scrollTrigger:{ trigger:'.hero', start:'center center', end:'bottom top', scrub:.5 }});
+  function drawConnections(){
+    for(let i = 0; i < particles.length; i++){
+      for(let j = i+1; j < particles.length; j++){
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < CONNECT_DIST){
+          const alpha = (1 - dist/CONNECT_DIST) * .12;
+          const isB = particles[i].isBlue || particles[j].isBlue;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = isB
+            ? `rgba(${BLUE.r},${BLUE.g},${BLUE.b},${alpha})`
+            : `rgba(255,255,255,${alpha})`;
+          ctx.lineWidth = .5;
+          ctx.stroke();
+        }
+      }
+    }
+    // mouse connections
+    if(mouse.x !== null){
+      particles.forEach(p => {
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < mouse.radius * 1.5){
+          const alpha = (1 - dist/(mouse.radius*1.5)) * .25;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(${BLUE.r},${BLUE.g},${BLUE.b},${alpha})`;
+          ctx.lineWidth = .6;
+          ctx.stroke();
+        }
+      });
+    }
+  }
 
-  // --- ABOUT ---
-  animSectionHeader('#about');
-  gsap.fromTo('.about-photo', { autoAlpha:0, x:-40 }, { autoAlpha:1, x:0, duration:.8, ease:'power2.out',
-    scrollTrigger:{ trigger:'#about', start:'top 75%' }});
-  gsap.fromTo('.about-grid > div:last-child', { autoAlpha:0, x:30 }, { autoAlpha:1, x:0, duration:.8, ease:'power2.out',
-    scrollTrigger:{ trigger:'#about', start:'top 75%' }});
+  function animate(){
+    ctx.clearRect(0, 0, W, H);
+    drawOrbs();
+    particles.forEach(p => { p.update(); p.draw(); });
+    drawConnections();
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
 
-  // --- SERVICES ---
-  animSectionHeader('#services');
-  gsap.fromTo('.service-card', { autoAlpha:0, y:30 }, { autoAlpha:1, y:0, duration:.6, stagger:.15, ease:'power2.out',
-    scrollTrigger:{ trigger:'.services-grid', start:'top 82%' }});
+// ===== GSAP ENTRANCE =====
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+<script>
+(function(){
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReducedMotion) return;
 
-  // --- WORKS ---
-  animSectionHeader('#works');
-  ScrollTrigger.batch('.work-card', {
-    onEnter: batch => gsap.fromTo(batch, { autoAlpha:0, y:25 }, { autoAlpha:1, y:0, duration:.5, stagger:.08, ease:'power2.out' }),
-    start:'top 85%', once:true
-  });
-
-  // --- FLOW ---
-  animSectionHeader('#flow');
-  gsap.fromTo('.flow-step', { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.5, stagger:.1, ease:'power2.out',
-    scrollTrigger:{ trigger:'.flow-row', start:'top 80%' }});
-
-  // --- CTA ---
-  gsap.fromTo('.cta-inner', { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.6,
-    scrollTrigger:{ trigger:'.cta-section', start:'top 80%' }});
-
-  // --- FAQ ---
-  animSectionHeader('#faq');
-  ScrollTrigger.batch('.faq-item', {
-    onEnter: batch => gsap.fromTo(batch, { autoAlpha:0, y:20 }, { autoAlpha:1, y:0, duration:.5, stagger:.06, ease:'power2.out' }),
-    start:'top 88%', once:true
-  });
-
-  // --- CONTACT ---
-  animSectionHeader('#contact');
-  gsap.fromTo('#contact form', { autoAlpha:0, x:-40 }, { autoAlpha:1, x:0, duration:.8, ease:'power2.out',
-    scrollTrigger:{ trigger:'#contact', start:'top 72%' }});
-  gsap.fromTo('.contact-side', { autoAlpha:0, x:40 }, { autoAlpha:1, x:0, duration:.8, ease:'power2.out',
-    scrollTrigger:{ trigger:'#contact', start:'top 72%' }});
-
-} // end !prefersReducedMotion
-
-window.addEventListener('load', () => ScrollTrigger.refresh());
+  const tl = gsap.timeline({defaults:{ease:'power3.out'}});
+  tl.fromTo('.hero-label', {autoAlpha:0, y:20}, {autoAlpha:1, y:0, duration:.6, delay:.2})
+    .fromTo('.hero-title', {autoAlpha:0, y:40}, {autoAlpha:1, y:0, duration:.8}, '-=.3')
+    .fromTo('.hero-sub', {autoAlpha:0, y:20}, {autoAlpha:1, y:0, duration:.6}, '-=.4')
+    .fromTo('.svc', {autoAlpha:0, y:30, scale:.96}, {autoAlpha:1, y:0, scale:1, duration:.5, stagger:.1}, '-=.3')
+    .fromTo('.bottom-links', {autoAlpha:0}, {autoAlpha:1, duration:.5}, '-=.2')
+    .fromTo('.scroll-hint', {autoAlpha:0}, {autoAlpha:1, duration:.5}, '-=.2');
+})();
 
 // ===== CHATBOT =====
 let cTab=0;
@@ -663,8 +374,6 @@ function getR(t,tab){t=t.toLowerCase();if(tab===0){if(t.includes('強み')||t.in
 function toggleBot(){document.getElementById('cbPanel').classList.toggle('open')}
 function switchTab(i,btn){cTab=i;document.querySelectorAll('.cb-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.getElementById('cbMsgs').innerHTML=i===0?'<div class="cb-msg bot">\u3053\u3093\u306b\u3061\u306f\uff01\u677e\u672c\u6d77\u592a\u306eAI\u30a2\u30b7\u30b9\u30bf\u30f3\u30c8\u3067\u3059 \u{1F60A}</div>':'<div class="cb-msg bot">AI\u5c0e\u5165\u304a\u60a9\u307f\u76f8\u8ac7\u30dc\u30c3\u30c8\u3067\u3059\uff01\u5fa1\u793e\u306e\u8ab2\u984c\u3092\u304a\u805e\u304b\u305b\u304f\u3060\u3055\u3044 \u{1F4BC}</div>'}
 function sendMsg(){const inp=document.getElementById('cbInput'),t=inp.value.trim();if(!t)return;const m=document.getElementById('cbMsgs');m.innerHTML+='<div class="cb-msg usr">'+t+'</div>';inp.value='';setTimeout(()=>{m.innerHTML+='<div class="cb-msg bot">'+getR(t,cTab)+'</div>';m.scrollTop=m.scrollHeight},500)}
-function openBotWithQ(q){const p=document.getElementById('cbPanel');if(!p.classList.contains('open'))p.classList.add('open');switchTab(0,document.querySelectorAll('.cb-tab')[0]);document.getElementById('cbInput').value=q;sendMsg()}
-function openBotWithQ2(q){const p=document.getElementById('cbPanel');if(!p.classList.contains('open'))p.classList.add('open');switchTab(1,document.querySelectorAll('.cb-tab')[1]);document.getElementById('cbInput').value=q;sendMsg()}
 </script>
 </body>
 </html>
