@@ -339,11 +339,278 @@ a{color:inherit;text-decoration:none}
     }
   }
 
+  // ===== CUTE ROBOT =====
+  const bot = {
+    x: W * .15, y: H * .7,
+    targetX: W * .3, targetY: H * .5,
+    speed: .6,
+    dir: 1, // 1=right, -1=left
+    frame: 0,
+    state: 'walk', // walk, idle, look
+    stateTimer: 0,
+    stateDuration: 200,
+    blinkTimer: 0,
+    blinkFrame: 0,
+    lookAngle: 0,
+    eyeScale: 1,
+    antennaAngle: 0,
+    bobPhase: 0,
+    armPhase: 0,
+    SIZE: 28,
+  };
+
+  function pickNewTarget(){
+    bot.targetX = 60 + Math.random() * (W - 120);
+    bot.targetY = H * .35 + Math.random() * (H * .5);
+  }
+
+  function updateBot(){
+    bot.frame++;
+    bot.stateTimer++;
+    bot.blinkTimer++;
+
+    // blink every ~120-200 frames
+    if(bot.blinkTimer > 120 + Math.random() * 80){
+      bot.blinkTimer = 0;
+      bot.blinkFrame = 8;
+    }
+    if(bot.blinkFrame > 0) bot.blinkFrame--;
+
+    // state machine
+    if(bot.stateTimer > bot.stateDuration){
+      bot.stateTimer = 0;
+      const r = Math.random();
+      if(r < .25 && mouse.x !== null){
+        bot.state = 'look';
+        bot.stateDuration = 80 + Math.random() * 60;
+        bot.eyeScale = 1.3;
+      } else if(r < .4){
+        bot.state = 'idle';
+        bot.stateDuration = 60 + Math.random() * 40;
+      } else {
+        bot.state = 'walk';
+        bot.stateDuration = 150 + Math.random() * 200;
+        pickNewTarget();
+      }
+    }
+
+    if(bot.state === 'walk'){
+      const dx = bot.targetX - bot.x;
+      const dy = bot.targetY - bot.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist > 3){
+        bot.x += (dx / dist) * bot.speed;
+        bot.y += (dy / dist) * bot.speed;
+        bot.dir = dx > 0 ? 1 : -1;
+      } else {
+        bot.stateTimer = bot.stateDuration; // trigger new state
+      }
+      bot.bobPhase += .08;
+      bot.armPhase += .1;
+    } else if(bot.state === 'look'){
+      if(mouse.x !== null){
+        bot.lookAngle = Math.atan2(mouse.y - bot.y, mouse.x - bot.x);
+        bot.dir = (mouse.x > bot.x) ? 1 : -1;
+      }
+      bot.eyeScale += (1.35 - bot.eyeScale) * .05;
+      bot.bobPhase += .02;
+    } else {
+      bot.bobPhase += .03;
+      bot.eyeScale += (1 - bot.eyeScale) * .1;
+    }
+
+    bot.antennaAngle = Math.sin(bot.frame * .05) * .15;
+
+    // keep in bounds
+    bot.x = Math.max(40, Math.min(W - 40, bot.x));
+    bot.y = Math.max(H * .25, Math.min(H - 60, bot.y));
+  }
+
+  function drawBot(){
+    const S = bot.SIZE;
+    const bx = bot.x;
+    const bob = Math.sin(bot.bobPhase) * (bot.state === 'walk' ? 3 : 1);
+    const by = bot.y + bob;
+    const d = bot.dir;
+
+    ctx.save();
+    ctx.translate(bx, by);
+
+    // shadow
+    ctx.beginPath();
+    ctx.ellipse(0, S * .95, S * .5, S * .1, 0, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(0,102,204,.08)';
+    ctx.fill();
+
+    // legs
+    const legSwing = bot.state === 'walk' ? Math.sin(bot.armPhase) * 4 : 0;
+    ctx.strokeStyle = 'rgba(0,102,204,.4)';
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = 'round';
+    // left leg
+    ctx.beginPath();
+    ctx.moveTo(-S*.2, S*.5);
+    ctx.lineTo(-S*.25 + legSwing, S*.9);
+    ctx.stroke();
+    // right leg
+    ctx.beginPath();
+    ctx.moveTo(S*.2, S*.5);
+    ctx.lineTo(S*.25 - legSwing, S*.9);
+    ctx.stroke();
+
+    // body
+    const bodyGrad = ctx.createLinearGradient(0, -S*.1, 0, S*.5);
+    bodyGrad.addColorStop(0, 'rgba(20,20,40,.7)');
+    bodyGrad.addColorStop(1, 'rgba(10,10,25,.7)');
+    ctx.fillStyle = bodyGrad;
+    ctx.beginPath();
+    ctx.roundRect(-S*.35, S*.05, S*.7, S*.5, 4);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(0,102,204,.25)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // body glow line
+    ctx.fillStyle = 'rgba(0,102,204,.3)';
+    ctx.fillRect(-S*.2, S*.28, S*.4, 2);
+
+    // arms
+    const armSwing = bot.state === 'walk' ? Math.sin(bot.armPhase + 1) * 6 : Math.sin(bot.bobPhase) * 2;
+    ctx.strokeStyle = 'rgba(0,102,204,.4)';
+    ctx.lineWidth = 2.5;
+    // left arm
+    ctx.beginPath();
+    ctx.moveTo(-S*.35, S*.15);
+    ctx.lineTo(-S*.55, S*.3 + armSwing);
+    ctx.stroke();
+    // right arm
+    ctx.beginPath();
+    ctx.moveTo(S*.35, S*.15);
+    ctx.lineTo(S*.55, S*.3 - armSwing);
+    ctx.stroke();
+
+    // wave arm when looking
+    if(bot.state === 'look' && bot.stateTimer > 20){
+      const wave = Math.sin(bot.frame * .15) * 8;
+      ctx.strokeStyle = 'rgba(0,102,204,.5)';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(S*.35 * d, S*.15);
+      ctx.lineTo(S*.6 * d, S*-.1 + wave);
+      ctx.stroke();
+      // little hand
+      ctx.beginPath();
+      ctx.arc(S*.6 * d, S*-.1 + wave, 2.5, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(0,102,204,.5)';
+      ctx.fill();
+    }
+
+    // head
+    const headGrad = ctx.createRadialGradient(0, -S*.15, 0, 0, -S*.15, S*.4);
+    headGrad.addColorStop(0, 'rgba(30,30,55,.8)');
+    headGrad.addColorStop(1, 'rgba(15,15,35,.8)');
+    ctx.fillStyle = headGrad;
+    ctx.beginPath();
+    ctx.roundRect(-S*.4, -S*.55, S*.8, S*.65, 8);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(0,102,204,.2)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // antenna
+    ctx.save();
+    ctx.rotate(bot.antennaAngle);
+    ctx.strokeStyle = 'rgba(0,102,204,.4)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(0, -S*.55);
+    ctx.lineTo(0, -S*.8);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(0, -S*.82, 3, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(0,102,204,${.4 + Math.sin(bot.frame * .1) * .3})`;
+    ctx.fill();
+    ctx.restore();
+
+    // eyes
+    const es = bot.eyeScale;
+    const isBlinking = bot.blinkFrame > 0;
+    let eyeOffX = 0, eyeOffY = 0;
+    if(bot.state === 'look' && mouse.x !== null){
+      eyeOffX = Math.cos(bot.lookAngle) * 2.5;
+      eyeOffY = Math.sin(bot.lookAngle) * 1.5;
+    }
+
+    // left eye
+    const leX = -S*.15;
+    const leY = -S*.25;
+    if(isBlinking){
+      ctx.strokeStyle = 'rgba(0,180,255,.8)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(leX - 4*es, leY);
+      ctx.lineTo(leX + 4*es, leY);
+      ctx.stroke();
+    } else {
+      ctx.beginPath();
+      ctx.arc(leX, leY, 5 * es, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(0,0,0,.5)';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(leX + eyeOffX, leY + eyeOffY, 3.5 * es, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(0,180,255,.9)';
+      ctx.fill();
+      // pupil
+      ctx.beginPath();
+      ctx.arc(leX + eyeOffX * 1.2, leY + eyeOffY * 1.2, 1.5 * es, 0, Math.PI*2);
+      ctx.fillStyle = '#fff';
+      ctx.fill();
+    }
+
+    // right eye
+    const reX = S*.15;
+    const reY = -S*.25;
+    if(isBlinking){
+      ctx.strokeStyle = 'rgba(0,180,255,.8)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(reX - 4*es, reY);
+      ctx.lineTo(reX + 4*es, reY);
+      ctx.stroke();
+    } else {
+      ctx.beginPath();
+      ctx.arc(reX, reY, 5 * es, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(0,0,0,.5)';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(reX + eyeOffX, reY + eyeOffY, 3.5 * es, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(0,180,255,.9)';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(reX + eyeOffX * 1.2, reY + eyeOffY * 1.2, 1.5 * es, 0, Math.PI*2);
+      ctx.fillStyle = '#fff';
+      ctx.fill();
+    }
+
+    // mouth - smile when looking
+    if(bot.state === 'look'){
+      ctx.strokeStyle = 'rgba(0,180,255,.5)';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.arc(0, -S*.08, 4, .1, Math.PI - .1);
+      ctx.stroke();
+    }
+
+    ctx.restore();
+  }
+
   function animate(){
     ctx.clearRect(0, 0, W, H);
     drawOrbs();
     particles.forEach(p => { p.update(); p.draw(); });
     drawConnections();
+    updateBot();
+    drawBot();
     requestAnimationFrame(animate);
   }
   animate();
